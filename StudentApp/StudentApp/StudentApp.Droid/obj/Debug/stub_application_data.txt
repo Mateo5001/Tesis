@@ -1,2 +1,2 @@
 android.app.Application
-StudentApp.Droid
+StudentsApp.StudentsApp

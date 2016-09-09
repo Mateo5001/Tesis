@@ -12,6 +12,24 @@ namespace StudentApp
     public MainPage()
     {
       InitializeComponent();
+      
+    }
+    public MainPage(ref Button btnSignIn)
+    {
+
+      Button newbtnSignIn = new Button();
+      newbtnSignIn.HorizontalOptions = LayoutOptions.Center;
+      newbtnSignIn.VerticalOptions = LayoutOptions.End;
+      this.Content = new StackLayout
+      {
+        Children =
+                {
+                    newbtnSignIn
+                }
+      };
+
+      btnSignIn = newbtnSignIn;
+      
     }
   }
 }

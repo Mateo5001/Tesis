@@ -13,11 +13,8 @@ E:\Tesis\StudentApp\StudentApp\StudentApp\obj\Debug\StudentApp.MainPage.xaml.g.c
 E:\Tesis\StudentApp\StudentApp\StudentApp\obj\Debug\StudentApp.App.xaml.g.cs
 E:\Tesis\StudentApp\StudentApp\StudentApp\obj\Debug\StudentApp.dll
 E:\Tesis\StudentApp\StudentApp\StudentApp\obj\Debug\StudentApp.pdb
-E:\Tesis\StudentApp\StudentApp\StudentApp\obj\Debug\StudentApp.dll.mdb
-E:\Tesis\StudentApp\StudentApp\StudentApp\bin\Debug\StudentApp.dll.mdb
-E:\Tesis\StudentApp\StudentApp\StudentApp\obj\Debug\StudentApp.dll.mdb
-E:\Tesis\StudentApp\StudentApp\StudentApp\bin\Debug\StudentApp.dll.mdb
-E:\Tesis\StudentApp\StudentApp\StudentApp\obj\Debug\StudentApp.dll.mdb
-E:\Tesis\StudentApp\StudentApp\StudentApp\bin\Debug\StudentApp.dll.mdb
+E:\Tesis\StudentApp\StudentApp\StudentApp\obj\Debug\StudentApp.Views.Inicio.xaml.g.cs
+E:\Tesis\StudentApp\StudentApp\StudentApp\obj\Debug\StudentApp.Views.MastePage.MasterPage.xaml.g.cs
+E:\Tesis\StudentApp\StudentApp\StudentApp\obj\Debug\StudentApp.Views.MenuPage.xaml.g.cs
 E:\Tesis\StudentApp\StudentApp\StudentApp\obj\Debug\StudentApp.dll.mdb
 E:\Tesis\StudentApp\StudentApp\StudentApp\bin\Debug\StudentApp.dll.mdb

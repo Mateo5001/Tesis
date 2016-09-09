@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudentApp.Views.MastePage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,12 +10,27 @@ namespace StudentApp
 {
   public partial class App : Application
   {
+
     public App()
     {
       InitializeComponent();
 
-      MainPage = new StudentApp.MainPage();
+      MainPage = new MasterPage(); 
+      
     }
+
+    public App(ref Button btnSignIn)
+    {
+      InitializeComponent();
+
+      MainPage = new MainPage(ref btnSignIn);
+
+
+    }
+
+  
+
+    
 
     protected override void OnStart()
     {

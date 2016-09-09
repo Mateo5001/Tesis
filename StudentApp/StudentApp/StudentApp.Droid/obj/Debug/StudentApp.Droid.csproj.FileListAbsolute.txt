@@ -1,7 +1,5 @@
 E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\bin\Debug\StudentApp.Droid.dll
 E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\bin\Debug\StudentApp.Droid.pdb
-E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\bin\Debug\StudentApp.Droid.apk
-E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\bin\Debug\StudentApp.Droid-Signed.apk
 E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\bin\Debug\FormsViewGroup.dll
 E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\bin\Debug\StudentApp.dll
 E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\bin\Debug\Xamarin.Android.Support.Animated.Vector.Drawable.dll
@@ -26,7 +24,6 @@ E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\bin\Debug\Xamarin.Forms.Xaml.xml
 E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\obj\Debug\StudentApp.Droid.csprojResolveAssemblyReference.cache
 E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\obj\Debug\StudentApp.Droid.dll
 E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\obj\Debug\StudentApp.Droid.pdb
-E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\obj\Debug\android\bin\StudentApp.Droid.apk
 E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\obj\Debug\res\drawable\icon.png
 E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\obj\Debug\res\drawable-hdpi\icon.png
 E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\obj\Debug\res\drawable-xhdpi\icon.png
@@ -70,5 +67,11 @@ E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\obj\Debug\android\assets\System.
 E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\obj\Debug\android\assets\Xamarin.Forms.Core.dll.mdb
 E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\obj\Debug\android\assets\Xamarin.Forms.Platform.Android.dll.mdb
 E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\obj\Debug\android\assets\Xamarin.Forms.Xaml.dll.mdb
+E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\bin\Debug\StudentsApp.StudentsApp.apk
+E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\bin\Debug\StudentsApp.StudentsApp-Signed.apk
+E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\bin\Debug\Xamarin.GooglePlayServices.Base.dll
+E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\bin\Debug\Xamarin.GooglePlayServices.Basement.dll
+E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\bin\Debug\Xamarin.GooglePlayServices.Plus.dll
+E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\obj\Debug\android\bin\StudentsApp.StudentsApp.apk
 E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\obj\Debug\StudentApp.Droid.dll.mdb
 E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\bin\Debug\StudentApp.Droid.dll.mdb

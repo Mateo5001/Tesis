@@ -12,6 +12,9 @@ E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\obj\Debug\android\assets\Xamarin
 E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\obj\Debug\android\assets\Xamarin.Forms.Platform.Android.dll
 E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\obj\Debug\android\assets\Xamarin.Forms.Platform.dll
 E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\obj\Debug\android\assets\Xamarin.Forms.Xaml.dll
+E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\obj\Debug\android\assets\Xamarin.GooglePlayServices.Base.dll
+E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\obj\Debug\android\assets\Xamarin.GooglePlayServices.Basement.dll
+E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\obj\Debug\android\assets\Xamarin.GooglePlayServices.Plus.dll
 E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\obj\Debug\android\assets\Java.Interop.dll
 E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\obj\Debug\android\assets\Mono.Android.dll
 E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\obj\Debug\android\assets\mscorlib.dll
