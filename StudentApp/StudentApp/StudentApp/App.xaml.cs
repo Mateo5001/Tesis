@@ -10,13 +10,17 @@ namespace StudentApp
 {
   public partial class App : Application
   {
+    public App(string NameLogIn)
+    {
+      InitializeComponent();
 
+      MainPage = new MasterPage();
+    }
     public App()
     {
       InitializeComponent();
 
-      MainPage = new MasterPage(); 
-      
+      MainPage = new MasterPage();
     }
 
     public App(ref Button btnSignIn)
@@ -24,14 +28,8 @@ namespace StudentApp
       InitializeComponent();
 
       MainPage = new MainPage(ref btnSignIn);
-
-
     }
-
-  
-
     
-
     protected override void OnStart()
     {
       // Handle when your app starts
