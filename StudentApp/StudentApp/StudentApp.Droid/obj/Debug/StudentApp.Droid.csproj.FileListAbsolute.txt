@@ -205,5 +205,6 @@ E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\obj\Debug\android\assets\Google.
 E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\obj\Debug\android\assets\Google.Apis.Core.dll.mdb
 E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\obj\Debug\android\assets\Microsoft.CSharp.dll.mdb
 E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\obj\Debug\android\assets\Mono.CSharp.dll.mdb
+E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\bin\Debug\StudentApp.Droid.dll.config
 E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\obj\Debug\StudentApp.Droid.dll.mdb
 E:\Tesis\StudentApp\StudentApp\StudentApp.Droid\bin\Debug\StudentApp.Droid.dll.mdb

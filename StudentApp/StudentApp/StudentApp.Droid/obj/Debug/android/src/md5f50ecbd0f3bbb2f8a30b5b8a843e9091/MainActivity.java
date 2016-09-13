@@ -15,6 +15,7 @@ public class MainActivity
 			"n_onStart:()V:GetOnStartHandler\n" +
 			"n_onStop:()V:GetOnStopHandler\n" +
 			"n_onActivityResult:(IILandroid/content/Intent;)V:GetOnActivityResult_IILandroid_content_Intent_Handler\n" +
+			"n_onSaveInstanceState:(Landroid/os/Bundle;)V:GetOnSaveInstanceState_Landroid_os_Bundle_Handler\n" +
 			"n_onConnectionFailed:(Lcom/google/android/gms/common/ConnectionResult;)V:GetOnConnectionFailed_Lcom_google_android_gms_common_ConnectionResult_Handler:Android.Gms.Common.Apis.GoogleApiClient/IOnConnectionFailedListenerInvoker, Xamarin.GooglePlayServices.Basement\n" +
 			"";
 		mono.android.Runtime.register ("StudentApp.Droid.MainActivity, StudentApp.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", MainActivity.class, __md_methods);
@@ -59,6 +60,14 @@ public class MainActivity
 	}
 
 	private native void n_onActivityResult (int p0, int p1, android.content.Intent p2);
+
+
+	public void onSaveInstanceState (android.os.Bundle p0)
+	{
+		n_onSaveInstanceState (p0);
+	}
+
+	private native void n_onSaveInstanceState (android.os.Bundle p0);
 
 
 	public void onConnectionFailed (com.google.android.gms.common.ConnectionResult p0)
