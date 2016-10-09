@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudentApp.Movile.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace StudentApp.Movile
     {
       InitializeComponent();
 
-      MainPage = new StudentApp.Movile.Views.MenuPage();
+      MainPage = new StudentApp.Movile.Views.MasterPage.Master();
     }
 
     protected override void OnStart()
