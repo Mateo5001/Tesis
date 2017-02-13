@@ -3,11 +3,25 @@
 <head>
     <title></title>
 	<meta charset="utf-8" />
-  <script src="../Scripts/angular.min.js"></script>
-  <script src="../Scripts/bootstrap.min.js"></script>
-  <script src="../Scripts/jquery-3.1.1.min.js"></script>
+  <link href="../Content/bootstrap.css" rel="stylesheet" />
+  <script type="text/javascript" src="../Scripts/angular.min.js"></script>
+  <script type="text/javascript" src="../Scripts/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="../Scripts/bootstrap.min.js"></script>
 </head>
 <body>
+  <!--<form action="http://localhost:45778/api/Account/RegisterUser" method="post">-->
 
+    
+    <div class="container" ng-app="logInApp" ng-controller="LogIncontroller" ng-init="user={User:'daniel',Password:'1234'}">
+
+      <script src="../AngularControllers/LogIncontroller.js"></script>
+
+      <h1>{{user.User}}</h1>
+      <input type="password" name="pass" value="" ng-model="user.Password" />
+      <p>Hello {{user.Password}}</p>
+      <button ng-click="logIn()">log in</button>
+    </div>
+    
+  <!--</form>-->
 </body>
 </html>

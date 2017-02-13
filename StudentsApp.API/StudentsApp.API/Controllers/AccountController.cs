@@ -22,11 +22,20 @@ namespace StudentsApp.API.Controllers
     [HttpPost]
     [AllowAnonymous]
     [Route("RegisterUser/{id}")]
-    public async Task<string> RegisterUser(string id)
+    [Route("RegisterUser")]
+    public async Task<string> RegisterUser(logInModel id)
     {
-      return id;
+      return id.User;
     }
     
+    //[AllowAnonymous]
+    //[Route("RegisterAdmin")]
+    //public JsonResult<string> RegisterAdmin(UserRegistrationModel model)
+    //{
+      
+    //}
+
+
     [AllowAnonymous]
     [Route("get/{id}")]
     public async Task<object> get(string id)
