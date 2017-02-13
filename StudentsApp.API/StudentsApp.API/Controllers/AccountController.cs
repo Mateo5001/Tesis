@@ -27,13 +27,15 @@ namespace StudentsApp.API.Controllers
     {
       return id.User;
     }
-    
-    //[AllowAnonymous]
-    //[Route("RegisterAdmin")]
-    //public JsonResult<string> RegisterAdmin(UserRegistrationModel model)
-    //{
-      
-    //}
+
+    [HttpPost]
+    [AllowAnonymous]
+    [Route("RegisterAdmin")]
+    public string  RegisterAdmin(UserRegistrationModel model)
+    {
+
+      return model.NombreP;
+    }
 
 
     [AllowAnonymous]

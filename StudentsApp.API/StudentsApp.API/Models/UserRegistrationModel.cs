@@ -26,8 +26,8 @@ namespace StudentsApp.API.Models
     public string ApellidoS { get; set; }
 
     [Required]
-    [Display(Name = "Tipo Docuemnto")]
-    public TipoDocumento TipoDocuemtno { get; set; }
+    [Display(Name = "Tipo TipoDocumento")]
+    public TipoDocumento TipoDocumento { get; set; }
 
     [Required]
     [Display(Name = "Identificacion")]
