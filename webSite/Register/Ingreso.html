@@ -1,0 +1,119 @@
+﻿<html>
+
+<head>
+  <title>Ayudante Estudiantil </title>
+
+  <link href="Content/bootstrap.css" rel="stylesheet" />
+  <script type="text/javascript" src="Scripts/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
+  <script type="text/javascript" src="Scripts/angular.min.js"></script>
+</head>
+
+
+<body>
+
+  <div class="container" ng-app="Register" ng-controller="RegistrerAdminController" ng-init="Registrer={NombreP:'',NombreS:'',ApellidoP:'',ApellidoS:'', TipoDocumento:'',Identificacion:'',UserName:'',Password:'',ConfirmPassword:''}">
+    <script type="text/javascript" src="AngularControllers/RegistrerAdminController.js"></script>
+   
+     <div class="container">
+     
+       <h1>Registro </h1>
+     
+       <div class="row">
+        <div class="col-md-1">
+          Primer Nombre:
+        </div>
+        <div class="col-md-3">
+          <input type="text" name="txtNombre" value="" ng-model="Registrer.NombreP" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-1">
+          Segundo Nombre:
+        </div>
+        <div class="col-md-3">
+          <input type="text" name="txtSNombre" value="" ng-model="Registrer.NombreS" />
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-1">
+          Primer Apellido:
+        </div>
+        <div class="col-md-3">
+          <input type="text" name="txtPApellido" value="" ng-model="Registrer.ApellidoP" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-1">
+          Segundo Apellido:
+        </div>
+        <div class="col-md-3">
+          <input type="text" name="txtSApellido" value="" ng-model="Registrer.ApellidoS" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-1">
+          Tipo de Documento:
+        </div>
+        <div class="col-md-3">
+          <select name="CbTdocuemnto" ng-model="Registrer.TipoDocumento"> <option value="1">Cédula</option> </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-1">
+          Identificación :
+        </div>
+        <div class="col-md-3">
+          <input type="text" name="txtIdentificacion" value="" ng-model="Registrer.Identificacion" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-1">
+          Usuario :
+        </div>
+        <div class="col-md-3">
+          <input type="text" name="txtUsuario" value="" ng-model="Registrer.UserName" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-1">
+          Contraseña :
+        </div>
+        <div class="col-md-3">
+          <input type="text" name="txtContraseña" value="" ng-model="Registrer.Password" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-1">
+          Confirmar contraseña :
+        </div>
+        <div class="col-md-3">
+          <input type="text" name="txtCContraseña" value="" ng-model="Registrer.ConfirmPassword" />
+        </div>
+      </div>
+
+      <button ng-click="Register()">Registro</button>
+    
+    </div>
+  </div>
+
+</body>
+
+
+
+
+
+
+
+
+
+</html>
