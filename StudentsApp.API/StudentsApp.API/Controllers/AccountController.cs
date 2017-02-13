@@ -36,7 +36,6 @@ namespace StudentsApp.API.Controllers
     public bool RegisterAdmin(UserRegistrationModel model)
     {
       bool registra=Account.Registrar(model);
-      
       return registra;
     }
 
