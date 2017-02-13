@@ -16,7 +16,7 @@ namespace StudentsApp.API.AppLogic
     {
       using (StudenAppHelperDBEntities conect = new StudenAppHelperDBEntities())
       {
-        var Usuario = (from US in conect.Usurio where US.DocumentoUsuario==model.Identificacion && US.TipoDocumento== (int)model.TipoDocuemtno select US ).FirstOrDefault();
+        var Usuario = (from US in conect.Usurio where US.DocumentoUsuario==model.Identificacion && US.TipoDocumento== (int)model.TipoDocumento select US ).FirstOrDefault();
         if (Usuario == null)
         {
           Usuario = new Usurio();
@@ -24,7 +24,7 @@ namespace StudentsApp.API.AppLogic
           Usuario.NombreSegundo = model.NombreS;
           Usuario.ApellidoPrimer = model.ApellidoP;
           Usuario.ApellidoSegundo = model.ApellidoS;
-          Usuario.TipoDocumento = (int)model.TipoDocuemtno;
+          Usuario.TipoDocumento = (int)model.TipoDocumento;
           Usuario.DocumentoUsuario = model.Identificacion;
           Usuario.TipoUsuario = (int)TipoUsuarios.Administrador;
           Usuario.FechaNacimiento = null;

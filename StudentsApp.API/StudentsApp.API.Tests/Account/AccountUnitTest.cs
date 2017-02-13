@@ -71,7 +71,7 @@ namespace StudentsApp.API.Tests.Account
         NombreS = "Pruebas",
         ApellidoP = "Miranda",
         ApellidoS = "Vasquez",
-        TipoDocuemtno = TipoDocumento.Cedula,
+        TipoDocumento = TipoDocumento.Cedula,
         Identificacion = "1032",
         UserName = "BobPatiño5001",
         Password = "123",
