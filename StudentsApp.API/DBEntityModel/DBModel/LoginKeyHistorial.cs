@@ -7,20 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StudentsApp.API.Models
+namespace DBEntityModel.DBModel
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Logueo
+    public partial class LoginKeyHistorial
     {
-        public int logeoID { get; set; }
-        public int TipoLoginID { get; set; }
+        public int LoginKeyHistorialID { get; set; }
         public Nullable<int> LoginKeyID { get; set; }
-        public Nullable<int> IdUsuario { get; set; }
+        public Nullable<int> idUsuarioRegistra { get; set; }
+        public string LoginAnterior { get; set; }
+        public string loginPassAnterior { get; set; }
+        public Nullable<System.DateTime> fechaModificacion { get; set; }
     
-        public virtual BTipoLogin BTipoLogin { get; set; }
         public virtual LoginKey LoginKey { get; set; }
-        public virtual Usurio Usurio { get; set; }
     }
 }

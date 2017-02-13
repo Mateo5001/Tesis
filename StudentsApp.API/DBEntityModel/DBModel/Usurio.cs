@@ -7,28 +7,33 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StudentsApp.API.Models
+namespace DBEntityModel.DBModel
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class LoginKey
+    public partial class Usurio
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public LoginKey()
+        public Usurio()
         {
-            this.LoginKeyHistorial = new HashSet<LoginKeyHistorial>();
             this.Logueo = new HashSet<Logueo>();
         }
     
-        public int LoginKeyID { get; set; }
-        public string loginUser { get; set; }
-        public string loginPass { get; set; }
-        public Nullable<System.DateTime> fechaAcceso { get; set; }
+        public int IdUsuario { get; set; }
+        public int TipoDocumento { get; set; }
+        public string DocumentoUsuario { get; set; }
+        public string NombrePrimero { get; set; }
+        public string NombreSegundo { get; set; }
+        public string ApellidoPrimer { get; set; }
+        public string ApellidoSegundo { get; set; }
+        public int TipoUsuario { get; set; }
+        public Nullable<System.DateTime> FechaNacimiento { get; set; }
+        public bool esActivo { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LoginKeyHistorial> LoginKeyHistorial { get; set; }
+        public virtual BTipoDocumento BTipoDocumento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Logueo> Logueo { get; set; }
+        public virtual TipoUsuario TipoUsuario1 { get; set; }
     }
 }

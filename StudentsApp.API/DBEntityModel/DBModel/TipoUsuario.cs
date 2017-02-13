@@ -7,24 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StudentsApp.API.Models
+namespace DBEntityModel.DBModel
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class BTipoLogin
+    public partial class TipoUsuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public BTipoLogin()
+        public TipoUsuario()
         {
-            this.Logueo = new HashSet<Logueo>();
+            this.Usurio = new HashSet<Usurio>();
         }
     
-        public int TipoLoginID { get; set; }
-        public string CodigoTipoLogin { get; set; }
-        public string NombreTipoLogin { get; set; }
+        public int TipoUsuarioID { get; set; }
+        public string NombreTipoUsuario { get; set; }
+        public string CodigoTipoUsuario { get; set; }
+        public bool esActivo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Logueo> Logueo { get; set; }
+        public virtual ICollection<Usurio> Usurio { get; set; }
     }
 }

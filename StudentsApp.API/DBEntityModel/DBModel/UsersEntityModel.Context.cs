@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StudentsApp.API.Models
+namespace DBEntityModel.DBModel
 {
     using System;
     using System.Data.Entity;

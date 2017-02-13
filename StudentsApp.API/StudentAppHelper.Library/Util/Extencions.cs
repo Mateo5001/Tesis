@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace StudentAppHelper.Library.Util
 {
-  public enum TipoDocumento
-  {
-    Cedula =1
-  }
+  
   class Extencions
   {
   }

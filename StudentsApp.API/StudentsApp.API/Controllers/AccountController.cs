@@ -10,15 +10,17 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Results;
 using Newtonsoft.Json;
+using StudentAppHelper.Library.Util;
+using StudentsApp.API.AppLogic;
+using DBEntityModel.DBModel;
 
 namespace StudentsApp.API.Controllers
 {
-
-
   [RoutePrefix("api/Account")]
   [Authorize]
   public class AccountController : ApiController
   {
+    AccountLogic Account = new AccountLogic(); 
     [HttpPost]
     [AllowAnonymous]
     [Route("RegisterUser/{id}")]
@@ -27,13 +29,16 @@ namespace StudentsApp.API.Controllers
     {
       return id.User;
     }
-    
-    //[AllowAnonymous]
-    //[Route("RegisterAdmin")]
-    //public JsonResult<string> RegisterAdmin(UserRegistrationModel model)
-    //{
+
+    [HttpPost]
+    [AllowAnonymous]
+    [Route("RegisterAdmin")]
+    public bool RegisterAdmin(UserRegistrationModel model)
+    {
+      bool registra=Account.Registrar(model);
       
-    //}
+      return registra;
+    }
 
 
     [AllowAnonymous]
@@ -47,6 +52,7 @@ namespace StudentsApp.API.Controllers
       };
       return model;
     }
+
     [HttpPost]
     [AllowAnonymous]
     [Route("LogIn")]

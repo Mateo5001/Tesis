@@ -31,6 +31,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "webSite", "..\webSite\", "{
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBEntityModel", "DBEntityModel\DBEntityModel.csproj", "{3A2D5D46-0E2F-46B6-8FDB-6CF64F42859F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{FEE2F3BB-856D-4913-BDD8-6B4C10BB60E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEE2F3BB-856D-4913-BDD8-6B4C10BB60E8}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{FEE2F3BB-856D-4913-BDD8-6B4C10BB60E8}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{3A2D5D46-0E2F-46B6-8FDB-6CF64F42859F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A2D5D46-0E2F-46B6-8FDB-6CF64F42859F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A2D5D46-0E2F-46B6-8FDB-6CF64F42859F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A2D5D46-0E2F-46B6-8FDB-6CF64F42859F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

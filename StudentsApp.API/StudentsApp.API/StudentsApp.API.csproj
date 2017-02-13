@@ -132,21 +132,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Models\UserDataModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>UserDataModel.edmx</DependentUpon>
-      <LastGenOutput>UserDataModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\UserDataModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>UserDataModel.edmx</DependentUpon>
-      <LastGenOutput>UserDataModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppLogic\AccountLogic.cs" />
     <Compile Include="App_Start\OwinStartup.cs" />
     <Compile Include="App_Start\StartUp.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -156,55 +147,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Auth\LoginOwnIdentity.cs" />
-    <Compile Include="Models\BTipoDocumento.cs">
-      <DependentUpon>UserDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BTipoLogin.cs">
-      <DependentUpon>UserDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LoginKey.cs">
-      <DependentUpon>UserDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LoginKeyHistorial.cs">
-      <DependentUpon>UserDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\logInModel.cs" />
-    <Compile Include="Models\Logueo.cs">
-      <DependentUpon>UserDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TipoUsuario.cs">
-      <DependentUpon>UserDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UserDataModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UserDataModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UserDataModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UserDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UserDataModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UserDataModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\UserRegistrationModel.cs" />
-    <Compile Include="Models\Usurio.cs">
-      <DependentUpon>UserDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <EntityDeploy Include="Models\UserDataModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>UserDataModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\UserDataModel.edmx.diagram">
-      <DependentUpon>UserDataModel.edmx</DependentUpon>
-    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -216,6 +164,10 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DBEntityModel\DBEntityModel.csproj">
+      <Project>{3A2D5D46-0E2F-46B6-8FDB-6CF64F42859F}</Project>
+      <Name>DBEntityModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StudentAppHelper.Library\StudentAppHelper.Library.csproj">
       <Project>{EEA9D84C-2B14-47AE-88A4-4296DD838BC3}</Project>
       <Name>StudentAppHelper.Library</Name>

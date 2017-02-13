@@ -7,23 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StudentsApp.API.Models
+namespace DBEntityModel.DBModel
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class TipoUsuario
+    public partial class BTipoDocumento
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TipoUsuario()
+        public BTipoDocumento()
         {
             this.Usurio = new HashSet<Usurio>();
         }
     
-        public int TipoUsuarioID { get; set; }
-        public string NombreTipoUsuario { get; set; }
-        public string CodigoTipoUsuario { get; set; }
-        public bool esActivo { get; set; }
+        public int TipoDocumentoID { get; set; }
+        public string CodigoTipoDocuemnto { get; set; }
+        public string NombreTipoDocumento { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Usurio> Usurio { get; set; }
