@@ -25,7 +25,7 @@ namespace StudentApp.Movile.Droid.Activity
       TabLayoutResource = Resource.Layout.Tabbar;
       base.OnCreate(savedInstanceState);
       global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-      LoadApplication(new App());
+      LoadApplication(new App()); 
     }
   }
 }

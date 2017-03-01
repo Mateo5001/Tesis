@@ -35,10 +35,11 @@ namespace StudentApp.Movile.Droid
       ToolbarResource = Resource.Layout.Toolbar;
       TabLayoutResource = Resource.Layout.Tabbar;
       base.OnCreate(bundle);
-      SetContentView(Resource.Layout.logInLayout);
+      //SetContentView(Resource.Layout.logInLayout);
       global::Xamarin.Forms.Forms.Init(this, bundle);
-      InicioGPlusStart();
-      ConfigureBtnSignInGplus();
+      LoadApplication(new App());
+      //InicioGPlusStart();
+      //ConfigureBtnSignInGplus();
     }
 
     private void ConfigureBtnSignInGplus()

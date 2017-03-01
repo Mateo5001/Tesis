@@ -1,4 +1,5 @@
 ﻿using StudentApp.Movile.Views;
+using StudentApp.Movile.Views.Loguin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace StudentApp.Movile
     {
       InitializeComponent();
 
-      MainPage = new StudentApp.Movile.Views.MasterPage.Master();
+      MainPage = new Loguin();
     }
 
     protected override void OnStart()
