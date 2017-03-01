@@ -3,8 +3,8 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StudentsApp.API.Controllers;
-using StudentsApp.API.Models;
 using StudentAppHelper.Library.Util;
+using StudentAppHelper.Library.Models;
 
 namespace StudentsApp.API.Tests.Account
 {

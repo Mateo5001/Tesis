@@ -17,10 +17,13 @@
 
         <script src="../AngularControllers/LogIncontroller.js"></script>
 
-      <h1>{{user.User}}</h1>
+      <h1>Wellcome {{user.User}}</h1>
+      <input type="text" name="pass" value="" ng-model="user.User" />
       <input type="password" name="pass" value="" ng-model="user.Password" />
       <p>Hello {{user.Password}}</p>
-      <button ng-click="logIn()">log in</button>
+      <button ng-click="Register()">register</button>
+      <button ng-click="logIn()">Log in </button>
+      <button ng-click="HolaMundo()">hola Mundo</button>
     </div>
     
   <!--</form>-->

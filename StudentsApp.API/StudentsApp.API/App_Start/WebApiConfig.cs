@@ -1,10 +1,10 @@
 ﻿using Newtonsoft.Json.Serialization;
-using StudentsApp.API.Auth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Formatting;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace StudentsApp.API
 {
@@ -24,6 +24,12 @@ namespace StudentsApp.API
       );
       var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
       jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
+      var enableCorsAttribute = new EnableCorsAttribute("*",
+                                               "Origin, Content-Type, Accept, loginKey",
+                                               "GET, PUT, POST, DELETE, OPTIONS");
+      config.EnableCors(enableCorsAttribute);
+
     }
   }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.Principal;
 using System.Web;
 
-namespace StudentsApp.API.Auth
+namespace StudentAppHelper.Library.Auth
 {
   public class LoginOwnIdentity : IIdentity
   {

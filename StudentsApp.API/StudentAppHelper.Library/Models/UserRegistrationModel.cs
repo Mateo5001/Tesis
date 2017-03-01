@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace StudentsApp.API.Models
+namespace StudentAppHelper.Library.Models
 {
   public class UserRegistrationModel
   {

@@ -1,83 +1,125 @@
-﻿using StudentsApp.API.Models;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Results;
 using Newtonsoft.Json;
-using StudentAppHelper.Library.Util;
-using StudentsApp.API.AppLogic;
-using DBEntityModel.DBModel;
+using Microsoft.AspNet.Identity.Owin;
+using System.Net.Http.Headers;
+using Microsoft.Owin.Security;
+using Microsoft.AspNet.Identity;
+using StudentAppHelper.Library.Auth;
+using StudentAppHelper.Library.Models;
+using StudentsApp.API.Custom;
+using StudentAppHelper.Library.AppLogic;
 
 namespace StudentsApp.API.Controllers
 {
+  [LoginAuthorize]
   [RoutePrefix("api/Account")]
-  [Authorize]
-  public class AccountController : ApiController
+  public class AccountController : CustomAppAPI
   {
-    AccountLogic Account = new AccountLogic(); 
+    public AccountController(LoginUserManager userManager, ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
+    {
+      UserManager = userManager;
+      AccessTokenFormat = accessTokenFormat;
+      ; 
+      _signInManager = new SignInManager<LoginUser,string>(userManager, HttpContext.Current.GetOwinContext().Authentication);
+      
+    }
+
+
+    public AccountController() : this(Startup.UserManagerFactory(), Startup.OAuthOptions.AccessTokenFormat)
+    {
+
+    }
+    public SignInManager<LoginUser,string> _signInManager { get; private set; }
+    public LoginUserManager UserManager { get; private set; }
+    public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
+    AccountLogic Account = new AccountLogic();
     [HttpPost]
     [AllowAnonymous]
     [Route("RegisterUser/{id}")]
     [Route("RegisterUser")]
-    public async Task<string> RegisterUser(logInModel id)
+    public async Task<string> RegisterUser(logInModel model)
     {
-      return id.User;
+      try
+      {
+        var user = new LoginUser { UserName = model.User };
+        var result = await UserManager.CreateAsync(user);
+        if (result.Succeeded)
+        {
+          return "creado";
+        }
+
+      }
+      catch (Exception e)
+      {
+        return "fallo";
+      }
+      finally
+      {
+      }
+      return "fallo";
     }
 
     [HttpPost]
     [AllowAnonymous]
     [Route("RegisterAdmin")]
-    public bool RegisterAdmin(UserRegistrationModel model)
+    public async Task<bool> RegisterAdmin(UserRegistrationModel model)
     {
-      bool registra=Account.Registrar(model);
-      return registra;
-    }
-
-
-    [AllowAnonymous]
-    [Route("get/{id}")]
-    public async Task<object> get(string id)
-    {
-      logInModel model = new logInModel()
+      try
       {
-        User = id,
-        Password = "1234"
-      };
-      return model;
-    }
-
-    [HttpPost]
-    [AllowAnonymous]
-    [Route("LogIn")]
-    public async Task<HttpResponseMessage> logIn(logInModel logUser)
-    {
-      var request = HttpContext.Current.Request;
-      var tokenServiceUrl = request.Url.GetLeftPart(UriPartial.Authority) + request.ApplicationPath + "/api/Token";
-      using (var client = new HttpClient())
+        var user = Account.Registrar(model);
+        var result = await UserManager.CreateAsync(user);
+        return result.Succeeded;
+      }
+      catch (Exception e)
       {
-        var requestParams = new List<KeyValuePair<string, string>>
-            {
-                new KeyValuePair<string, string>("grant_type", "password"),
-                new KeyValuePair<string, string>("username", logUser.User),
-                new KeyValuePair<string, string>("password", logUser.Password)
-            };
-        var requestParamsFormUrlEncoded = new FormUrlEncodedContent(requestParams);
-        var tokenServiceResponse = await client.PostAsync(tokenServiceUrl, requestParamsFormUrlEncoded);
-        var responseString = await tokenServiceResponse.Content.ReadAsStringAsync();
-        var responseCode = tokenServiceResponse.StatusCode;
-        var responseMsg = new HttpResponseMessage(responseCode)
-        {
-          Content = new StringContent(responseString, Encoding.UTF8, "application/json")
-        };
-        return responseMsg;
+        return false;
       }
     }
 
+    [AllowAnonymous]
+    [HttpPost]
+    [Route("Login")]
+    public async Task<string> Login(logInModel model)
+    {
+      try
+      {
+        var result = await _signInManager.PasswordSignInAsync(model.User,model.Password ,isPersistent: true, shouldLockout: false);
+        //var listUsers = _signInManager.UserManager.Users.ToList();
+        if (result == SignInStatus.Success)
+        {
+
+          var user = Account.FindByName(model.User);
+          return user.FirstOrDefault().Id;
+        }
+      }
+      catch ( Exception e)
+      {
+        
+      }
+      return "failure";
+    }
+    public bool logOut()
+    {
+      UserManager.Users.FirstOrDefault();
+      throw new NotImplementedException();
+    }
+
+
+    [HttpGet]
+    public string holamundo()
+    {
+      var re =Request.Content.Headers;
+      return "hola mundo";
+    }
+    
   }
 }
