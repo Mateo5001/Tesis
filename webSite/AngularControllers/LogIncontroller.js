@@ -59,6 +59,7 @@ LogInApp.controller("LogIncontroller", function ($scope) {
 
   }
   $scope.logOut = function () {
-    document.cookie = "loginKey=";
+    for (var it in $.cookie())
+      $.removeCookie(it);
   }
 })
