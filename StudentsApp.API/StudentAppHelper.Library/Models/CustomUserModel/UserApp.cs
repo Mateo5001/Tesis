@@ -22,5 +22,18 @@ namespace StudentAppHelper.Library.Models.CustomUserModel
         _LoginKey = value;
       }
     }
+
+    public int IdUser
+    {
+      get
+      {
+        return _idUser;
+      }
+
+      set
+      {
+        _idUser = value;
+      }
+    }
   }
 }

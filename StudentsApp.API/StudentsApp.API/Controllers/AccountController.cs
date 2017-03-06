@@ -26,11 +26,11 @@ namespace StudentsApp.API.Controllers
   {
     public AccountController(LoginUserManager userManager, ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
     {
+      var re = HttpContext.Current.Request;
       UserManager = userManager;
       AccessTokenFormat = accessTokenFormat;
-      ; 
       _signInManager = new SignInManager<LoginUser,string>(userManager, HttpContext.Current.GetOwinContext().Authentication);
-      
+      cargarUser();
     }
 
 

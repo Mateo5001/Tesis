@@ -14,7 +14,6 @@ LogInApp.controller("LogIncontroller", function ($scope) {
     });
 
   }
-
   $scope.logIn = function () {
     var user = $scope.user;
 
@@ -59,6 +58,7 @@ LogInApp.controller("LogIncontroller", function ($scope) {
     });
 
   }
-
-
+  $scope.logOut = function () {
+    document.cookie = "loginKey=";
+  }
 })

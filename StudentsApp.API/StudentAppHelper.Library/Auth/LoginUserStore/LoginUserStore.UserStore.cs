@@ -28,7 +28,7 @@ namespace StudentAppHelper.Library.Auth
 
     public void Dispose()
     {
-      throw new NotImplementedException();
+     
     }
 
     public Task<LoginUser> FindByIdAsync(int userId)

@@ -1,4 +1,5 @@
-﻿using StudentAppHelper.Library.Models.CustomUserModel;
+﻿using DBEntityModel.DBModel;
+using StudentAppHelper.Library.Models.CustomUserModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,22 @@ namespace StudentAppHelper.Library.AppLogic.CustomGenericLogic
   {
     public UserApp getUserByLoginKey(string loginKey )
     {
-      throw new NotImplementedException();
+      UserApp user;
+      using (StudenAppHelperDBEntities conect = new StudenAppHelperDBEntities())
+      {
+        var userEncontrado = (from lk in conect.LoginKey
+                    join lU in conect.Logueo on lk.LoginKeyID equals lU.LoginKeyID
+                    select new UserApp()
+                    {
+                      LoginKey = lk.loginKey1,
+                      IdUser = lU.IdUsuario.Value
+                    }).FirstOrDefault();
+        
+        user = userEncontrado;
+      }
+
+
+      return user;
     }
   }
 }

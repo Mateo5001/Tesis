@@ -159,6 +159,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\StudentAppHelper-API-Test - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\StudentAppHelper-API-Test - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
