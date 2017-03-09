@@ -19,7 +19,7 @@ LogInApp.controller("LogIncontroller", function ($scope) {
 
     $.ajax({
       type: "POST",
-      url: 'http://localhost:45778/api/Account/Login',
+      url: 'http://studentapphelper-api-test.azurewebsites.net/api/Account/Login',
       dataType: 'json',
       data: user,
       success: function (data) {
@@ -51,7 +51,7 @@ LogInApp.controller("LogIncontroller", function ($scope) {
       headers: {
         'loginKey': loginKey
       },
-      url: 'http://localhost:45778/api/Account/holamundo',
+      url: 'http://studentapphelper-api-test.azurewebsites.net/api/Account/holamundo',
       success: function (data) {
         alert(data);
       }
@@ -59,7 +59,6 @@ LogInApp.controller("LogIncontroller", function ($scope) {
 
   }
   $scope.logOut = function () {
-    for (var it in $.cookie())
-      $.removeCookie(it);
+    deleteCookie('loginKey');
   }
 })
