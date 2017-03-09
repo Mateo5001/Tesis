@@ -1,4 +1,6 @@
-﻿using System;
+﻿using StudentApp.Movile.ViewModel;
+using StudentApp.Movile.Views.Login;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +14,9 @@ namespace StudentApp.Movile
     public MainPage()
     {
       InitializeComponent();
+      MainViewModel mainView = new MainViewModel();
+      BindingContext = mainView;
+      Navigation.PushAsync(new Login());
     }
   }
 }

@@ -1,28 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="StudentApp.Movile.Views.Loguin.Loguin">
-
+             x:Class="StudentApp.Movile.Views.Login.Login">
   <StackLayout VerticalOptions="Center">
-   
-
     <Label Text="Bienvenido!" VerticalOptions="Center" TextColor="Blue" FontSize="25"> </Label>
-           
     <Entry Text="" Placeholder="Username"/>
     <Entry Text="" Placeholder="Password" IsPassword="true" />
     <Button Text="Login" />
     <Button Text="Facebook" BorderColor="Blue" />
     <Button Text="Gmail" BorderColor="Red" />
- 
-  
-  
-  
   </StackLayout>
-
-    
- 
-    
-  
 </ContentPage>
 
  
