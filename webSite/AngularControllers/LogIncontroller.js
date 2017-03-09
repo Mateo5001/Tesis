@@ -23,8 +23,7 @@ LogInApp.controller("LogIncontroller", function ($scope) {
       dataType: 'json',
       data: user,
       success: function (data) {
-        alert(data);
-        document.cookie = "loginKey=" + data + ";path=/";
+        createCoockie('loginKey', data)
       }
     });
 

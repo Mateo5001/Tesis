@@ -1,5 +1,6 @@
 ﻿function createCoockie(name,value) {
-
+  console.log("crearCookie: " + name);
+  document.cookie = name + "=" + value + ";path=/";
 }
 
 var deleteCookie = function (key) {
