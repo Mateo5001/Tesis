@@ -1,4 +1,5 @@
-﻿using StudentApp.Movile.Views;
+﻿using StudentApp.Movile.ViewModel;
+using StudentApp.Movile.Views;
 using StudentApp.Movile.Views.Login;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace StudentApp.Movile
     public App()
     {
       InitializeComponent();
+      Resources.Add("Locator", new ViewModelLocator());
       MainPage =new NavigationPage(new Login());
     }
 

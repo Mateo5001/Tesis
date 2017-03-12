@@ -10,7 +10,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>StudentApp.Movile.Droid</RootNamespace>
-    <AssemblyName>StudentApp.Movile.Droid</AssemblyName>
+    <AssemblyName>StudentAppMovileDroid</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AndroidApplication>true</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>

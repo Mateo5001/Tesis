@@ -14,8 +14,6 @@ namespace StudentApp.Movile.Views.Login
     public Login()
     {
       InitializeComponent();
-      LoginViewModel _loginView = new LoginViewModel();
-      BindingContext = _loginView;
     }
   }
 }

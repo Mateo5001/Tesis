@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>StudentApp.Movile</RootNamespace>
-    <AssemblyName>StudentApp.Movile</AssemblyName>
+    <AssemblyName>StudentAppMovile</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <TargetFrameworkProfile>Profile44</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -38,6 +38,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interfase\ILoginViewModel.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -124,7 +125,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Interfase\" />
+    <Folder Include="CustomControl\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\StudentsApp.API\StudentAppHelper.ModelBindings\StudentAppHelper.ModelBindings.csproj">
+      <Project>{d4f65f95-cd2c-4f76-9cab-2a071475d847}</Project>
+      <Name>StudentAppHelper.ModelBindings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\StudenAppHelper.ResousrcesStrings\StudenAppHelper.ResousrcesStrings.csproj">
+      <Project>{95ACAFFD-7900-4771-991E-38B1E3E62555}</Project>
+      <Name>StudenAppHelper.ResousrcesStrings</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudentAppHelper.Library.Util
+namespace StudentAppHelper.ModelBindings.Util
 {
   public enum TipoDocumento
   {

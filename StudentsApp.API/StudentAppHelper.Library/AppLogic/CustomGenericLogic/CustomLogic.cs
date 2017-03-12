@@ -1,5 +1,5 @@
 ﻿using DBEntityModel.DBModel;
-using StudentAppHelper.Library.Models.CustomUserModel;
+using StudentAppHelper.ModelBindings.Models.CustomUserModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -180,6 +180,10 @@
       <Project>{EEA9D84C-2B14-47AE-88A4-4296DD838BC3}</Project>
       <Name>StudentAppHelper.Library</Name>
     </ProjectReference>
+    <ProjectReference Include="..\StudentAppHelper.ModelBindings\StudentAppHelper.ModelBindings.csproj">
+      <Project>{d4f65f95-cd2c-4f76-9cab-2a071475d847}</Project>
+      <Name>StudentAppHelper.ModelBindings</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -14,9 +14,9 @@ using System.Net.Http.Headers;
 using Microsoft.Owin.Security;
 using Microsoft.AspNet.Identity;
 using StudentAppHelper.Library.Auth;
-using StudentAppHelper.Library.Models;
 using StudentsApp.API.Custom;
 using StudentAppHelper.Library.AppLogic;
+using StudentAppHelper.ModelBindings.Models;
 
 namespace StudentsApp.API.Controllers
 {

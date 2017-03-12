@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using StudentAppHelper.Library.Models;
+using StudentAppHelper.ModelBindings.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

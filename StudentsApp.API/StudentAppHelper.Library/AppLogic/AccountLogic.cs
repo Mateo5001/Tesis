@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using DBEntityModel.DBModel;
-using StudentAppHelper.Library.Util;
-using StudentAppHelper.Library.Models;
 using StudentAppHelper.Library.Auth;
+using StudentAppHelper.ModelBindings.Models;
+using StudentAppHelper.ModelBindings.Util;
 
 namespace StudentAppHelper.Library.AppLogic
 {
