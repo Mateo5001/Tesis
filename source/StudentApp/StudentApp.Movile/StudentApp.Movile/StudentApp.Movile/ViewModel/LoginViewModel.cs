@@ -19,6 +19,8 @@ using Xamarin.Forms;
 using Flurl.Http;
 using Newtonsoft.Json;
 using System.Net.Http.Formatting;
+using StudentAppHelper.Services.Contract;
+using Microsoft.Practices.ServiceLocation;
 
 namespace StudentApp.Movile.ViewModel
 {
@@ -26,14 +28,14 @@ namespace StudentApp.Movile.ViewModel
   {
     #region atributos privados
     private logInModel logingIn;
-
-    HttpClient client = new HttpClient();
+    private IHttpClientService _client;
     #endregion
 
     #region constructor
     public LoginViewModel()
     {
       LogingIn = new logInModel();
+      _client = ServiceLocator.Current.GetInstance<IHttpClientService>();
       CmdLogin = CmdLogin_Clicked;
     }
     #endregion
@@ -67,13 +69,8 @@ namespace StudentApp.Movile.ViewModel
       {
         return new Command(async() => {
 
-          HttpClientService _client = new HttpClientService();
-          _client.WithAtetntication = false;
-          var app = await callExample(@"http://studentapphelper-api-test.azurewebsites.net/api/Account/Login", LogingIn);
-
-
-
-
+          string res=await _client.Call<logInModel, string>("api/Account/login", LogingIn);
+          string rest = string.Empty;
         });
       }
     }
@@ -87,29 +84,6 @@ namespace StudentApp.Movile.ViewModel
     }
     #endregion
 
-    public async Task<string> callExample(string pathCall, logInModel obToSend)
-    {
-      try
-      {
-        //new MediaTypeFormatterCollection().FirstOrDefault();
-        var uri = new Uri(pathCall);
-        var json = JsonConvert.SerializeObject(obToSend);
-        var content = new StringContent(json, Encoding.UTF8, "application/json");
-        var response = await client.PostAsync(uri, content);
-        if (response.IsSuccessStatusCode)
-        {
-          return await response.Content.ReadAsAsync<string>();
-        }
-        else
-        {
-          return null;
-        }
-      }
-      catch (Exception e)
-      {
-        throw e;
-        return null;
-      }
-    }
+    
   }
 }

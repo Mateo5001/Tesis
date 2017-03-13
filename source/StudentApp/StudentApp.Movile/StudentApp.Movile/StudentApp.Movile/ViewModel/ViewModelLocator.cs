@@ -12,10 +12,15 @@
   See http://www.galasoft.ch/mvvm
 */
 
+using Autofac;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using StudentApp.Movile.Interfase;
+using StudentAppHelper.Services.HTTP;
+using StudentAppHelper.Services.Contract;
+using Xamarin.Forms;
+using Autofac.Extras.CommonServiceLocator;
 
 namespace StudentApp.Movile.ViewModel
 {
@@ -30,21 +35,20 @@ namespace StudentApp.Movile.ViewModel
     /// </summary>
     public ViewModelLocator()
     {
-      ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+      //ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+      //SimpleIoc.Default.Register<MainViewModel>();
+      //SimpleIoc.Default.Register<LoginViewModel>();
+      var builder = new ContainerBuilder();
 
-      ////if (ViewModelBase.IsInDesignModeStatic)
-      ////{
-      ////    // Create design time view services and models
-      ////    SimpleIoc.Default.Register<IDataService, DesignDataService>();
-      ////}
-      ////else
-      ////{
-      ////    // Create run time view services and models
-      ////    SimpleIoc.Default.Register<IDataService, DataService>();
-      ////}
+      builder.RegisterType<MainViewModel>().SingleInstance();
+      builder.RegisterType<LoginViewModel>().SingleInstance();
+      
+      
+      builder.RegisterType<HttpClientService>().As<IHttpClientService>();
 
-      SimpleIoc.Default.Register<MainViewModel>();
-      SimpleIoc.Default.Register<LoginViewModel>();
+      var container = builder.Build(Autofac.Builder.ContainerBuildOptions.None);
+      ServiceLocator.SetLocatorProvider(() => new AutofacServiceLocator(container));
+
     }
 
     public MainViewModel Main
