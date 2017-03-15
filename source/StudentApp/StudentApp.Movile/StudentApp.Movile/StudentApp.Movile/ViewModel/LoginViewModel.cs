@@ -21,10 +21,11 @@ using Newtonsoft.Json;
 using System.Net.Http.Formatting;
 using StudentAppHelper.Services.Contract;
 using Microsoft.Practices.ServiceLocation;
+using System.ComponentModel;
 
 namespace StudentApp.Movile.ViewModel
 {
-  public class LoginViewModel : ViewModelBase, ILoginViewModel
+  public class LoginViewModel : ViewModelBase,  INotifyPropertyChanged
   {
     #region atributos privados
     private logInModel logingIn;
@@ -45,6 +46,7 @@ namespace StudentApp.Movile.ViewModel
     public string phUser { get { return LoginResource.phUser; } }
     public string phPass { get { return LoginResource.phPass; } }
     public string nmBtnLogin { get { return LoginResource.nmBtnLogin; } }
+    public string LK { get; set; }
     #endregion
 
     #region Encapsulamiento de atributos
@@ -68,9 +70,8 @@ namespace StudentApp.Movile.ViewModel
       get
       {
         return new Command(async() => {
-
-          string res=await _client.Call<logInModel, string>("api/Account/login", LogingIn);
-          string rest = string.Empty;
+          string loginKey=await _client.CallAsync<logInModel, string>("api/Account/login", LogingIn);
+          LK = loginKey;
         });
       }
     }

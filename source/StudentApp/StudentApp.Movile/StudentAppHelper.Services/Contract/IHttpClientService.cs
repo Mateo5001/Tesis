@@ -9,13 +9,11 @@ namespace StudentAppHelper.Services.Contract
 {
   public interface IHttpClientService
   {
-    Task<TResponse> Call<TSentType, TResponse>(string pathCall, TSentType obToSend);
+    Task<TResponse> CallAsync<TSentType, TResponse>(string pPathCall, TSentType pObToSend , bool pIsAuthenticated=true);
 
-    Task<string> callExample(string pathCall, logInModel obToSend);
-
-    Task<TResponse> callServiceWithOutAuthentication<TSentType, TResponse>(string pathCall, TSentType obToSend);
-
-    Task<TResponse> callServiceWithAuthentication<TSentType, TResponse>(string pathCall, object obToSend);
+    TResponse Call<TSentType, TResponse>(string pPathCall, TSentType pObToSend, bool pIsAuthenticated=true);
+    
+    
   
   }
 }

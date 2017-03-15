@@ -14,17 +14,26 @@ namespace StudentAppHelper.Services.HTTP
 {
   public class HttpClientService : IHttpClientService
   {
-    public async Task<TResponse> Call<TSentType, TResponse>(string pathCall, TSentType obToSend)
+    public TResponse Call<TSentType, TResponse>(string pPathCall, TSentType pObToSend, bool pIsAuthenticated=true)
     {
       try
       {
         using (var client = new HttpClient())
         {
           client.BaseAddress = new Uri(@"http://studentapphelper-api-test.azurewebsites.net");
-          string data = JsonConvert.SerializeObject(obToSend);
+          if(pIsAuthenticated)
+            client.DefaultRequestHeaders.Add("loginkey", string.Empty);
+          string data = JsonConvert.SerializeObject(pObToSend);
           StringContent body = new StringContent(data, UTF8Encoding.UTF8, "application/json");
-          var response = await client.PostAsync(pathCall, body);
-          data = await response.Content.ReadAsStringAsync();
+          var response = client.PostAsync(pPathCall, body);
+          response.Wait();
+          if(response.IsCompleted)
+          {
+
+            var asyc = response.Result.Content.ReadAsStringAsync();
+            asyc.Wait();
+            data = asyc.Result;
+          }
           return JsonConvert.DeserializeObject<TResponse>(data);
         }
       }
@@ -35,19 +44,26 @@ namespace StudentAppHelper.Services.HTTP
       }
     }
 
-    public Task<string> callExample(string pathCall, logInModel obToSend)
+    public async Task<TResponse> CallAsync<TSentType, TResponse>(string pPathCall, TSentType pObToSend, bool pIsAuthenticated=true)
     {
-      throw new NotImplementedException();
-    }
+      try
+      {
+        using (var client = new HttpClient())
+        {
+          client.BaseAddress = new Uri(@"http://studentapphelper-api-test.azurewebsites.net");
 
-    public Task<TResponse> callServiceWithAuthentication<TSentType, TResponse>(string pathCall, object obToSend)
-    {
-      throw new NotImplementedException();
-    }
-
-    public Task<TResponse> callServiceWithOutAuthentication<TSentType, TResponse>(string pathCall, TSentType obToSend)
-    {
-      throw new NotImplementedException();
+          string data = JsonConvert.SerializeObject(pObToSend);
+          StringContent body = new StringContent(data, UTF8Encoding.UTF8, "application/json");
+          var response =await client.PostAsync(pPathCall, body);
+          data =await response.Content.ReadAsStringAsync();
+          return JsonConvert.DeserializeObject<TResponse>(data);
+        }
+      }
+      catch (Exception e)
+      {
+        throw e;
+        return default(TResponse);
+      }
     }
   }
 }
