@@ -51,7 +51,11 @@ namespace StudentApp.Movile.ViewModel
     public string phPass { get { return LoginResource.phPass; } }
     public string nmBtnLogin { get { return LoginResource.nmBtnLogin; } }
 
-    public string Lk
+
+   
+
+public event PropertyChangedEventHandler PropertyChanged;
+public string Lk
     {
       get
       {
@@ -61,7 +65,15 @@ namespace StudentApp.Movile.ViewModel
       set
       {
         _lk = value;
+        OnpropertyChanged("LK");
+        OnpropertyChanged("_lk");
       }
+    }
+
+    private void OnpropertyChanged(String LK)
+    {
+      if (PropertyChanged != null)
+        PropertyChanged(this, new PropertyChangedEventArgs(LK));
     }
     #endregion
 
