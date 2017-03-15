@@ -35,20 +35,20 @@ namespace StudentApp.Movile.ViewModel
     /// </summary>
     public ViewModelLocator()
     {
-      //ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-      //SimpleIoc.Default.Register<MainViewModel>();
-      //SimpleIoc.Default.Register<LoginViewModel>();
       var builder = new ContainerBuilder();
 
       builder.RegisterType<MainViewModel>().SingleInstance();
       builder.RegisterType<LoginViewModel>().SingleInstance();
-      
-      
+
+
+      var oauth = DependencyService.Get<IStorageCookiesService>();
+      builder.RegisterInstance(oauth).As<IStorageCookiesService>();
+
+
       builder.RegisterType<HttpClientService>().As<IHttpClientService>();
 
       var container = builder.Build(Autofac.Builder.ContainerBuildOptions.None);
       ServiceLocator.SetLocatorProvider(() => new AutofacServiceLocator(container));
-
     }
 
     public MainViewModel Main

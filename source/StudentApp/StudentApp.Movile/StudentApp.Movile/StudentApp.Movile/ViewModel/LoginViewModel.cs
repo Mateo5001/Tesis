@@ -31,6 +31,7 @@ namespace StudentApp.Movile.ViewModel
     private string _lk;
     private logInModel logingIn;
     private IHttpClientService _client;
+    private IStorageCookiesService _CookieService;
     #endregion
 
     #region constructor
@@ -38,6 +39,7 @@ namespace StudentApp.Movile.ViewModel
     {
       LogingIn = new logInModel();
       _client = ServiceLocator.Current.GetInstance<IHttpClientService>();
+      _CookieService = ServiceLocator.Current.GetInstance<IStorageCookiesService>();
       CmdLogin = CmdLogin_Clicked;
     }
     #endregion
@@ -96,6 +98,8 @@ public string Lk
       {
         return new Command(async() => {
           string loginKey=await _client.CallAsync<logInModel, string>("api/Account/login", LogingIn);
+          _CookieService.AddCookie("loginkey", loginKey);
+          var storedcookie = _CookieService.GetCookie("loginKey");
           Lk = loginKey;
         });
       }
