@@ -14,20 +14,22 @@ namespace StudentAppHelper.Services.HTTP
 {
   public class HttpClientService : IHttpClientService
   {
-    public TResponse Call<TSentType, TResponse>(string pPathCall, TSentType pObToSend, bool pIsAuthenticated=true)
+    public bool IsAuthenticated { get; set; }
+
+    public TResponse Call<TSentType, TResponse>(string pPathCall, TSentType pObToSend)
     {
       try
       {
         using (var client = new HttpClient())
         {
           client.BaseAddress = new Uri(@"http://studentapphelper-api-test.azurewebsites.net");
-          if(pIsAuthenticated)
+          if (IsAuthenticated)
             client.DefaultRequestHeaders.Add("loginkey", string.Empty);
           string data = JsonConvert.SerializeObject(pObToSend);
           StringContent body = new StringContent(data, UTF8Encoding.UTF8, "application/json");
           var response = client.PostAsync(pPathCall, body);
           response.Wait();
-          if(response.IsCompleted)
+          if (response.IsCompleted)
           {
 
             var asyc = response.Result.Content.ReadAsStringAsync();
@@ -44,7 +46,7 @@ namespace StudentAppHelper.Services.HTTP
       }
     }
 
-    public async Task<TResponse> CallAsync<TSentType, TResponse>(string pPathCall, TSentType pObToSend, bool pIsAuthenticated=true)
+    public async Task<TResponse> CallAsync<TSentType, TResponse>(string pPathCall, TSentType pObToSend)
     {
       try
       {
@@ -54,8 +56,8 @@ namespace StudentAppHelper.Services.HTTP
 
           string data = JsonConvert.SerializeObject(pObToSend);
           StringContent body = new StringContent(data, UTF8Encoding.UTF8, "application/json");
-          var response =await client.PostAsync(pPathCall, body);
-          data =await response.Content.ReadAsStringAsync();
+          var response = await client.PostAsync(pPathCall, body);
+          data = await response.Content.ReadAsStringAsync();
           return JsonConvert.DeserializeObject<TResponse>(data);
         }
       }

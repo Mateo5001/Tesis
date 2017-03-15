@@ -175,6 +175,10 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services.Droid\CookiesStore.cs" />
+    <Compile Include="Services.Droid\CookieStore.cs" />
+    <Compile Include="Services\OAuthService.cs" />
+    <Compile Include="Services\Storage\StorageCookiesService.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
   </ItemGroup>
@@ -204,6 +208,10 @@
     <AndroidResource Include="Resources\values\styles.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\StudentAppHelper.Services\StudentAppHelper.Services.csproj">
+      <Project>{F2575E2B-3EC2-4103-A2B6-D93952BF86FF}</Project>
+      <Name>StudentAppHelper.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StudentApp.Movile\StudentApp.Movile.csproj">
       <Project>{9A5FA151-3EBA-4587-AFBA-3F1FDB418D12}</Project>
       <Name>StudentApp.Movile</Name>
