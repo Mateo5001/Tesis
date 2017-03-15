@@ -9,9 +9,11 @@ namespace StudentAppHelper.Services.Contract
 {
   public interface IStorageCookiesService
   {
-    void AddCookie(String cookie, String value);
-    string GetCookie(String cookie);
-    void SetCookie(String cookie, String value);
-    void DelCookie(String cookie, String value);
+    void AddCookie(string cookie, string value);
+    string GetCookie(string cookie);
+    void SetCookie(string cookie, string value);
+    void DelCookie(string cookie, string value);
+
+    bool existsCookie(string name);
   }
 }

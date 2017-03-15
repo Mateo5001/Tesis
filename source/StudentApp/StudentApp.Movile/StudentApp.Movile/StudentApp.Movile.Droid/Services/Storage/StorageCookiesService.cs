@@ -12,49 +12,11 @@ namespace StudentApp.Movile.Droid.Services.Storage
 {
   class StorageCookiesService : IStorageCookiesService
   {
-    #region MyRegion
-    //public void HttpCookie(String cookie, String value)
-    //{
-    //  string name = " ";
-    //  string value = 0;
-    //  HttpCookieCollection MyCookieCollection = new HttpCookieCollection();        //creo coleecion de cookies   
-    //  HttpCookie MyCookie = new HttpCookie("cookie");    // crea cookie nombre cookie     
-    //  MyCookieCollection.Add(MyCookie);       // se agrega cookie a la coleccion
-    //}
-
-    //public HttpCookie Get(String cookie, String value)
-    //{
-    //  HttpCookieCollection MyCookieCollection = Request.Cookies;
-    //  HttpCookie MyCookie = MyCookieCollection.Get("cookie");
-    //  return cookie;
-    //  return value;
-    //}
-
-    //public HttpCookie Get(String cookie, String value)
-    //{
-    //  HttpCookieCollection MyCookieCollection = Request.Cookies;
-    //  HttpCookie MyCookie = MyCookieCollection.Get("cookie");
-    //  return cookie;
-
-    //}
-    //public HttpCookie set(String cookie, String value)
-    //{
-    //  MyCookieCollection.Set(MyCookie);
-    //}
-    //public void Clear()
-
-    //{
-
-    //  MyCookieCollection.Clear("cookie");
-
-    //}
-    #endregion
+    CookieManager cm = new CookieManager();
     public void AddCookie(string cookie, string value)
     {
       HttpCookie MyCookie = new HttpCookie(cookie, value);
-      CookieManager cm = new CookieManager();
       cm.CookieStore.Add(new URI(@"http://studentapphelper-api-test.azurewebsites.net"), MyCookie);
-      
       string header = MyCookie.ToString();
     }
 
@@ -63,12 +25,19 @@ namespace StudentApp.Movile.Droid.Services.Storage
       throw new NotImplementedException();
     }
 
+    public bool existsCookie(string name)
+    {
+      var existeCookie = GetCookie(name);
+      return string.IsNullOrEmpty(existeCookie);
+    }
+
     public string GetCookie(string cookie)
     {
-      CookieManager cm =new CookieManager();
-      var h =cm.CookieStore.Get(new URI(@"http://studentapphelper-api-test.azurewebsites.net"));
-      HttpCookie coockie = h.Where(x => x.Name == cookie).DefaultIfEmpty().FirstOrDefault();
-      return coockie.Value;
+      var h = cm.CookieStore.Get(new URI(@"http://studentapphelper-api-test.azurewebsites.net"));
+      var httpcookie = h.Where(x => x.Name == cookie).DefaultIfEmpty().FirstOrDefault();
+      if (httpcookie != null)
+        return httpcookie.Value;
+      return string.Empty;
     }
 
     public void SetCookie(string cookie, string value)
