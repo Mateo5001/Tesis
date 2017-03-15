@@ -37,9 +37,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Contract\IHttpClientService.cs" />
+    <Compile Include="Contract\IStorageCookiesService.cs" />
     <Compile Include="Extenicions\Extencions.cs" />
     <Compile Include="HTTP\HttpClientService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Storage\StorageCookiesService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\StudentsApp.API\StudentAppHelper.ModelBindings\StudentAppHelper.ModelBindings.csproj">
