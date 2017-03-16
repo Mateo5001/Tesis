@@ -14,6 +14,7 @@ namespace StudentAppHelper.Services.HTTP
 {
   public class HttpClientService : IHttpClientService
   {
+    
     public bool IsAuthenticated { get; set; }
 
     public TResponse Call<TSentType, TResponse>(string pPathCall, TSentType pObToSend)
@@ -31,7 +32,6 @@ namespace StudentAppHelper.Services.HTTP
           response.Wait();
           if (response.IsCompleted)
           {
-
             var asyc = response.Result.Content.ReadAsStringAsync();
             asyc.Wait();
             data = asyc.Result;
@@ -53,7 +53,8 @@ namespace StudentAppHelper.Services.HTTP
         using (var client = new HttpClient())
         {
           client.BaseAddress = new Uri(@"http://studentapphelper-api-test.azurewebsites.net");
-
+          if (IsAuthenticated)
+            client.DefaultRequestHeaders.Add("loginkey", string.Empty);
           string data = JsonConvert.SerializeObject(pObToSend);
           StringContent body = new StringContent(data, UTF8Encoding.UTF8, "application/json");
           var response = await client.PostAsync(pPathCall, body);

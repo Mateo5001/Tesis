@@ -11,7 +11,7 @@
     <Button Command="{Binding CmdLogin}" Text="{Binding nmBtnLogin}" />
     <Button Text="Facebook" BorderColor="Blue" />
     <Button Text="Gmail" BorderColor="Red" />
-    <Label Text="{Binding LK, Mode=TwoWay}" VerticalOptions="Center" TextColor="Blue" FontSize="25"> </Label>
+    <Label Text="{Binding Lk, Mode=TwoWay}" VerticalOptions="Center" TextColor="Blue" FontSize="25"> </Label>
   </StackLayout>
 </ContentPage>
 

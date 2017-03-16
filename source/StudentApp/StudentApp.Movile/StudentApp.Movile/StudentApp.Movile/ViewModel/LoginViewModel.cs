@@ -1,6 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
 using StudenAppHelper.ResousrcesStrings;
-using StudentApp.Movile.Interfase;
 using StudentAppHelper.ModelBindings.Models;
 using StudentAppHelper.Services.HTTP;
 using System;
@@ -22,13 +21,15 @@ using System.Net.Http.Formatting;
 using StudentAppHelper.Services.Contract;
 using Microsoft.Practices.ServiceLocation;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using StudentApp.Movile.Util.CustomViewModel;
 
 namespace StudentApp.Movile.ViewModel
 {
-  public class LoginViewModel : ViewModelBase,  INotifyPropertyChanged
+  public class LoginViewModel : CustomAppViewModel
   {
     #region atributos privados
-    private string _lk;
+    private string _lk= string.Empty;
     private logInModel logingIn;
     private IHttpClientService _client;
     private IStorageCookiesService _CookieService;
@@ -41,40 +42,16 @@ namespace StudentApp.Movile.ViewModel
       _client = ServiceLocator.Current.GetInstance<IHttpClientService>();
       _CookieService = ServiceLocator.Current.GetInstance<IStorageCookiesService>();
       CmdLogin = CmdLogin_Clicked;
-      var storedcookie = _CookieService.GetCookie("loginkey");
+      var storedcookie = _CookieService.GetCookieValue("loginkey");
+      Lk = storedcookie;
     }
     #endregion
 
-    #region propiedades estaticas
+    #region propiedades 
     public string TextWelcome { get { return LoginResource.WelcomeString; } }
     public string phUser { get { return LoginResource.phUser; } }
     public string phPass { get { return LoginResource.phPass; } }
     public string nmBtnLogin { get { return LoginResource.nmBtnLogin; } }
-
-
-   
-
-public event PropertyChangedEventHandler PropertyChanged;
-public string Lk
-    {
-      get
-      {
-        return _lk;
-      }
-
-      set
-      {
-        _lk = value;
-        OnpropertyChanged("LK");
-        OnpropertyChanged("_lk");
-      }
-    }
-
-    private void OnpropertyChanged(String LK)
-    {
-      if (PropertyChanged != null)
-        PropertyChanged(this, new PropertyChangedEventArgs(LK));
-    }
     #endregion
 
     #region Encapsulamiento de atributos
@@ -90,6 +67,19 @@ public string Lk
         logingIn = value;
       }
     }
+    public string Lk
+    {
+      get
+      {
+        return _lk;
+      }
+
+      set
+      {
+        _lk = value;
+        OnPropertyChanged();
+      }
+    }
     #endregion
 
     #region def de comandos
@@ -97,10 +87,12 @@ public string Lk
     {
       get
       {
-        return new Command(async() => {
-          string loginKey=await _client.CallAsync<logInModel, string>("api/Account/login", LogingIn);
+        return new Command(async () =>
+        {
+          _client.IsAuthenticated = false;
+          var loginKey = await _client.CallAsync<logInModel, string>("api/Account/login", LogingIn);
           _CookieService.AddCookie("loginkey", loginKey);
-          var storedcookie = _CookieService.GetCookie("loginkey");
+          var storedcookie = _CookieService.GetCookieValue("loginkey");
           Lk = loginKey;
         });
       }
@@ -114,9 +106,8 @@ public string Lk
       get;
     }
 
-    
+
     #endregion
-
-
   }
+
 }

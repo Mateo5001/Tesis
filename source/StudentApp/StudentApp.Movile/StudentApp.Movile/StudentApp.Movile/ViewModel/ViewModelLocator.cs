@@ -16,7 +16,6 @@ using Autofac;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
-using StudentApp.Movile.Interfase;
 using StudentAppHelper.Services.HTTP;
 using StudentAppHelper.Services.Contract;
 using Xamarin.Forms;

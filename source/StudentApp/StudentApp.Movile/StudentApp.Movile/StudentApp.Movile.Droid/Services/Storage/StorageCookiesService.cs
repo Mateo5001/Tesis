@@ -20,29 +20,39 @@ namespace StudentApp.Movile.Droid.Services.Storage
       string header = MyCookie.ToString();
     }
 
-    public void DelCookie(string cookie, string value)
+    public void DelCookie(string cookie)
     {
-      throw new NotImplementedException();
+      HttpCookie httpcookie = GetCookie(cookie);
+      cm.CookieStore.Remove(new URI(@"http://studentapphelper-api-test.azurewebsites.net"), httpcookie);
+    }
+
+    private HttpCookie GetCookie(string cookie)
+    {
+      var h = cm.CookieStore.Get(new URI(@"http://studentapphelper-api-test.azurewebsites.net"));
+      var httpcookie = h.Where(x => x.Name == cookie).DefaultIfEmpty().FirstOrDefault();
+      return httpcookie;
     }
 
     public bool existsCookie(string name)
     {
-      var existeCookie = GetCookie(name);
+      var existeCookie = GetCookieValue(name);
       return string.IsNullOrEmpty(existeCookie);
     }
 
-    public string GetCookie(string cookie)
+    public string GetCookieValue(string cookie)
     {
-      var h = cm.CookieStore.Get(new URI(@"http://studentapphelper-api-test.azurewebsites.net"));
-      var httpcookie = h.Where(x => x.Name == cookie).DefaultIfEmpty().FirstOrDefault();
+      HttpCookie httpcookie = GetCookie(cookie);
       if (httpcookie != null)
         return httpcookie.Value;
       return string.Empty;
     }
-
+    
     public void SetCookie(string cookie, string value)
     {
-      throw new NotImplementedException();
+      HttpCookie httpcookie = GetCookie(cookie);
+      httpcookie.Value = value;
+      DelCookie(cookie);
+      cm.CookieStore.Add(new URI(@"http://studentapphelper-api-test.azurewebsites.net"), httpcookie);
     }
   }
 }
