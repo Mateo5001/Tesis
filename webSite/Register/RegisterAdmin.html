@@ -12,7 +12,8 @@
 
 <body>
 
-  <div class="container" ng-app="Register" ng-controller="RegistrerAdminController" ng-init="Registrer={NombreP:'',NombreS:'',ApellidoP:'',ApellidoS:'', TipoDocumento:'',Identificacion:'',UserName:'',Password:'',ConfirmPassword:''}">
+  <div class="container" ng-app="Register" ng-controller="RegistrerAdminController" 
+       ng-init="Registrer={FirstName:'',SecondName:'',FirstLastName:'',SecondLastName:'', DocumentType:'',DocumentNumber:'',UserNick:'',Password:'',ConfirmationPassword:''}">
     <script type="text/javascript" src="../AngularControllers/RegistrerAdminController.js"></script>
    
      <div class="container">
@@ -24,7 +25,7 @@
           Primer Nombre:
         </div>
         <div class="col-md-3">
-          <input type="text" name="txtNombre" value="" ng-model="Registrer.NombreP" />
+          <input type="text" name="txtNombre" value="" ng-model="Registrer.FirstName" />
         </div>
       </div>
 
@@ -33,7 +34,7 @@
           Segundo Nombre:
         </div>
         <div class="col-md-3">
-          <input type="text" name="txtSNombre" value="" ng-model="Registrer.NombreS" />
+          <input type="text" name="txtSNombre" value="" ng-model="Registrer.SecondName" />
 
         </div>
       </div>
@@ -43,7 +44,7 @@
           Primer Apellido:
         </div>
         <div class="col-md-3">
-          <input type="text" name="txtPApellido" value="" ng-model="Registrer.ApellidoP" />
+          <input type="text" name="txtPApellido" value="" ng-model="Registrer.FirstLastName" />
         </div>
       </div>
 
@@ -52,7 +53,7 @@
           Segundo Apellido:
         </div>
         <div class="col-md-3">
-          <input type="text" name="txtSApellido" value="" ng-model="Registrer.ApellidoS" />
+          <input type="text" name="txtSApellido" value="" ng-model="Registrer.SecondLastName" />
         </div>
       </div>
 
@@ -61,7 +62,7 @@
           Tipo de Documento:
         </div>
         <div class="col-md-3">
-          <select name="CbTdocuemnto" ng-model="Registrer.TipoDocumento"> <option value="1">Cédula</option> </select>
+          <select name="CbTdocuemnto" ng-model="Registrer.DocumentType"> <option value="1">Cédula</option> </select>
         </div>
       </div>
 
@@ -70,7 +71,7 @@
           Identificación :
         </div>
         <div class="col-md-3">
-          <input type="text" name="txtIdentificacion" value="" ng-model="Registrer.Identificacion" />
+          <input type="text" name="txtIdentificacion" value="" ng-model="Registrer.DocumentNumber" />
         </div>
       </div>
 
@@ -79,7 +80,7 @@
           Usuario :
         </div>
         <div class="col-md-3">
-          <input type="text" name="txtUsuario" value="" ng-model="Registrer.UserName" />
+          <input type="text" name="txtUsuario" value="" ng-model="Registrer.UserNick" />
         </div>
       </div>
 
@@ -97,7 +98,7 @@
           Confirmar contraseña :
         </div>
         <div class="col-md-3">
-          <input type="text" name="txtCContraseña" value="" ng-model="Registrer.ConfirmPassword" />
+          <input type="text" name="txtCContraseña" value="" ng-model="Registrer.ConfirmationPassword" />
         </div>
       </div>
 

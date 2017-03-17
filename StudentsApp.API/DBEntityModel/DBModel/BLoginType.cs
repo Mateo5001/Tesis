@@ -12,19 +12,19 @@ namespace DBEntityModel.DBModel
     using System;
     using System.Collections.Generic;
     
-    public partial class BTipoLogin
+    public partial class BLoginType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public BTipoLogin()
+        public BLoginType()
         {
-            this.Logueo = new HashSet<Logueo>();
+            this.Login = new HashSet<Login>();
         }
     
-        public int TipoLoginID { get; set; }
-        public string CodigoTipoLogin { get; set; }
-        public string NombreTipoLogin { get; set; }
+        public int LoginTypeId { get; set; }
+        public string LoginTypeCode { get; set; }
+        public string LginTypeName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Logueo> Logueo { get; set; }
+        public virtual ICollection<Login> Login { get; set; }
     }
 }

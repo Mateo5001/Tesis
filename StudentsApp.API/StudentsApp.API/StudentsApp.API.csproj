@@ -150,6 +150,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Custom\CustomAppAPI.cs" />
+    <Compile Include="Custom\ICustomAppAPI.cs" />
     <Compile Include="Custom\LoginAuthorize.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

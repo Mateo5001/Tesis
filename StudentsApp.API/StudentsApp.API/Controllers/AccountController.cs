@@ -26,22 +26,23 @@ namespace StudentsApp.API.Controllers
   {
     public AccountController(LoginUserManager userManager, ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
     {
+      ICustomAppAPI app = this;
       var re = HttpContext.Current.Request;
       UserManager = userManager;
       AccessTokenFormat = accessTokenFormat;
       _signInManager = new SignInManager<LoginUser,string>(userManager, HttpContext.Current.GetOwinContext().Authentication);
       cargarUser();
     }
-
-
     public AccountController() : this(Startup.UserManagerFactory(), Startup.OAuthOptions.AccessTokenFormat)
     {
 
     }
+
     public SignInManager<LoginUser,string> _signInManager { get; private set; }
     public LoginUserManager UserManager { get; private set; }
     public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
     AccountLogic Account = new AccountLogic();
+
     [HttpPost]
     [AllowAnonymous]
     [Route("RegisterUser/{id}")]
@@ -75,7 +76,7 @@ namespace StudentsApp.API.Controllers
     {
       try
       {
-        var user = Account.Registrar(model);
+        var user = new LoginUser(model);
         var result = await UserManager.CreateAsync(user);
         return result.Succeeded;
       }
@@ -105,7 +106,7 @@ namespace StudentsApp.API.Controllers
       {
         
       }
-      return "failure";
+      return "";
     }
     public bool logOut()
     {
@@ -117,6 +118,7 @@ namespace StudentsApp.API.Controllers
     [HttpGet]
     public string holamundo()
     {
+      
       var re =Request.Content.Headers;
       return "hola mundo";
     }

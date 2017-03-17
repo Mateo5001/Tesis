@@ -5,452 +5,452 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="StudenAppHelperDB_devModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="BTipoDocumento">
+        <EntityType Name="BDocumentType">
           <Key>
-            <PropertyRef Name="TipoDocumentoID" />
+            <PropertyRef Name="DocumentTypeId" />
           </Key>
-          <Property Name="TipoDocumentoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CodigoTipoDocuemnto" Type="varchar" MaxLength="3" Nullable="false" />
-          <Property Name="NombreTipoDocumento" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="DocumentTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocuemntTypeCode" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="DocumentTypeName" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
-        <EntityType Name="BTipoLogin">
+        <EntityType Name="BLoginType">
           <Key>
-            <PropertyRef Name="TipoLoginID" />
+            <PropertyRef Name="LoginTypeId" />
           </Key>
-          <Property Name="TipoLoginID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CodigoTipoLogin" Type="varchar" MaxLength="2" Nullable="false" />
-          <Property Name="NombreTipoLogin" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="LoginTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginTypeCode" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="LginTypeName" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="LoginId" />
+          </Key>
+          <Property Name="LoginId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginTypeId" Type="int" Nullable="false" />
+          <Property Name="LoginKeyId" Type="int" />
+          <Property Name="UserId" Type="int" />
         </EntityType>
         <EntityType Name="LoginKey">
           <Key>
-            <PropertyRef Name="LoginKeyID" />
+            <PropertyRef Name="LoginKeyId" />
           </Key>
-          <Property Name="LoginKeyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="loginUser" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="loginPass" Type="varchar" MaxLength="12" Nullable="false" />
-          <Property Name="loginKey" Type="varchar" MaxLength="36" Nullable="false" />
-          <Property Name="fechaAcceso" Type="date" />
+          <Property Name="LoginKeyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginNick" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="LoginPass" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="LoginKey" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="AccessDate" Type="date" />
         </EntityType>
         <EntityType Name="LoginKeyHistorial">
           <Key>
-            <PropertyRef Name="LoginKeyHistorialID" />
+            <PropertyRef Name="LoginKeyHistorialId" />
           </Key>
-          <Property Name="LoginKeyHistorialID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="LoginKeyID" Type="int" />
-          <Property Name="idUsuarioRegistra" Type="int" />
-          <Property Name="LoginAnterior" Type="varchar" MaxLength="10" />
-          <Property Name="loginPassAnterior" Type="varchar" MaxLength="12" />
-          <Property Name="fechaModificacion" Type="date" />
+          <Property Name="LoginKeyHistorialId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginKeyId" Type="int" />
+          <Property Name="RegisterUserId" Type="int" />
+          <Property Name="BeforeLoginNick" Type="varchar" MaxLength="10" />
+          <Property Name="BeforeLoginPass" Type="varchar" MaxLength="12" />
+          <Property Name="ModifyDate" Type="date" />
         </EntityType>
-        <EntityType Name="Logueo">
+        <EntityType Name="User">
           <Key>
-            <PropertyRef Name="logeoID" />
+            <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="logeoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TipoLoginID" Type="int" Nullable="false" />
-          <Property Name="LoginKeyID" Type="int" />
-          <Property Name="IdUsuario" Type="int" />
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserDocuemntTypeId" Type="int" Nullable="false" />
+          <Property Name="UserDocumentNumber" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="UserFirstName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="UserSecondName" Type="varchar" MaxLength="30" />
+          <Property Name="UserFirsLastName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="UserSecondLastName" Type="varchar" MaxLength="30" />
+          <Property Name="UserType" Type="int" Nullable="false" />
+          <Property Name="UserBirthDate" Type="date" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="TipoUsuario">
+        <EntityType Name="UserType">
           <Key>
-            <PropertyRef Name="TipoUsuarioID" />
+            <PropertyRef Name="UserTypeId" />
           </Key>
-          <Property Name="TipoUsuarioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NombreTipoUsuario" Type="varchar" MaxLength="100" />
-          <Property Name="CodigoTipoUsuario" Type="varchar" MaxLength="5" />
-          <Property Name="esActivo" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Usurio">
-          <Key>
-            <PropertyRef Name="IdUsuario" />
-          </Key>
-          <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TipoDocumento" Type="int" Nullable="false" />
-          <Property Name="DocumentoUsuario" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="NombrePrimero" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="NombreSegundo" Type="varchar" MaxLength="30" />
-          <Property Name="ApellidoPrimer" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="ApellidoSegundo" Type="varchar" MaxLength="30" />
-          <Property Name="TipoUsuario" Type="int" Nullable="false" />
-          <Property Name="FechaNacimiento" Type="date" />
-          <Property Name="esActivo" Type="bit" Nullable="false" />
+          <Property Name="UserTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserTypeName" Type="varchar" MaxLength="100" />
+          <Property Name="UserTypeCode" Type="varchar" MaxLength="5" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_LoginKeyHistorial_LoginKey">
           <End Role="LoginKey" Type="Self.LoginKey" Multiplicity="0..1" />
           <End Role="LoginKeyHistorial" Type="Self.LoginKeyHistorial" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LoginKey">
-              <PropertyRef Name="LoginKeyID" />
+              <PropertyRef Name="LoginKeyId" />
             </Principal>
             <Dependent Role="LoginKeyHistorial">
-              <PropertyRef Name="LoginKeyID" />
+              <PropertyRef Name="LoginKeyId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Logueo_BTipoLogin">
-          <End Role="BTipoLogin" Type="Self.BTipoLogin" Multiplicity="1" />
-          <End Role="Logueo" Type="Self.Logueo" Multiplicity="*" />
+          <End Role="BLoginType" Type="Self.BLoginType" Multiplicity="1" />
+          <End Role="Login" Type="Self.Login" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BTipoLogin">
-              <PropertyRef Name="TipoLoginID" />
+            <Principal Role="BLoginType">
+              <PropertyRef Name="LoginTypeId" />
             </Principal>
-            <Dependent Role="Logueo">
-              <PropertyRef Name="TipoLoginID" />
+            <Dependent Role="Login">
+              <PropertyRef Name="LoginTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Logueo_LoginKey">
           <End Role="LoginKey" Type="Self.LoginKey" Multiplicity="0..1" />
-          <End Role="Logueo" Type="Self.Logueo" Multiplicity="*" />
+          <End Role="Login" Type="Self.Login" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LoginKey">
-              <PropertyRef Name="LoginKeyID" />
+              <PropertyRef Name="LoginKeyId" />
             </Principal>
-            <Dependent Role="Logueo">
-              <PropertyRef Name="LoginKeyID" />
+            <Dependent Role="Login">
+              <PropertyRef Name="LoginKeyId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Logueo_Usurio">
-          <End Role="Usurio" Type="Self.Usurio" Multiplicity="0..1" />
-          <End Role="Logueo" Type="Self.Logueo" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Login" Type="Self.Login" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Usurio">
-              <PropertyRef Name="IdUsuario" />
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
             </Principal>
-            <Dependent Role="Logueo">
-              <PropertyRef Name="IdUsuario" />
+            <Dependent Role="Login">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Usurio_BTipoDocumento">
-          <End Role="BTipoDocumento" Type="Self.BTipoDocumento" Multiplicity="1" />
-          <End Role="Usurio" Type="Self.Usurio" Multiplicity="*" />
+          <End Role="BDocumentType" Type="Self.BDocumentType" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BTipoDocumento">
-              <PropertyRef Name="TipoDocumentoID" />
+            <Principal Role="BDocumentType">
+              <PropertyRef Name="DocumentTypeId" />
             </Principal>
-            <Dependent Role="Usurio">
-              <PropertyRef Name="TipoDocumento" />
+            <Dependent Role="User">
+              <PropertyRef Name="UserDocuemntTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Usurio_TipoUsuario">
-          <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
-          <End Role="Usurio" Type="Self.Usurio" Multiplicity="*" />
+          <End Role="UserType" Type="Self.UserType" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TipoUsuario">
-              <PropertyRef Name="TipoUsuarioID" />
+            <Principal Role="UserType">
+              <PropertyRef Name="UserTypeId" />
             </Principal>
-            <Dependent Role="Usurio">
-              <PropertyRef Name="TipoUsuario" />
+            <Dependent Role="User">
+              <PropertyRef Name="UserType" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="StudenAppHelperDB_devModelStoreContainer">
-          <EntitySet Name="BTipoDocumento" EntityType="Self.BTipoDocumento" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="BTipoLogin" EntityType="Self.BTipoLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BDocumentType" EntityType="Self.BDocumentType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BLoginType" EntityType="Self.BLoginType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoginKey" EntityType="Self.LoginKey" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoginKeyHistorial" EntityType="Self.LoginKeyHistorial" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Logueo" EntityType="Self.Logueo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Usurio" EntityType="Self.Usurio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_LoginKeyHistorial_LoginKey" Association="Self.FK_LoginKeyHistorial_LoginKey">
             <End Role="LoginKey" EntitySet="LoginKey" />
             <End Role="LoginKeyHistorial" EntitySet="LoginKeyHistorial" />
           </AssociationSet>
           <AssociationSet Name="FK_Logueo_BTipoLogin" Association="Self.FK_Logueo_BTipoLogin">
-            <End Role="BTipoLogin" EntitySet="BTipoLogin" />
-            <End Role="Logueo" EntitySet="Logueo" />
+            <End Role="BLoginType" EntitySet="BLoginType" />
+            <End Role="Login" EntitySet="Login" />
           </AssociationSet>
           <AssociationSet Name="FK_Logueo_LoginKey" Association="Self.FK_Logueo_LoginKey">
             <End Role="LoginKey" EntitySet="LoginKey" />
-            <End Role="Logueo" EntitySet="Logueo" />
+            <End Role="Login" EntitySet="Login" />
           </AssociationSet>
           <AssociationSet Name="FK_Logueo_Usurio" Association="Self.FK_Logueo_Usurio">
-            <End Role="Usurio" EntitySet="Usurio" />
-            <End Role="Logueo" EntitySet="Logueo" />
+            <End Role="User" EntitySet="User" />
+            <End Role="Login" EntitySet="Login" />
           </AssociationSet>
           <AssociationSet Name="FK_Usurio_BTipoDocumento" Association="Self.FK_Usurio_BTipoDocumento">
-            <End Role="BTipoDocumento" EntitySet="BTipoDocumento" />
-            <End Role="Usurio" EntitySet="Usurio" />
+            <End Role="BDocumentType" EntitySet="BDocumentType" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
           <AssociationSet Name="FK_Usurio_TipoUsuario" Association="Self.FK_Usurio_TipoUsuario">
-            <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-            <End Role="Usurio" EntitySet="Usurio" />
+            <End Role="UserType" EntitySet="UserType" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="StudenAppHelperDB_devModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="BTipoDocumento">
+        <EntityContainer Name="StudenAppHelperDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BDocumentType" EntityType="StudenAppHelperDB_devModel.BDocumentType" />
+          <EntitySet Name="BLoginType" EntityType="StudenAppHelperDB_devModel.BLoginType" />
+          <EntitySet Name="Login" EntityType="StudenAppHelperDB_devModel.Login" />
+          <EntitySet Name="LoginKey" EntityType="StudenAppHelperDB_devModel.LoginKey" />
+          <EntitySet Name="LoginKeyHistorial" EntityType="StudenAppHelperDB_devModel.LoginKeyHistorial" />
+          <EntitySet Name="User" EntityType="StudenAppHelperDB_devModel.User" />
+          <EntitySet Name="UserType" EntityType="StudenAppHelperDB_devModel.UserType" />
+          <AssociationSet Name="FK_Usurio_BTipoDocumento" Association="StudenAppHelperDB_devModel.FK_Usurio_BTipoDocumento">
+            <End Role="BDocumentType" EntitySet="BDocumentType" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Logueo_BTipoLogin" Association="StudenAppHelperDB_devModel.FK_Logueo_BTipoLogin">
+            <End Role="BLoginType" EntitySet="BLoginType" />
+            <End Role="Login" EntitySet="Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Logueo_LoginKey" Association="StudenAppHelperDB_devModel.FK_Logueo_LoginKey">
+            <End Role="LoginKey" EntitySet="LoginKey" />
+            <End Role="Login" EntitySet="Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Logueo_Usurio" Association="StudenAppHelperDB_devModel.FK_Logueo_Usurio">
+            <End Role="User" EntitySet="User" />
+            <End Role="Login" EntitySet="Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoginKeyHistorial_LoginKey" Association="StudenAppHelperDB_devModel.FK_LoginKeyHistorial_LoginKey">
+            <End Role="LoginKey" EntitySet="LoginKey" />
+            <End Role="LoginKeyHistorial" EntitySet="LoginKeyHistorial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usurio_TipoUsuario" Association="StudenAppHelperDB_devModel.FK_Usurio_TipoUsuario">
+            <End Role="UserType" EntitySet="UserType" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BDocumentType">
           <Key>
-            <PropertyRef Name="TipoDocumentoID" />
+            <PropertyRef Name="DocumentTypeId" />
           </Key>
-          <Property Name="TipoDocumentoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CodigoTipoDocuemnto" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NombreTipoDocumento" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Usurio" Relationship="Self.FK_Usurio_BTipoDocumento" FromRole="BTipoDocumento" ToRole="Usurio" />
+          <Property Name="DocumentTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocuemntTypeCode" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentTypeName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="User" Relationship="StudenAppHelperDB_devModel.FK_Usurio_BTipoDocumento" FromRole="BDocumentType" ToRole="User" />
         </EntityType>
-        <EntityType Name="BTipoLogin">
+        <EntityType Name="BLoginType">
           <Key>
-            <PropertyRef Name="TipoLoginID" />
+            <PropertyRef Name="LoginTypeId" />
           </Key>
-          <Property Name="TipoLoginID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CodigoTipoLogin" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NombreTipoLogin" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Logueo" Relationship="Self.FK_Logueo_BTipoLogin" FromRole="BTipoLogin" ToRole="Logueo" />
+          <Property Name="LoginTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginTypeCode" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="LginTypeName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Login" Relationship="StudenAppHelperDB_devModel.FK_Logueo_BTipoLogin" FromRole="BLoginType" ToRole="Login" />
+        </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="LoginId" />
+          </Key>
+          <Property Name="LoginId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginTypeId" Type="Int32" Nullable="false" />
+          <Property Name="LoginKeyId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="BLoginType" Relationship="StudenAppHelperDB_devModel.FK_Logueo_BTipoLogin" FromRole="Login" ToRole="BLoginType" />
+          <NavigationProperty Name="LoginKey" Relationship="StudenAppHelperDB_devModel.FK_Logueo_LoginKey" FromRole="Login" ToRole="LoginKey" />
+          <NavigationProperty Name="User" Relationship="StudenAppHelperDB_devModel.FK_Logueo_Usurio" FromRole="Login" ToRole="User" />
         </EntityType>
         <EntityType Name="LoginKey">
           <Key>
-            <PropertyRef Name="LoginKeyID" />
+            <PropertyRef Name="LoginKeyId" />
           </Key>
-          <Property Name="LoginKeyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="loginUser" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="loginPass" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="loginKey1" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="fechaAcceso" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="LoginKeyHistorial" Relationship="Self.FK_LoginKeyHistorial_LoginKey" FromRole="LoginKey" ToRole="LoginKeyHistorial" />
-          <NavigationProperty Name="Logueo" Relationship="Self.FK_Logueo_LoginKey" FromRole="LoginKey" ToRole="Logueo" />
+          <Property Name="LoginKeyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginNick" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AccessDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Login" Relationship="StudenAppHelperDB_devModel.FK_Logueo_LoginKey" FromRole="LoginKey" ToRole="Login" />
+          <NavigationProperty Name="LoginKeyHistorial" Relationship="StudenAppHelperDB_devModel.FK_LoginKeyHistorial_LoginKey" FromRole="LoginKey" ToRole="LoginKeyHistorial" />
+          <Property Name="LoginPass" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="LoginKey1" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="LoginKeyHistorial">
           <Key>
-            <PropertyRef Name="LoginKeyHistorialID" />
+            <PropertyRef Name="LoginKeyHistorialId" />
           </Key>
-          <Property Name="LoginKeyHistorialID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LoginKeyID" Type="Int32" />
-          <Property Name="idUsuarioRegistra" Type="Int32" />
-          <Property Name="LoginAnterior" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="loginPassAnterior" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
-          <Property Name="fechaModificacion" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="LoginKey" Relationship="Self.FK_LoginKeyHistorial_LoginKey" FromRole="LoginKeyHistorial" ToRole="LoginKey" />
+          <Property Name="LoginKeyHistorialId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginKeyId" Type="Int32" />
+          <Property Name="RegisterUserId" Type="Int32" />
+          <Property Name="BeforeLoginNick" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="BeforeLoginPass" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="LoginKey" Relationship="StudenAppHelperDB_devModel.FK_LoginKeyHistorial_LoginKey" FromRole="LoginKeyHistorial" ToRole="LoginKey" />
         </EntityType>
-        <EntityType Name="Logueo">
+        <EntityType Name="User">
           <Key>
-            <PropertyRef Name="logeoID" />
+            <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="logeoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TipoLoginID" Type="Int32" Nullable="false" />
-          <Property Name="LoginKeyID" Type="Int32" />
-          <Property Name="IdUsuario" Type="Int32" />
-          <NavigationProperty Name="BTipoLogin" Relationship="Self.FK_Logueo_BTipoLogin" FromRole="Logueo" ToRole="BTipoLogin" />
-          <NavigationProperty Name="LoginKey" Relationship="Self.FK_Logueo_LoginKey" FromRole="Logueo" ToRole="LoginKey" />
-          <NavigationProperty Name="Usurio" Relationship="Self.FK_Logueo_Usurio" FromRole="Logueo" ToRole="Usurio" />
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserDocuemntTypeId" Type="Int32" Nullable="false" />
+          <Property Name="UserDocumentNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UserFirstName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="UserSecondName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="UserFirsLastName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="UserSecondLastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="UserType" Type="Int32" Nullable="false" />
+          <Property Name="UserBirthDate" Type="DateTime" Precision="0" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="BDocumentType" Relationship="StudenAppHelperDB_devModel.FK_Usurio_BTipoDocumento" FromRole="User" ToRole="BDocumentType" />
+          <NavigationProperty Name="Login" Relationship="StudenAppHelperDB_devModel.FK_Logueo_Usurio" FromRole="User" ToRole="Login" />
+          <NavigationProperty Name="UserType1" Relationship="StudenAppHelperDB_devModel.FK_Usurio_TipoUsuario" FromRole="User" ToRole="UserType" />
         </EntityType>
-        <EntityType Name="TipoUsuario">
+        <EntityType Name="UserType">
           <Key>
-            <PropertyRef Name="TipoUsuarioID" />
+            <PropertyRef Name="UserTypeId" />
           </Key>
-          <Property Name="TipoUsuarioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NombreTipoUsuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="CodigoTipoUsuario" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="esActivo" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Usurio" Relationship="Self.FK_Usurio_TipoUsuario" FromRole="TipoUsuario" ToRole="Usurio" />
-        </EntityType>
-        <EntityType Name="Usurio">
-          <Key>
-            <PropertyRef Name="IdUsuario" />
-          </Key>
-          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TipoDocumento" Type="Int32" Nullable="false" />
-          <Property Name="DocumentoUsuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NombrePrimero" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NombreSegundo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="ApellidoPrimer" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ApellidoSegundo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="TipoUsuario" Type="Int32" Nullable="false" />
-          <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
-          <Property Name="esActivo" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="BTipoDocumento" Relationship="Self.FK_Usurio_BTipoDocumento" FromRole="Usurio" ToRole="BTipoDocumento" />
-          <NavigationProperty Name="Logueo" Relationship="Self.FK_Logueo_Usurio" FromRole="Usurio" ToRole="Logueo" />
-          <NavigationProperty Name="TipoUsuario1" Relationship="Self.FK_Usurio_TipoUsuario" FromRole="Usurio" ToRole="TipoUsuario" />
+          <Property Name="UserTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserTypeCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="StudenAppHelperDB_devModel.FK_Usurio_TipoUsuario" FromRole="UserType" ToRole="User" />
         </EntityType>
         <Association Name="FK_Usurio_BTipoDocumento">
-          <End Role="BTipoDocumento" Type="Self.BTipoDocumento" Multiplicity="1" />
-          <End Role="Usurio" Type="Self.Usurio" Multiplicity="*" />
+          <End Type="StudenAppHelperDB_devModel.BDocumentType" Role="BDocumentType" Multiplicity="1" />
+          <End Type="StudenAppHelperDB_devModel.User" Role="User" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BTipoDocumento">
-              <PropertyRef Name="TipoDocumentoID" />
+            <Principal Role="BDocumentType">
+              <PropertyRef Name="DocumentTypeId" />
             </Principal>
-            <Dependent Role="Usurio">
-              <PropertyRef Name="TipoDocumento" />
+            <Dependent Role="User">
+              <PropertyRef Name="UserDocuemntTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Logueo_BTipoLogin">
-          <End Role="BTipoLogin" Type="Self.BTipoLogin" Multiplicity="1" />
-          <End Role="Logueo" Type="Self.Logueo" Multiplicity="*" />
+          <End Type="StudenAppHelperDB_devModel.BLoginType" Role="BLoginType" Multiplicity="1" />
+          <End Type="StudenAppHelperDB_devModel.Login" Role="Login" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BTipoLogin">
-              <PropertyRef Name="TipoLoginID" />
+            <Principal Role="BLoginType">
+              <PropertyRef Name="LoginTypeId" />
             </Principal>
-            <Dependent Role="Logueo">
-              <PropertyRef Name="TipoLoginID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_LoginKeyHistorial_LoginKey">
-          <End Role="LoginKey" Type="Self.LoginKey" Multiplicity="0..1" />
-          <End Role="LoginKeyHistorial" Type="Self.LoginKeyHistorial" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="LoginKey">
-              <PropertyRef Name="LoginKeyID" />
-            </Principal>
-            <Dependent Role="LoginKeyHistorial">
-              <PropertyRef Name="LoginKeyID" />
+            <Dependent Role="Login">
+              <PropertyRef Name="LoginTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Logueo_LoginKey">
-          <End Role="LoginKey" Type="Self.LoginKey" Multiplicity="0..1" />
-          <End Role="Logueo" Type="Self.Logueo" Multiplicity="*" />
+          <End Type="StudenAppHelperDB_devModel.LoginKey" Role="LoginKey" Multiplicity="0..1" />
+          <End Type="StudenAppHelperDB_devModel.Login" Role="Login" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LoginKey">
-              <PropertyRef Name="LoginKeyID" />
+              <PropertyRef Name="LoginKeyId" />
             </Principal>
-            <Dependent Role="Logueo">
-              <PropertyRef Name="LoginKeyID" />
+            <Dependent Role="Login">
+              <PropertyRef Name="LoginKeyId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Logueo_Usurio">
-          <End Role="Usurio" Type="Self.Usurio" Multiplicity="0..1" />
-          <End Role="Logueo" Type="Self.Logueo" Multiplicity="*" />
+          <End Type="StudenAppHelperDB_devModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="StudenAppHelperDB_devModel.Login" Role="Login" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Usurio">
-              <PropertyRef Name="IdUsuario" />
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
             </Principal>
-            <Dependent Role="Logueo">
-              <PropertyRef Name="IdUsuario" />
+            <Dependent Role="Login">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LoginKeyHistorial_LoginKey">
+          <End Type="StudenAppHelperDB_devModel.LoginKey" Role="LoginKey" Multiplicity="0..1" />
+          <End Type="StudenAppHelperDB_devModel.LoginKeyHistorial" Role="LoginKeyHistorial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoginKey">
+              <PropertyRef Name="LoginKeyId" />
+            </Principal>
+            <Dependent Role="LoginKeyHistorial">
+              <PropertyRef Name="LoginKeyId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Usurio_TipoUsuario">
-          <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
-          <End Role="Usurio" Type="Self.Usurio" Multiplicity="*" />
+          <End Type="StudenAppHelperDB_devModel.UserType" Role="UserType" Multiplicity="1" />
+          <End Type="StudenAppHelperDB_devModel.User" Role="User" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TipoUsuario">
-              <PropertyRef Name="TipoUsuarioID" />
+            <Principal Role="UserType">
+              <PropertyRef Name="UserTypeId" />
             </Principal>
-            <Dependent Role="Usurio">
-              <PropertyRef Name="TipoUsuario" />
+            <Dependent Role="User">
+              <PropertyRef Name="UserType" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="StudenAppHelperDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="BTipoDocumento" EntityType="Self.BTipoDocumento" />
-          <EntitySet Name="BTipoLogin" EntityType="Self.BTipoLogin" />
-          <EntitySet Name="LoginKey" EntityType="Self.LoginKey" />
-          <EntitySet Name="LoginKeyHistorial" EntityType="Self.LoginKeyHistorial" />
-          <EntitySet Name="Logueo" EntityType="Self.Logueo" />
-          <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" />
-          <EntitySet Name="Usurio" EntityType="Self.Usurio" />
-          <AssociationSet Name="FK_Usurio_BTipoDocumento" Association="Self.FK_Usurio_BTipoDocumento">
-            <End Role="BTipoDocumento" EntitySet="BTipoDocumento" />
-            <End Role="Usurio" EntitySet="Usurio" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Logueo_BTipoLogin" Association="Self.FK_Logueo_BTipoLogin">
-            <End Role="BTipoLogin" EntitySet="BTipoLogin" />
-            <End Role="Logueo" EntitySet="Logueo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LoginKeyHistorial_LoginKey" Association="Self.FK_LoginKeyHistorial_LoginKey">
-            <End Role="LoginKey" EntitySet="LoginKey" />
-            <End Role="LoginKeyHistorial" EntitySet="LoginKeyHistorial" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Logueo_LoginKey" Association="Self.FK_Logueo_LoginKey">
-            <End Role="LoginKey" EntitySet="LoginKey" />
-            <End Role="Logueo" EntitySet="Logueo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Logueo_Usurio" Association="Self.FK_Logueo_Usurio">
-            <End Role="Usurio" EntitySet="Usurio" />
-            <End Role="Logueo" EntitySet="Logueo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Usurio_TipoUsuario" Association="Self.FK_Usurio_TipoUsuario">
-            <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-            <End Role="Usurio" EntitySet="Usurio" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="StudenAppHelperDB_devModelStoreContainer" CdmEntityContainer="StudenAppHelperDBEntities">
-          <EntitySetMapping Name="BTipoDocumento">
-            <EntityTypeMapping TypeName="StudenAppHelperDB_devModel.BTipoDocumento">
-              <MappingFragment StoreEntitySet="BTipoDocumento">
-                <ScalarProperty Name="TipoDocumentoID" ColumnName="TipoDocumentoID" />
-                <ScalarProperty Name="CodigoTipoDocuemnto" ColumnName="CodigoTipoDocuemnto" />
-                <ScalarProperty Name="NombreTipoDocumento" ColumnName="NombreTipoDocumento" />
+          <EntitySetMapping Name="BDocumentType">
+            <EntityTypeMapping TypeName="StudenAppHelperDB_devModel.BDocumentType">
+              <MappingFragment StoreEntitySet="BDocumentType">
+                <ScalarProperty Name="DocumentTypeName" ColumnName="DocumentTypeName" />
+                <ScalarProperty Name="DocuemntTypeCode" ColumnName="DocuemntTypeCode" />
+                <ScalarProperty Name="DocumentTypeId" ColumnName="DocumentTypeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="BTipoLogin">
-            <EntityTypeMapping TypeName="StudenAppHelperDB_devModel.BTipoLogin">
-              <MappingFragment StoreEntitySet="BTipoLogin">
-                <ScalarProperty Name="TipoLoginID" ColumnName="TipoLoginID" />
-                <ScalarProperty Name="CodigoTipoLogin" ColumnName="CodigoTipoLogin" />
-                <ScalarProperty Name="NombreTipoLogin" ColumnName="NombreTipoLogin" />
+          <EntitySetMapping Name="BLoginType">
+            <EntityTypeMapping TypeName="StudenAppHelperDB_devModel.BLoginType">
+              <MappingFragment StoreEntitySet="BLoginType">
+                <ScalarProperty Name="LginTypeName" ColumnName="LginTypeName" />
+                <ScalarProperty Name="LoginTypeCode" ColumnName="LoginTypeCode" />
+                <ScalarProperty Name="LoginTypeId" ColumnName="LoginTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Login">
+            <EntityTypeMapping TypeName="StudenAppHelperDB_devModel.Login">
+              <MappingFragment StoreEntitySet="Login">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LoginKeyId" ColumnName="LoginKeyId" />
+                <ScalarProperty Name="LoginTypeId" ColumnName="LoginTypeId" />
+                <ScalarProperty Name="LoginId" ColumnName="LoginId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LoginKey">
             <EntityTypeMapping TypeName="StudenAppHelperDB_devModel.LoginKey">
               <MappingFragment StoreEntitySet="LoginKey">
-                <ScalarProperty Name="LoginKeyID" ColumnName="LoginKeyID" />
-                <ScalarProperty Name="loginUser" ColumnName="loginUser" />
-                <ScalarProperty Name="loginPass" ColumnName="loginPass" />
-                <ScalarProperty Name="loginKey1" ColumnName="loginKey" />
-                <ScalarProperty Name="fechaAcceso" ColumnName="fechaAcceso" />
+                <ScalarProperty Name="LoginKey1" ColumnName="LoginKey" />
+                <ScalarProperty Name="LoginPass" ColumnName="LoginPass" />
+                <ScalarProperty Name="AccessDate" ColumnName="AccessDate" />
+                <ScalarProperty Name="LoginNick" ColumnName="LoginNick" />
+                <ScalarProperty Name="LoginKeyId" ColumnName="LoginKeyId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LoginKeyHistorial">
             <EntityTypeMapping TypeName="StudenAppHelperDB_devModel.LoginKeyHistorial">
               <MappingFragment StoreEntitySet="LoginKeyHistorial">
-                <ScalarProperty Name="LoginKeyHistorialID" ColumnName="LoginKeyHistorialID" />
-                <ScalarProperty Name="LoginKeyID" ColumnName="LoginKeyID" />
-                <ScalarProperty Name="idUsuarioRegistra" ColumnName="idUsuarioRegistra" />
-                <ScalarProperty Name="LoginAnterior" ColumnName="LoginAnterior" />
-                <ScalarProperty Name="loginPassAnterior" ColumnName="loginPassAnterior" />
-                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="BeforeLoginPass" ColumnName="BeforeLoginPass" />
+                <ScalarProperty Name="BeforeLoginNick" ColumnName="BeforeLoginNick" />
+                <ScalarProperty Name="RegisterUserId" ColumnName="RegisterUserId" />
+                <ScalarProperty Name="LoginKeyId" ColumnName="LoginKeyId" />
+                <ScalarProperty Name="LoginKeyHistorialId" ColumnName="LoginKeyHistorialId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Logueo">
-            <EntityTypeMapping TypeName="StudenAppHelperDB_devModel.Logueo">
-              <MappingFragment StoreEntitySet="Logueo">
-                <ScalarProperty Name="logeoID" ColumnName="logeoID" />
-                <ScalarProperty Name="TipoLoginID" ColumnName="TipoLoginID" />
-                <ScalarProperty Name="LoginKeyID" ColumnName="LoginKeyID" />
-                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="StudenAppHelperDB_devModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="UserBirthDate" ColumnName="UserBirthDate" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="UserSecondLastName" ColumnName="UserSecondLastName" />
+                <ScalarProperty Name="UserFirsLastName" ColumnName="UserFirsLastName" />
+                <ScalarProperty Name="UserSecondName" ColumnName="UserSecondName" />
+                <ScalarProperty Name="UserFirstName" ColumnName="UserFirstName" />
+                <ScalarProperty Name="UserDocumentNumber" ColumnName="UserDocumentNumber" />
+                <ScalarProperty Name="UserDocuemntTypeId" ColumnName="UserDocuemntTypeId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TipoUsuario">
-            <EntityTypeMapping TypeName="StudenAppHelperDB_devModel.TipoUsuario">
-              <MappingFragment StoreEntitySet="TipoUsuario">
-                <ScalarProperty Name="TipoUsuarioID" ColumnName="TipoUsuarioID" />
-                <ScalarProperty Name="NombreTipoUsuario" ColumnName="NombreTipoUsuario" />
-                <ScalarProperty Name="CodigoTipoUsuario" ColumnName="CodigoTipoUsuario" />
-                <ScalarProperty Name="esActivo" ColumnName="esActivo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Usurio">
-            <EntityTypeMapping TypeName="StudenAppHelperDB_devModel.Usurio">
-              <MappingFragment StoreEntitySet="Usurio">
-                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
-                <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
-                <ScalarProperty Name="DocumentoUsuario" ColumnName="DocumentoUsuario" />
-                <ScalarProperty Name="NombrePrimero" ColumnName="NombrePrimero" />
-                <ScalarProperty Name="NombreSegundo" ColumnName="NombreSegundo" />
-                <ScalarProperty Name="ApellidoPrimer" ColumnName="ApellidoPrimer" />
-                <ScalarProperty Name="ApellidoSegundo" ColumnName="ApellidoSegundo" />
-                <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
-                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
-                <ScalarProperty Name="esActivo" ColumnName="esActivo" />
+          <EntitySetMapping Name="UserType">
+            <EntityTypeMapping TypeName="StudenAppHelperDB_devModel.UserType">
+              <MappingFragment StoreEntitySet="UserType">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="UserTypeCode" ColumnName="UserTypeCode" />
+                <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

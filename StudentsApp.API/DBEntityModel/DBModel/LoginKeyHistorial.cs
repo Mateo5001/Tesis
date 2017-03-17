@@ -14,12 +14,12 @@ namespace DBEntityModel.DBModel
     
     public partial class LoginKeyHistorial
     {
-        public int LoginKeyHistorialID { get; set; }
-        public Nullable<int> LoginKeyID { get; set; }
-        public Nullable<int> idUsuarioRegistra { get; set; }
-        public string LoginAnterior { get; set; }
-        public string loginPassAnterior { get; set; }
-        public Nullable<System.DateTime> fechaModificacion { get; set; }
+        public int LoginKeyHistorialId { get; set; }
+        public Nullable<int> LoginKeyId { get; set; }
+        public Nullable<int> RegisterUserId { get; set; }
+        public string BeforeLoginNick { get; set; }
+        public string BeforeLoginPass { get; set; }
+        public Nullable<System.DateTime> ModifyDate { get; set; }
     
         public virtual LoginKey LoginKey { get; set; }
     }

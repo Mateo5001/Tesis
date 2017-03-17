@@ -31,11 +31,6 @@ namespace StudentAppHelper.Library.Auth
      
     }
 
-    public Task<LoginUser> FindByIdAsync(int userId)
-    {
-      throw new NotImplementedException();
-    }
-
     public Task<LoginUser> FindByIdAsync(string userId)
     {
       if (string.IsNullOrEmpty(userId))
@@ -43,10 +38,10 @@ namespace StudentAppHelper.Library.Auth
         return Task.FromResult<LoginUser>(null);
       }
 
-      LoginUser result = AccountManagerClass.GetUserById(userId);
-      if (result != null)
+      var result = AccountManagerClass.GetUserById(userId);
+      if (result != null && result.Count == 1)
       {
-        return Task.FromResult<LoginUser>(result);
+        return Task.FromResult<LoginUser>(result[0]);
       }
 
       return Task.FromResult<LoginUser>(null);
@@ -58,15 +53,12 @@ namespace StudentAppHelper.Library.Auth
       {
         throw new ArgumentException("Null or empty argument: userName");
       }
-
-      List<LoginUser> result = AccountManagerClass.FindByName(userName);
-
+      var result = AccountManagerClass.FindByName(userName);
       // Should I throw if > 1 user?
       if (result != null && result.Count == 1)
       {
         return Task.FromResult(result[0]);
       }
-
       return Task.FromResult<LoginUser>(null);
     }
 

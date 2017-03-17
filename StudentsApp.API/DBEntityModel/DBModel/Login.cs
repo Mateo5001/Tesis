@@ -12,15 +12,15 @@ namespace DBEntityModel.DBModel
     using System;
     using System.Collections.Generic;
     
-    public partial class Logueo
+    public partial class Login
     {
-        public int logeoID { get; set; }
-        public int TipoLoginID { get; set; }
-        public Nullable<int> LoginKeyID { get; set; }
-        public Nullable<int> IdUsuario { get; set; }
+        public int LoginId { get; set; }
+        public int LoginTypeId { get; set; }
+        public Nullable<int> LoginKeyId { get; set; }
+        public Nullable<int> UserId { get; set; }
     
-        public virtual BTipoLogin BTipoLogin { get; set; }
+        public virtual BLoginType BLoginType { get; set; }
         public virtual LoginKey LoginKey { get; set; }
-        public virtual Usurio Usurio { get; set; }
+        public virtual User User { get; set; }
     }
 }

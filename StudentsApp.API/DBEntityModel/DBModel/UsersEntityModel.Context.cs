@@ -25,12 +25,12 @@ namespace DBEntityModel.DBModel
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<BTipoDocumento> BTipoDocumento { get; set; }
-        public virtual DbSet<BTipoLogin> BTipoLogin { get; set; }
+        public virtual DbSet<BDocumentType> BDocumentType { get; set; }
+        public virtual DbSet<BLoginType> BLoginType { get; set; }
+        public virtual DbSet<Login> Login { get; set; }
         public virtual DbSet<LoginKey> LoginKey { get; set; }
         public virtual DbSet<LoginKeyHistorial> LoginKeyHistorial { get; set; }
-        public virtual DbSet<Logueo> Logueo { get; set; }
-        public virtual DbSet<TipoUsuario> TipoUsuario { get; set; }
-        public virtual DbSet<Usurio> Usurio { get; set; }
+        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<UserType> UserType { get; set; }
     }
 }

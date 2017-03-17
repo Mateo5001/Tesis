@@ -11,6 +11,7 @@ namespace StudentsApp.API.Custom
   [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
   public class LoginAuthorize : AuthorizeAttribute
   {
+
     protected override bool IsAuthorized(HttpActionContext actionContext)
     {
       var loginKey = actionContext.Request.Headers.Where(x => x.Key == "loginKey").FirstOrDefault().Value;

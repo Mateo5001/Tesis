@@ -17,19 +17,19 @@ namespace DBEntityModel.DBModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public LoginKey()
         {
+            this.Login = new HashSet<Login>();
             this.LoginKeyHistorial = new HashSet<LoginKeyHistorial>();
-            this.Logueo = new HashSet<Logueo>();
         }
     
-        public int LoginKeyID { get; set; }
-        public string loginUser { get; set; }
-        public string loginPass { get; set; }
-        public string loginKey1 { get; set; }
-        public Nullable<System.DateTime> fechaAcceso { get; set; }
+        public int LoginKeyId { get; set; }
+        public string LoginNick { get; set; }
+        public Nullable<System.DateTime> AccessDate { get; set; }
+        public string LoginPass { get; set; }
+        public string LoginKey1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LoginKeyHistorial> LoginKeyHistorial { get; set; }
+        public virtual ICollection<Login> Login { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Logueo> Logueo { get; set; }
+        public virtual ICollection<LoginKeyHistorial> LoginKeyHistorial { get; set; }
     }
 }

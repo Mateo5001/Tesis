@@ -12,20 +12,20 @@ namespace DBEntityModel.DBModel
     using System;
     using System.Collections.Generic;
     
-    public partial class TipoUsuario
+    public partial class UserType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TipoUsuario()
+        public UserType()
         {
-            this.Usurio = new HashSet<Usurio>();
+            this.User = new HashSet<User>();
         }
     
-        public int TipoUsuarioID { get; set; }
-        public string NombreTipoUsuario { get; set; }
-        public string CodigoTipoUsuario { get; set; }
-        public bool esActivo { get; set; }
+        public int UserTypeId { get; set; }
+        public string UserTypeName { get; set; }
+        public string UserTypeCode { get; set; }
+        public bool isActive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Usurio> Usurio { get; set; }
+        public virtual ICollection<User> User { get; set; }
     }
 }

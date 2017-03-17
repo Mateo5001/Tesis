@@ -1,5 +1,8 @@
 ﻿var LogInApp = angular.module("logInApp", []);
 LogInApp.controller("LogIncontroller", function ($scope) {
+
+  var domainUrl = 'http://localhost:45778';
+  //var domainUrl = 'http://studentapphelper-api-test.azurewebsites.net';
   $scope.Register = function () {
     var user = $scope.user;
     
@@ -16,10 +19,9 @@ LogInApp.controller("LogIncontroller", function ($scope) {
   }
   $scope.logIn = function () {
     var user = $scope.user;
-
     $.ajax({
       type: "POST",
-      url: 'http://studentapphelper-api-test.azurewebsites.net/api/Account/Login',
+      url: domainUrl+'/api/Account/Login',
       dataType: 'json',
       data: user,
       success: function (data) {
@@ -50,7 +52,7 @@ LogInApp.controller("LogIncontroller", function ($scope) {
       headers: {
         'loginKey': loginKey
       },
-      url: 'http://studentapphelper-api-test.azurewebsites.net/api/Account/holamundo',
+      url: domainUrl+'/api/Account/holamundo',
       success: function (data) {
         alert(data);
       }

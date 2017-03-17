@@ -12,7 +12,6 @@ namespace StudentAppHelper.Library.Auth
     public Task<string> GetPasswordHashAsync(LoginUser user)
     {
       string passwordHash = AccountManagerClass.getPasswordHash(user.Id);
-
       return Task.FromResult(passwordHash);
     }
 

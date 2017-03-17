@@ -16,51 +16,63 @@ namespace StudentAppHelper.Library.AppLogic
     {
       using (StudenAppHelperDBEntities conect = new StudenAppHelperDBEntities())
       {
-        var Usuario = (from US in conect.Usurio where US.DocumentoUsuario == model.Identificacion && US.TipoDocumento == (int)model.TipoDocumento select US).FirstOrDefault();
-        if (Usuario == null)
+        var findUser = (from US in conect.User
+                        where US.UserDocumentNumber == model.DocumentNumber && US.UserDocuemntTypeId == (int)model.DocumentType
+                        select US).FirstOrDefault();
+        if (findUser == null)
         {
-          Usuario = new Usurio();
-          Usuario.NombrePrimero = model.NombreP;
-          Usuario.NombreSegundo = model.NombreS;
-          Usuario.ApellidoPrimer = model.ApellidoP;
-          Usuario.ApellidoSegundo = model.ApellidoS;
-          Usuario.TipoDocumento = (int)model.TipoDocumento;
-          Usuario.DocumentoUsuario = model.Identificacion;
-          Usuario.TipoUsuario = (int)TipoUsuarios.Administrador;
-          Usuario.FechaNacimiento = null;
-          conect.Usurio.Add(Usuario);
-          conect.SaveChanges();
-        }
-
-        var LoginRej = (from LK in conect.LoginKey where LK.loginUser == model.UserName select LK).FirstOrDefault();
-        if (LoginRej == null)
-        {
-          LoginRej = new LoginKey();
-          LoginRej.loginUser = model.UserName;
-          LoginRej.loginPass = model.Password;
-          LoginRej.loginKey1 = Guid.NewGuid().ToString();
-          LoginRej.fechaAcceso = null;
-          conect.LoginKey.Add(LoginRej);
-          conect.SaveChanges();
-
-          Logueo UserLogeo = new Logueo();
-          UserLogeo.IdUsuario = Usuario.IdUsuario;
-          UserLogeo.LoginKeyID = LoginRej.LoginKeyID;
-          UserLogeo.TipoLoginID = (int)TipoLogin.Custom;
-          conect.Logueo.Add(UserLogeo);
-          conect.SaveChanges();
+          return CreateUser(model, EUserType.Administrador);
         }
         else
         {
-          LoginUser user = new LoginUser()
-          {
-            UserName = LoginRej.loginUser,
-            UserModel = model
-          };
-          return user;
+          return FindByName(model.UserNick).FirstOrDefault();
         }
       }
-      return null;
+    }
+
+    private static LoginUser CreateUser(UserRegistrationModel model,EUserType UserType)
+    {
+      using (StudenAppHelperDBEntities conect = new StudenAppHelperDBEntities())
+      {
+        var CreatedUser = new LoginUser();
+        var newUser = new User();
+        newUser.UserFirstName = model.FirstName;
+        newUser.UserSecondName = model.SecondName;
+        newUser.UserFirsLastName = model.FirstLastName;
+        newUser.UserSecondLastName = model.SecondLastName;
+        newUser.UserDocuemntTypeId = (int)model.DocumentType;
+        newUser.UserDocumentNumber = model.DocumentNumber;
+        newUser.UserType = (int)UserType;
+        newUser.UserBirthDate = null;
+        conect.User.Add(newUser);
+        conect.SaveChanges();
+
+        var findLoginKey = (from LK in conect.LoginKey
+                            where LK.LoginNick == model.UserNick
+                            select LK).FirstOrDefault();
+        if (findLoginKey == null)
+        {
+          var newLoginKey = new LoginKey();
+          newLoginKey.LoginNick = model.UserNick;
+          newLoginKey.LoginPass = model.Password;
+          newLoginKey.LoginKey1 = Guid.NewGuid().ToString();
+          newLoginKey.AccessDate = null;
+          conect.LoginKey.Add(newLoginKey);
+          conect.SaveChanges();
+
+          Login newLogin = new Login();
+          newLogin.UserId = newUser.UserId;
+          newLogin.LoginKeyId = newLoginKey.LoginKeyId;
+          newLogin.LoginTypeId = (int)ELoginType.Custom;
+          conect.Login.Add(newLogin);
+          conect.SaveChanges();
+
+
+          CreatedUser.UserName = newLoginKey.LoginNick;
+          CreatedUser.UserModel = model;
+        }
+        return CreatedUser;
+      }
     }
 
     public string getPasswordHash(string id)
@@ -68,42 +80,42 @@ namespace StudentAppHelper.Library.AppLogic
       using (StudenAppHelperDBEntities conect = new StudenAppHelperDBEntities())
       {
         var login = (from Keys in conect.LoginKey
-                     join KeyUsers in conect.Logueo on Keys.LoginKeyID equals KeyUsers.LoginKeyID
-                     join users in conect.Usurio on KeyUsers.IdUsuario equals users.IdUsuario
-                     where Keys.loginKey1 == id
-                     select Keys.loginPass).FirstOrDefault();
+                     join KeyUsers in conect.Login on Keys.LoginKeyId equals KeyUsers.LoginKeyId
+                     join users in conect.User on KeyUsers.UserId equals users.UserId
+                     where Keys.LoginKey1 == id
+                     select Keys.LoginPass).FirstOrDefault();
         if (login != null)
           return login;
       }
       return null;
     }
 
-
-    public LoginUser GetUserById(string userId)
+    // userId hace referencia a el Key de grid creado
+    public List<LoginUser> GetUserById(string userId)
     {
       using (StudenAppHelperDBEntities conect = new StudenAppHelperDBEntities())
       {
         var login = (from Keys in conect.LoginKey
-                     join KeyUsers in conect.Logueo on Keys.LoginKeyID equals KeyUsers.LoginKeyID
-                     join users in conect.Usurio on KeyUsers.IdUsuario equals users.IdUsuario
-                     where Keys.loginKey1 == userId
+                     join KeyUsers in conect.Login on Keys.LoginKeyId equals KeyUsers.LoginKeyId
+                     join users in conect.User on KeyUsers.UserId equals users.UserId
+                     where Keys.LoginKey1 == userId
                      select new LoginUser()
                      {
-                       Id = Keys.loginKey1,
-                       UserName = Keys.loginUser,
+                       Id = Keys.LoginKey1,
+                       UserName = Keys.LoginNick,
                        UserModel = new UserRegistrationModel()
                        {
-                         ApellidoP = users.ApellidoPrimer,
-                         ApellidoS = users.ApellidoSegundo,
-                         NombreP = users.NombrePrimero,
-                         NombreS = users.NombreSegundo,
-                         UserName = Keys.loginUser,
-                         Password = Keys.loginPass,
-                         ConfirmPassword = Keys.loginPass,
-                         Identificacion = users.DocumentoUsuario,
-                         TipoDocumento = (TipoDocumento)users.TipoDocumento
+                         FirstName = users.UserFirstName,
+                         SecondName = users.UserSecondName,
+                         FirstLastName = users.UserFirsLastName,
+                         SecondLastName = users.UserSecondLastName,
+                         UserNick = Keys.LoginNick,
+                         Password = Keys.LoginPass,
+                         ConfirmationPassword = Keys.LoginPass,
+                         DocumentNumber = users.UserDocumentNumber,
+                         DocumentType = (EDocumentType)users.UserDocuemntTypeId
                        }
-                     }).FirstOrDefault();
+                     }).ToList();
         if (login != null)
           return login;
       }
@@ -115,24 +127,24 @@ namespace StudentAppHelper.Library.AppLogic
       using (StudenAppHelperDBEntities conect = new StudenAppHelperDBEntities())
       {
         var login = (from Keys in conect.LoginKey
-                     join KeyUsers in conect.Logueo on Keys.LoginKeyID equals KeyUsers.LoginKeyID
-                     join users in conect.Usurio on KeyUsers.IdUsuario equals users.IdUsuario
-                     where Keys.loginUser == userName
+                     join KeyUsers in conect.Login on Keys.LoginKeyId equals KeyUsers.LoginKeyId
+                     join users in conect.User on KeyUsers.UserId equals users.UserId
+                     where Keys.LoginNick == userName
                      select new LoginUser()
                      {
-                       Id = Keys.loginKey1,
-                       UserName = Keys.loginUser,
+                       Id = Keys.LoginKey1,
+                       UserName = Keys.LoginNick,
                        UserModel = new UserRegistrationModel()
                        {
-                         ApellidoP = users.ApellidoPrimer,
-                         ApellidoS = users.ApellidoSegundo,
-                         NombreP = users.NombrePrimero,
-                         NombreS = users.NombreSegundo,
-                         UserName = Keys.loginUser,
-                         Password = Keys.loginPass,
-                         ConfirmPassword = Keys.loginPass,
-                         Identificacion = users.DocumentoUsuario,
-                         TipoDocumento = (TipoDocumento)users.TipoDocumento
+                         FirstName = users.UserFirstName,
+                         SecondName = users.UserSecondName,
+                         FirstLastName = users.UserFirsLastName,
+                         SecondLastName = users.UserSecondLastName,
+                         UserNick = Keys.LoginNick,
+                         Password = Keys.LoginPass,
+                         ConfirmationPassword = Keys.LoginPass,
+                         DocumentNumber = users.UserDocumentNumber,
+                         DocumentType = (EDocumentType)users.UserDocuemntTypeId
                        }
                      }).ToList();
         if (login != null)

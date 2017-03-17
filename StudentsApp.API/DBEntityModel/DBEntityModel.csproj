@@ -123,10 +123,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DBModel\BTipoDocumento.cs">
+    <Compile Include="DBModel\BDocumentType.cs">
       <DependentUpon>UsersEntityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DBModel\BTipoLogin.cs">
+    <Compile Include="DBModel\BLoginType.cs">
+      <DependentUpon>UsersEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModel\Login.cs">
       <DependentUpon>UsersEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DBModel\LoginKey.cs">
@@ -135,10 +138,7 @@
     <Compile Include="DBModel\LoginKeyHistorial.cs">
       <DependentUpon>UsersEntityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DBModel\Logueo.cs">
-      <DependentUpon>UsersEntityModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBModel\TipoUsuario.cs">
+    <Compile Include="DBModel\User.cs">
       <DependentUpon>UsersEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DBModel\UsersEntityModel.Context.cs">
@@ -156,7 +156,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UsersEntityModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="DBModel\Usurio.cs">
+    <Compile Include="DBModel\UserType.cs">
       <DependentUpon>UsersEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

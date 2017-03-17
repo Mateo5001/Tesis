@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace StudentAppHelper.ModelBindings.Util
 {
-  public enum TipoDocumento
+  public enum EDocumentType
   {
     Cedula = 1,
-    TargetaIdentidad = 2,
+    TarjetaIdentidad = 2,
     RegistroCivil = 3
   }
-  public enum TipoUsuarios
+  public enum EUserType
   {
     Administrador = 1,
     CoAdministrador = 2
   }
-  public enum TipoLogin
+  public enum ELoginType
   {
     Custom=2,
     GoogleSignIn=3

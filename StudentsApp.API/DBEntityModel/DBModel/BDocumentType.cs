@@ -12,28 +12,19 @@ namespace DBEntityModel.DBModel
     using System;
     using System.Collections.Generic;
     
-    public partial class Usurio
+    public partial class BDocumentType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Usurio()
+        public BDocumentType()
         {
-            this.Logueo = new HashSet<Logueo>();
+            this.User = new HashSet<User>();
         }
     
-        public int IdUsuario { get; set; }
-        public int TipoDocumento { get; set; }
-        public string DocumentoUsuario { get; set; }
-        public string NombrePrimero { get; set; }
-        public string NombreSegundo { get; set; }
-        public string ApellidoPrimer { get; set; }
-        public string ApellidoSegundo { get; set; }
-        public int TipoUsuario { get; set; }
-        public Nullable<System.DateTime> FechaNacimiento { get; set; }
-        public bool esActivo { get; set; }
+        public int DocumentTypeId { get; set; }
+        public string DocuemntTypeCode { get; set; }
+        public string DocumentTypeName { get; set; }
     
-        public virtual BTipoDocumento BTipoDocumento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Logueo> Logueo { get; set; }
-        public virtual TipoUsuario TipoUsuario1 { get; set; }
+        public virtual ICollection<User> User { get; set; }
     }
 }

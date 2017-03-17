@@ -11,31 +11,31 @@ namespace StudentAppHelper.ModelBindings.Models
   {
     [Required]
     [Display(Name = "Nombre Primero")]
-    public string NombreP { get; set; }
+    public string FirstName { get; set; }
 
     [Required]
     [Display(Name = "Nombre Segundo")]
-    public string NombreS { get; set; }
+    public string SecondName { get; set; }
 
     [Required]
     [Display(Name = "Apellido Primero")]
-    public string ApellidoP { get; set; }
+    public string FirstLastName { get; set; }
 
     [Required]
     [Display(Name = "Apellido Segundo")]
-    public string ApellidoS { get; set; }
+    public string SecondLastName { get; set; }
 
     [Required]
     [Display(Name = "Tipo TipoDocumento")]
-    public TipoDocumento TipoDocumento { get; set; }
+    public EDocumentType DocumentType { get; set; }
 
     [Required]
     [Display(Name = "Identificacion")]
-    public string Identificacion { get; set; }
+    public string DocumentNumber { get; set; }
 
     [Required]
     [Display(Name = "User name")]
-    public string UserName { get; set; }
+    public string UserNick { get; set; }
 
     [Required]
     [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
@@ -46,6 +46,6 @@ namespace StudentAppHelper.ModelBindings.Models
     [DataType(DataType.Password)]
     [Display(Name = "Confirm password")]
     [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-    public string ConfirmPassword { get; set; }
+    public string ConfirmationPassword { get; set; }
   }
 }

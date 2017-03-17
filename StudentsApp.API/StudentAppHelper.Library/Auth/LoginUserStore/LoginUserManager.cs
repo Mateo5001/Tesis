@@ -21,7 +21,7 @@ namespace StudentAppHelper.Library.Auth
     public override Task<bool> CheckPasswordAsync(LoginUser user, string password)
     {
       string passwordHash =Task.Run(() => Store.GetPasswordHashAsync(user)).Result;
-      return Task.FromResult(password.Equals(password));
+      return Task.FromResult(password.Equals(passwordHash));
     }
 
     public override Task<bool> GetTwoFactorEnabledAsync(string userId)
@@ -55,6 +55,11 @@ namespace StudentAppHelper.Library.Auth
       }
 
       return manager;
+    }
+
+    public override Task<IdentityResult> CreateAsync(LoginUser user)
+    {
+      return base.CreateAsync(user);
     }
 
 

@@ -8,11 +8,19 @@ using System.Web;
 
 namespace StudentAppHelper.Library.Auth
 {
-  public class LoginUser : IdentityUser,IUser<string> 
+  public class LoginUser : IUser<string> 
   {
+    public LoginUser()
+    {
 
+    }
+    public LoginUser(UserRegistrationModel pUserModel)
+    {
+      UserName = pUserModel.UserNick;
+      UserModel = pUserModel;
+    }
+    public string Id { get; set; }
     public string UserName { get; set;  }
     public UserRegistrationModel UserModel { get; set; }
-    public string Id { get; set; }
   }
 }

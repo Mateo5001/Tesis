@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace StudentsApp.API.Custom
 {
-  public class CustomAppAPI : ApiController
+  public class CustomAppAPI : ApiController, ICustomAppAPI
   {
     private CustomLogic _customLogic = new CustomLogic();
     private UserApp _userApp;
@@ -30,7 +30,7 @@ namespace StudentsApp.API.Custom
       var requies = Request;
       var requcontex = RequestContext;
       var owin = HttpContext.Current.GetOwinContext().Request.Headers["loginKey"];//Where(x => x.Key == "loginKey").FirstOrDefault().Value;
-      if (owin != null)
+      if (owin != null || string.IsNullOrEmpty(owin) )
       {
         UserKey = owin;
         var user = _customLogic.getUserByLoginKey(UserKey);
@@ -41,6 +41,10 @@ namespace StudentsApp.API.Custom
         UserApp = user;
       }
     }
-    
+
+    void ICustomAppAPI.cargarUser()
+    {
+      cargarUser();
+    }
   }
 }

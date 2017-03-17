@@ -15,7 +15,7 @@ namespace StudentAppHelper.Library.Auth
     }
     public Task<bool> GetLockoutEnabledAsync(LoginUser user)
     {
-      return Task.FromResult(true);
+      return Task.FromResult(false);
     }
 
     public Task<DateTimeOffset> GetLockoutEndDateAsync(LoginUser user)
