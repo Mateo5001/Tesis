@@ -22,7 +22,7 @@ namespace StudentApp.Movile
       MainPage = new NavigationPage();
       var navigation = ServiceLocator.Current.GetInstance<INavigationService>();
       string inicio = ServiceLocator.Current.GetInstance<IStorageCookiesService>().existsCookie("loginKey") ? "Main" : "Login";
-      navigation.NavigateTo("Main");
+      navigation.NavigateTo(inicio);
     }
 
     protected override void OnStart()
