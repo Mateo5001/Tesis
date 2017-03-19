@@ -36,7 +36,7 @@ namespace StudentApp.Movile.Droid.Services.Storage
     public bool existsCookie(string name)
     {
       var existeCookie = GetCookieValue(name);
-      return string.IsNullOrEmpty(existeCookie);
+      return !string.IsNullOrEmpty(existeCookie);
     }
 
     public string GetCookieValue(string cookie)

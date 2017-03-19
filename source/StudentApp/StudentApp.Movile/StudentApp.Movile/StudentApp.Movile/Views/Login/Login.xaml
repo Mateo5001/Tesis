@@ -6,9 +6,9 @@
 
   <StackLayout VerticalOptions="Center">
     <Label Text="{Binding TextWelcome}" VerticalOptions="Center" TextColor="Blue" FontSize="25"> </Label>
-    <Entry Text="{Binding LogingIn.User, Mode=TwoWay}" Placeholder="{Binding phUser}"/>
-    <Entry Text="{Binding LogingIn.Password, Mode=TwoWay}" Placeholder="{Binding phPass}" IsPassword="true" />
-    <Button Command="{Binding CmdLogin}" Text="{Binding nmBtnLogin}" />
+    <Entry Text="{Binding UserSTR, Mode=TwoWay}" Placeholder="{Binding phUser}"/>
+    <Entry Text="{Binding PassSTR, Mode=TwoWay}" Placeholder="{Binding phPass}" IsPassword="true" />
+    <Button Command="{Binding CmdLogin}" Text="{Binding nmBtnLogin}" IsEnabled ="{Binding isEnableLoginButton}" />
     <Button Text="Facebook" BorderColor="Blue" />
     <Button Text="Gmail" BorderColor="Red" />
     <Label Text="{Binding Lk, Mode=TwoWay}" VerticalOptions="Center" TextColor="Blue" FontSize="25"> </Label>

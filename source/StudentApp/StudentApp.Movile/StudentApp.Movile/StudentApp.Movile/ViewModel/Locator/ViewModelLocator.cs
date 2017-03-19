@@ -20,6 +20,8 @@ using StudentAppHelper.Services.HTTP;
 using StudentAppHelper.Services.Contract;
 using Xamarin.Forms;
 using Autofac.Extras.CommonServiceLocator;
+using GalaSoft.MvvmLight.Views;
+using StudentApp.Movile.Services.Navigation;
 
 namespace StudentApp.Movile.ViewModel
 {
@@ -36,25 +38,25 @@ namespace StudentApp.Movile.ViewModel
     {
       var builder = new ContainerBuilder();
 
-      builder.RegisterType<MainViewModel>().SingleInstance();
+      builder.RegisterType<MainPageViewModel>().SingleInstance();
       builder.RegisterType<LoginViewModel>().SingleInstance();
 
 
       var oauth = DependencyService.Get<IStorageCookiesService>();
       builder.RegisterInstance(oauth).As<IStorageCookiesService>();
 
-
+      builder.RegisterType<NavigationService>().As<INavigationService>();
       builder.RegisterType<HttpClientService>().As<IHttpClientService>();
 
       var container = builder.Build(Autofac.Builder.ContainerBuildOptions.None);
       ServiceLocator.SetLocatorProvider(() => new AutofacServiceLocator(container));
     }
 
-    public MainViewModel Main
+    public MainPageViewModel Main
     {
       get
       {
-        return ServiceLocator.Current.GetInstance<MainViewModel>();
+        return ServiceLocator.Current.GetInstance<MainPageViewModel>();
       }
     }
     public LoginViewModel Login

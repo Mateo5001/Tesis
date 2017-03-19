@@ -10,9 +10,11 @@ namespace StudentAppHelper.Services.Contract
   public interface IHttpClientService
   {
     Task<TResponse> CallAsync<TSentType, TResponse>(string pPathCall, TSentType pObToSend );
-
     TResponse Call<TSentType, TResponse>(string pPathCall, TSentType pObToSend);
-    
+    void CallGet(string pPathCall);
+    TResponse CallGet<TResponse>(string pPathCall);
+    Task CallGetAsync(string pPathCall);
+    Task<TResponse> CallGetAsync<TResponse>(string pPathCall);
     bool IsAuthenticated { get; set; }
 
 

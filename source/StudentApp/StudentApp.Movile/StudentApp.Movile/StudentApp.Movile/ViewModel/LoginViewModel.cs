@@ -36,13 +36,13 @@ namespace StudentApp.Movile.ViewModel
     #endregion
 
     #region constructor
-    public LoginViewModel()
+    public LoginViewModel() : base ()
     {
       LogingIn = new logInModel();
-      _client = ServiceLocator.Current.GetInstance<IHttpClientService>();
-      _CookieService = ServiceLocator.Current.GetInstance<IStorageCookiesService>();
+      _client = GetInstance<IHttpClientService>();
+      _CookieService = GetInstance<IStorageCookiesService>();
       CmdLogin = CmdLogin_Clicked;
-      var storedcookie = _CookieService.GetCookieValue("loginkey");
+      var storedcookie = _CookieService.GetCookieValue("loginKey");
       Lk = storedcookie;
     }
     #endregion
@@ -52,9 +52,29 @@ namespace StudentApp.Movile.ViewModel
     public string phUser { get { return LoginResource.phUser; } }
     public string phPass { get { return LoginResource.phPass; } }
     public string nmBtnLogin { get { return LoginResource.nmBtnLogin; } }
+    public bool isEnableLoginButton { get { return !(string.IsNullOrEmpty(logingIn.User)) && !(string.IsNullOrEmpty(logingIn.Password)); } }
     #endregion
 
     #region Encapsulamiento de atributos
+    public string PassSTR
+    {
+      get { return logingIn.Password; }
+      set
+      {
+        logingIn.Password = value;
+        OnPropertyChanged("isEnableLoginButton");
+      }
+    }
+    public string UserSTR
+    {
+      get { return logingIn.User; }
+      set
+      {
+        logingIn.User = value;
+        OnPropertyChanged("isEnableLoginButton");
+      }
+    }
+
     public logInModel LogingIn
     {
       get
@@ -91,9 +111,10 @@ namespace StudentApp.Movile.ViewModel
         {
           _client.IsAuthenticated = false;
           var loginKey = await _client.CallAsync<logInModel, string>("api/Account/login", LogingIn);
-          _CookieService.AddCookie("loginkey", loginKey);
-          var storedcookie = _CookieService.GetCookieValue("loginkey");
+          _CookieService.AddCookie("loginKey", loginKey);
+          var storedcookie = _CookieService.GetCookieValue("loginKey");
           Lk = loginKey;
+          _navigate.NavigateTo("Main");
         });
       }
     }
