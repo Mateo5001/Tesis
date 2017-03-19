@@ -14,8 +14,9 @@ namespace StudentsApp.API.Custom
 
     protected override bool IsAuthorized(HttpActionContext actionContext)
     {
-      var loginKey = actionContext.Request.Headers.Where(x => x.Key == "loginKey").FirstOrDefault().Value;
-      return loginKey != null;
+      var loginKey = actionContext.Request.Headers.Where(x => x.Key == "loginKey").FirstOrDefault().Value.FirstOrDefault();
+      var autorized = loginKey != null && !string.IsNullOrEmpty(loginKey);
+      return autorized;
     }
     public override void OnAuthorization(HttpActionContext actionContext)
     {

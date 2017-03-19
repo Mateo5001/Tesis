@@ -24,14 +24,11 @@ namespace StudentsApp.API.Controllers
   [RoutePrefix("api/Account")]
   public class AccountController : CustomAppAPI
   {
-    public AccountController(LoginUserManager userManager, ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
+    public AccountController(LoginUserManager userManager, ISecureDataFormat<AuthenticationTicket> accessTokenFormat) :base ()
     {
-      ICustomAppAPI app = this;
-      var re = HttpContext.Current.Request;
       UserManager = userManager;
       AccessTokenFormat = accessTokenFormat;
       _signInManager = new SignInManager<LoginUser,string>(userManager, HttpContext.Current.GetOwinContext().Authentication);
-      cargarUser();
     }
     public AccountController() : this(Startup.UserManagerFactory(), Startup.OAuthOptions.AccessTokenFormat)
     {
@@ -115,10 +112,10 @@ namespace StudentsApp.API.Controllers
     }
 
 
-    [HttpGet]
+    [HttpPost]
+    [Route("holamundo")]
     public string holamundo()
     {
-      
       var re =Request.Content.Headers;
       return "hola mundo";
     }

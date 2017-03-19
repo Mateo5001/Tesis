@@ -10,6 +10,10 @@ namespace StudentsApp.API.Custom
 {
   public class CustomAppAPI : ApiController, ICustomAppAPI
   {
+    public CustomAppAPI()
+    {
+      cargarUser();
+    }
     private CustomLogic _customLogic = new CustomLogic();
     private UserApp _userApp;
     public UserApp UserApp
@@ -30,8 +34,9 @@ namespace StudentsApp.API.Custom
       var requies = Request;
       var requcontex = RequestContext;
       var owin = HttpContext.Current.GetOwinContext().Request.Headers["loginKey"];//Where(x => x.Key == "loginKey").FirstOrDefault().Value;
-      if (owin != null || string.IsNullOrEmpty(owin) )
+      if (owin != null || !string.IsNullOrEmpty(owin))
       {
+
         UserKey = owin;
         var user = _customLogic.getUserByLoginKey(UserKey);
         if (user == null)
