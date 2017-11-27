@@ -40,6 +40,7 @@
     <Compile Include="Models\CustomUserModel\UserApp.cs" />
     <Compile Include="Models\CustomEx.cs" />
     <Compile Include="Models\logInModel.cs" />
+    <Compile Include="Models\Menu\MenuItem.cs" />
     <Compile Include="Models\ObjectNull.cs" />
     <Compile Include="Models\UserRegistrationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -74,6 +75,9 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\General\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\source\StudentApp\StudentApp.Movile\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\source\StudentApp\StudentApp.Movile\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

@@ -3,6 +3,7 @@ using Microsoft.Practices.ServiceLocation;
 using StudentApp.Movile.ViewModel;
 using StudentApp.Movile.Views;
 using StudentApp.Movile.Views.Login;
+using StudentApp.Movile.Views.MasterPage;
 using StudentAppHelper.Services.Contract;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,9 @@ namespace StudentApp.Movile
     {
       InitializeComponent();
       Resources.Add("Locator", new ViewModelLocator());
-      MainPage = new NavigationPage();
+      MainPage = new Master();
       var navigation = ServiceLocator.Current.GetInstance<INavigationService>();
-      string inicio = ServiceLocator.Current.GetInstance<IStorageCookiesService>().existsCookie("loginKey") ? "Main" : "Login";
+      string inicio = ServiceLocator.Current.GetInstance<IStorageCookiesService>().existsCookie("loginKey") ? "Master" : "Login";
       navigation.NavigateTo(inicio);
     }
 

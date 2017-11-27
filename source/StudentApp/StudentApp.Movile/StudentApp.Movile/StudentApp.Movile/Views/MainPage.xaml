@@ -4,7 +4,7 @@
              x:Class="StudentApp.Movile.Views.MainPage"
               BindingContext="{Binding Main, Source={StaticResource Locator}}">
   <StackLayout VerticalOptions="Center">
-    <!--<Button Command="{Binding btnHola}" Text="{Binding btnholatext}" ></Button>-->
+    <Button Command="{Binding btnHola}" Text="{Binding btnholatext}" ></Button>
     <Label Text="{Binding Message}" VerticalOptions="Center" TextColor="Blue" FontSize="25"> </Label>
   </StackLayout>
 </ContentPage>

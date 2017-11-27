@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
+using StudentAppHelper.Services.Contract;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +14,12 @@ namespace StudentApp.Movile.Util.CustomViewModel
 {
   public class CustomAppViewModel :ViewModelBase, INotifyPropertyChanged
   {
+
+    protected IHttpClientService _client;
     protected INavigationService _navigate;
     public CustomAppViewModel()
     {
+      _client = GetInstance<IHttpClientService>();
       _navigate = GetInstance<INavigationService>();
     }
 

@@ -1,6 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Views;
 using StudentApp.Movile.Views;
+using StudentApp.Movile.Views.General;
 using StudentApp.Movile.Views.Login;
+using StudentApp.Movile.Views.MasterPage;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,11 +19,11 @@ namespace StudentApp.Movile.Services.Navigation
 
     string _currentPageKey;
 
-    public Page MainPage
+    public Master MainPage
     {
       get
       {
-        return Application.Current.MainPage;
+        return (((Master)Application.Current.MainPage));
       }
     }
 
@@ -30,21 +32,22 @@ namespace StudentApp.Movile.Services.Navigation
       Pages = new Dictionary<string, Type>();
       Pages.Add("Login", typeof(Login));
       Pages.Add("Main", typeof(MainPage));
-
+      Pages.Add("Matter", typeof(Matter));
+      Pages.Add("Topic", typeof(Topic));
     }
 
     #region INavigationService implementation
 
     public void GoBack()
     {
-      if (MainPage.Navigation.ModalStack.Count > 0)
-      {
-        MainPage.Navigation.PopModalAsync();
-      }
-      else
-      {
-        MainPage.Navigation.PopAsync();
-      }
+      //if (MainPage.Detail.Navigation.ModalStack.Count > 0)
+      //{
+      //  MainPage.Detail.Navigation.PopModalAsync();
+      //}
+      //else
+      //{
+        MainPage.Detail.Navigation.PopAsync();
+      //}
     }
 
     public void NavigateTo(string pageKey)
@@ -63,7 +66,7 @@ namespace StudentApp.Movile.Services.Navigation
         }
         Page displayPage = (Page)Activator.CreateInstance(Pages[pageKey], parameters);
         _currentPageKey = pageKey;
-        MainPage.Navigation.PushAsync(displayPage);
+        MainPage.Detail.Navigation.PushAsync(displayPage);
       }
       catch (Exception ex)
       {

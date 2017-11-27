@@ -28,7 +28,7 @@ namespace StudentAppHelper.Services.HTTP
 
     private void cargarKey()
     {
-      key = cookies.GetCookieValue("loginkey");
+      key = cookies.GetCookieValue("loginKey");
     }
 
     public TResponse Call<TSentType, TResponse>(string pPathCall, TSentType pObToSend)
@@ -84,6 +84,7 @@ namespace StudentAppHelper.Services.HTTP
           StringContent body = new StringContent(data, Encoding.UTF8, "application/json");
           if (IsAuthenticated)
           {
+            cargarKey();
             body.Headers.Add("loginKey", key);
           }
           var response = await client.PostAsync(pPathCall, body);

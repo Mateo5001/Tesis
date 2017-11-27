@@ -37,9 +37,11 @@ namespace StudentApp.Movile.ViewModel
     public ViewModelLocator()
     {
       var builder = new ContainerBuilder();
-
+      builder.RegisterType<TopicViewModel>().SingleInstance();
       builder.RegisterType<MainPageViewModel>().SingleInstance();
+      builder.RegisterType<MenuAccountViewModel>().SingleInstance();
       builder.RegisterType<LoginViewModel>().SingleInstance();
+      builder.RegisterType<MatterViewModel>().SingleInstance();
 
 
       var oauth = DependencyService.Get<IStorageCookiesService>();
@@ -51,7 +53,28 @@ namespace StudentApp.Movile.ViewModel
       var container = builder.Build(Autofac.Builder.ContainerBuildOptions.None);
       ServiceLocator.SetLocatorProvider(() => new AutofacServiceLocator(container));
     }
+    public TopicViewModel Topic
+    {
+      get
+      {
+        return ServiceLocator.Current.GetInstance<TopicViewModel>();
+      }
+    }
+    public MatterViewModel Matter
+    {
+      get
+      {
+        return ServiceLocator.Current.GetInstance<MatterViewModel>();
+      }
+    }
 
+    public MenuAccountViewModel MenuAccount
+    {
+      get
+      {
+        return ServiceLocator.Current.GetInstance<MenuAccountViewModel>();
+      }
+    }
     public MainPageViewModel Main
     {
       get

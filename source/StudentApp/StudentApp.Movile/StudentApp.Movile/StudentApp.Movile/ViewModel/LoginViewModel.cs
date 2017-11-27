@@ -31,7 +31,6 @@ namespace StudentApp.Movile.ViewModel
     #region atributos privados
     private string _lk= string.Empty;
     private logInModel logingIn;
-    private IHttpClientService _client;
     private IStorageCookiesService _CookieService;
     #endregion
 
@@ -39,7 +38,6 @@ namespace StudentApp.Movile.ViewModel
     public LoginViewModel() : base ()
     {
       LogingIn = new logInModel();
-      _client = GetInstance<IHttpClientService>();
       _CookieService = GetInstance<IStorageCookiesService>();
       CmdLogin = CmdLogin_Clicked;
       var storedcookie = _CookieService.GetCookieValue("loginKey");

@@ -13,8 +13,9 @@ namespace StudentApp.Movile.Views.MasterPage
   {
     public Master()
     {
+      //InitializeComponent();
       Master = new MenuAccountPage();
-      Detail = new NavigationPage(new MenuPage.MenuPage());
+      Detail = new NavigationPage();
     }
   }
 }

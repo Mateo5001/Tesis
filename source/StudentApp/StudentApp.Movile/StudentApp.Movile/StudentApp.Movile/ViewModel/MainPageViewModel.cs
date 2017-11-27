@@ -16,7 +16,6 @@ namespace StudentApp.Movile.ViewModel
   {
 
     #region Atributos privados
-    IHttpClientService _client;
     string _message;
     #endregion
 
@@ -24,8 +23,6 @@ namespace StudentApp.Movile.ViewModel
     public MainPageViewModel() : base()
     {
       btnHola = btnholadef;
-      _client = GetInstance<IHttpClientService>();
-      btnholadef.Execute(null);
     }
     #endregion
 

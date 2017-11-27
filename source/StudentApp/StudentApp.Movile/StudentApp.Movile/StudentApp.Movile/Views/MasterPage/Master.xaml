@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+<MasterDetailPage  xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="cls-namespace:StudentApp.Movile.Views"
              x:Class="StudentApp.Movile.Views.MasterPage.Master">
   <MasterDetailPage.Master>
-
+    <pages:MainPage></pages:MainPage>
   </MasterDetailPage.Master>
   <MasterDetailPage.Detail>
     <NavegationPage>
       <x:Arguments>
+        <pages:MainPage></pages:MainPage>
       </x:Arguments>
     </NavegationPage>
   </MasterDetailPage.Detail>
