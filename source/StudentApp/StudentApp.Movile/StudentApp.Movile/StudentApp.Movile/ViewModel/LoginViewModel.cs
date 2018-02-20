@@ -23,6 +23,7 @@ using Microsoft.Practices.ServiceLocation;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using StudentApp.Movile.Util.CustomViewModel;
+using StudentApp.Movile.Views.MasterPage;
 
 namespace StudentApp.Movile.ViewModel
 {
@@ -42,10 +43,14 @@ namespace StudentApp.Movile.ViewModel
       CmdLogin = CmdLogin_Clicked;
       var storedcookie = _CookieService.GetCookieValue("loginKey");
       Lk = storedcookie;
+      if(string.IsNullOrEmpty( Lk))
+      {
+        _navigate.NavigateTo("Main");
+      }
     }
     #endregion
 
-    #region propiedades 
+    #region propiedades
     public string TextWelcome { get { return LoginResource.WelcomeString; } }
     public string phUser { get { return LoginResource.phUser; } }
     public string phPass { get { return LoginResource.phPass; } }
@@ -112,6 +117,7 @@ namespace StudentApp.Movile.ViewModel
           _CookieService.AddCookie("loginKey", loginKey);
           var storedcookie = _CookieService.GetCookieValue("loginKey");
           Lk = loginKey;
+          //Application.Current.MainPage = new Master();
           _navigate.NavigateTo("Main");
         });
       }

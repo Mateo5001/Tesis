@@ -22,8 +22,8 @@ namespace StudentApp.Movile
       Resources.Add("Locator", new ViewModelLocator());
       MainPage = new Master();
       var navigation = ServiceLocator.Current.GetInstance<INavigationService>();
-      string inicio = ServiceLocator.Current.GetInstance<IStorageCookiesService>().existsCookie("loginKey") ? "Master" : "Login";
-      navigation.NavigateTo(inicio);
+      //string inicio = ServiceLocator.Current.GetInstance<IStorageCookiesService>().existsCookie("loginKey") ? "Master" : "Login";
+      navigation.NavigateTo("Login");
     }
 
     protected override void OnStart()

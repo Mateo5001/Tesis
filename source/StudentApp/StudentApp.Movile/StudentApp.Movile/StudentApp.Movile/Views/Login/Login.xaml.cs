@@ -14,6 +14,7 @@ namespace StudentApp.Movile.Views.Login
     public Login()
     {
       InitializeComponent();
+      NavigationPage.SetHasNavigationBar(this, false);
     }
   }
 }

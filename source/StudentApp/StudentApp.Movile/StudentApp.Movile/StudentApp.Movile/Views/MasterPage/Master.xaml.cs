@@ -16,6 +16,7 @@ namespace StudentApp.Movile.Views.MasterPage
       //InitializeComponent();
       Master = new MenuAccountPage();
       Detail = new NavigationPage();
+      //NavigationPage.SetHasNavigationBar(this, false);
     }
   }
 }

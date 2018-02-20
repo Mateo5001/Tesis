@@ -46,13 +46,14 @@ namespace StudentApp.Movile.Services.Navigation
       //}
       //else
       //{
-        MainPage.Detail.Navigation.PopAsync();
+      //MainPage.Detail.Navigation.PopAsync();
+      //this.NavigateTo("MainPage");
       //}
     }
 
     public void NavigateTo(string pageKey)
     {
-      NavigateTo(pageKey, null);
+        NavigateTo(pageKey, null);
     }
 
     public void NavigateTo(string pageKey, object parameter)
@@ -66,7 +67,9 @@ namespace StudentApp.Movile.Services.Navigation
         }
         Page displayPage = (Page)Activator.CreateInstance(Pages[pageKey], parameters);
         _currentPageKey = pageKey;
-        MainPage.Detail.Navigation.PushAsync(displayPage);
+        //MainPage.Detail = displayPage; //Navigation.PushAsync(displayPage);
+        //MainPage.Detail.Navigation.PushAsync(displayPage);
+        MainPage.Detail= new NavigationPage(displayPage);
       }
       catch (Exception ex)
       {

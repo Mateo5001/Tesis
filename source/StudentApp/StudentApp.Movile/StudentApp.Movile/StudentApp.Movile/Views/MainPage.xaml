@@ -1,10 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sig="clr-namespace:SignaturePad.Forms;assembly=SignaturePad.Forms"
              x:Class="StudentApp.Movile.Views.MainPage"
               BindingContext="{Binding Main, Source={StaticResource Locator}}">
-  <StackLayout VerticalOptions="Center">
-    <Button Command="{Binding btnHola}" Text="{Binding btnholatext}" ></Button>
-    <Label Text="{Binding Message}" VerticalOptions="Center" TextColor="Blue" FontSize="25"> </Label>
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Icon="search.png" Text="Buscar" Order="0"   ></ToolbarItem>
+    <!--<ToolbarItem Text="prueba" Order="Secondary"></ToolbarItem>
+    <ToolbarItem Text="prueba 2" Order="Secondary"></ToolbarItem>
+    <ToolbarItem Text="prueba 3" Order="Secondary"></ToolbarItem>
+    <ToolbarItem Text="prueba 4" Order="Secondary"></ToolbarItem>-->
+  </ContentPage.ToolbarItems>
+  <StackLayout VerticalOptions="Center" Padding="5,10">
+    
+    <Picker Title="Materia" SelectedIndex="{Binding IndexMatter}"  ItemsSource="{Binding MatterList}">
+    </Picker>
+    <Picker Title="Tema" SelectedIndex="{Binding IndexTopic}"  ItemsSource="{Binding TopicList}">
+    </Picker>
+
+    <Editor Text="{Binding AnotationText}" HeightRequest="300" ></Editor>
+    <Button Command="{Binding btnGuardar}" Text="Guardar anotacion"  ></Button>
   </StackLayout>
 </ContentPage>
