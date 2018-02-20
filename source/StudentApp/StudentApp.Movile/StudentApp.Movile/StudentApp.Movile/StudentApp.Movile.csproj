@@ -48,6 +48,18 @@
     <Compile Include="ViewModel\MatterViewModel.cs" />
     <Compile Include="ViewModel\MenuAccountViewModel.cs" />
     <Compile Include="ViewModel\TopicViewModel.cs" />
+    <Compile Include="Views\About\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Content\AudioContent.xaml.cs">
+      <DependentUpon>AudioContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Content\SearchContent.xaml.cs">
+      <DependentUpon>SearchContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Content\WriteContent.xaml.cs">
+      <DependentUpon>WriteContent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\General\Matter.xaml.cs">
       <DependentUpon>Matter.xaml</DependentUpon>
     </Compile>
@@ -221,6 +233,30 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Content\AudioContent.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Content\WriteContent.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\About\About.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Content\SearchContent.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

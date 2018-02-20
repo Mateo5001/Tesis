@@ -14,7 +14,7 @@ using Android.Content.PM;
 
 namespace StudentApp.Movile.Droid.Activity
 {
-  [Activity(Label = "StudentApp", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+  [Activity(Label = "StudentApp", Icon = "@drawable/Icon2", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
   public class FormsActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
   {
     GoogleSignInAccount mGoogleSignInAccount;

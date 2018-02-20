@@ -2,9 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StudentApp.Movile.Views.General.Matter"
-             Title="Account Setings" 
+             Title="Materias" 
              BindingContext="{Binding Matter, Source={StaticResource Locator}}">
-    <ContentPage.Content>
+  <ContentPage.ToolbarItems>
+    <ToolbarItem  Text="Ir a Contenido" Order="Primary"></ToolbarItem>
+  </ContentPage.ToolbarItems>
+  <ContentPage.Content>
     <StackLayout>
       <Label Text="Nombre Materia" VerticalOptions="Center" TextColor="Blue" FontSize="25"></Label>
       <Entry Text="{Binding NomMateria}"></Entry>
