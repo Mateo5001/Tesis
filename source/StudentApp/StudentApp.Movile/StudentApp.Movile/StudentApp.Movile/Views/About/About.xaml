@@ -5,7 +5,7 @@
              Title="Contáctanos"
              BindingContext="{Binding About, Source={StaticResource Locator}}"
              BackgroundColor="#585858">
-
+ 
   <ContentPage.ToolbarItems>
     <ToolbarItem Text="Volver"  Command="{Binding goMain}"></ToolbarItem>
   </ContentPage.ToolbarItems>
