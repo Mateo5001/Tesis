@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StudentApp.Movile.Views.Content.WriteContent"
+             Title="Escritura"
               BindingContext="{Binding Write, Source={StaticResource Locator}}">
   <ContentPage.ToolbarItems>
     <ToolbarItem Icon="search.png" Text="Buscar" Order="Primary"  Command="{Binding srcCMD}" ></ToolbarItem>

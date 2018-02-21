@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sig="clr-namespace:SignaturePad.Forms;assembly=SignaturePad.Forms"
              x:Class="StudentApp.Movile.Views.MainPage"
-              BindingContext="{Binding Main, Source={StaticResource Locator}}">
+             Title="Página Principal"   
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
   <ContentPage.ToolbarItems>
     <ToolbarItem Icon="search.png" Text="Buscar" Order="0"  Command="{Binding srcCMD}" ></ToolbarItem>
     <ToolbarItem Command="{Binding  AudioCMD}" Text="Grabacion" Order="Secondary"></ToolbarItem>

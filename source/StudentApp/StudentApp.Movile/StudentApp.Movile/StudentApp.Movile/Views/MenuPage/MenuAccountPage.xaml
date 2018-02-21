@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StudentApp.Movile.Views.MenuPage.MenuAccountPage"
-             Title="Account Setings"
+             Title="Opciones de cuenta"
              BindingContext="{Binding MenuAccount, Source={StaticResource Locator}}">
   <ContentPage.Content>
     <StackLayout Spacing="10" x:Name="layout">
