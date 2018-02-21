@@ -2,24 +2,20 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StudentApp.Movile.Views.About.About"
-             BindingContext="{Binding About, Source={StaticResource Locator}}">
+             BindingContext="{Binding About, Source={StaticResource Locator}}"
+             BackgroundColor="#585858">
 
   <ContentPage.ToolbarItems>
     <ToolbarItem Text="Volver"  Command="{Binding goMain}"></ToolbarItem>
   </ContentPage.ToolbarItems>
   <ContentPage.Content>
-    <StackLayout AnchorX="200" AnchorY="200"  VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="AntiqueWhite">
+    <StackLayout AnchorX="200" AnchorY="200"  VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="#585858">
       <Image Source="logo.png"  HorizontalOptions="Start" AnchorY="15" AnchorX="15" />
-      
       <Label Text=  "SA Desarrollado por:  " TextColor="Black"   FontSize="Large"  HorizontalOptions="Center" FontAttributes="Italic" VerticalTextAlignment="Center"/>
       <Label Text=  "Daniel Mateo Miranda " TextColor="Black"   FontSize="18"  FontAttributes="Bold" HorizontalOptions="Center"/>
-      <Label Text=  "danielmv861@gmail.com " TextColor="Blue"  FontSize="16"  FontFamily="Comic Sans MS"  HorizontalOptions="Center"/>
+      <Label Text=  "danielmv861@gmail.com " TextColor="Blue"  FontSize="16"  HorizontalOptions="Center"/>
       <Label Text=  "Jhonatan Amezquita Rodriguez "  TextColor="Black" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center"/>
       <Label Text=  "Jar100_12@hotmail.com " TextColor="Blue"   FontSize="16" HorizontalOptions="Center"/>
-      
-          
-              
-        
     </StackLayout>
   </ContentPage.Content>
 </ContentPage> 

@@ -2,15 +2,22 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StudentApp.Movile.Views.Login.Login"
-             BindingContext="{Binding Login, Source={StaticResource Locator}}">
+             BindingContext="{Binding Login, Source={StaticResource Locator}}"
+             BackgroundImage="BackLogin.jpg"
+             >
 
-  <StackLayout VerticalOptions="Center">
-    <Label Text="{Binding TextWelcome}" VerticalOptions="Center" TextColor="Blue" FontSize="25"> </Label>
-    <Entry Text="{Binding UserSTR, Mode=TwoWay}" Placeholder="{Binding phUser}"/>
-    <Entry Text="{Binding PassSTR, Mode=TwoWay}" Placeholder="{Binding phPass}" IsPassword="true" />
+  <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" >
+
+    <BoxView Color="Transparent" HeightRequest="150"></BoxView>
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center" >
+      <Label Text="{Binding TextWelcome}" VerticalOptions="Center" TextColor="Black"  FontSize="25" VerticalTextAlignment="Center"></Label>
+    </StackLayout>
+    <BoxView Color="Transparent" HeightRequest="150"></BoxView>
+    <Entry Text="{Binding UserSTR, Mode=TwoWay}" BackgroundColor="WhiteSmoke" Placeholder="{Binding phUser}"/>
+    <Entry Text="{Binding PassSTR, Mode=TwoWay}" BackgroundColor="WhiteSmoke" Placeholder="{Binding phPass}" IsPassword="true" />
     <Button Command="{Binding CmdLogin}" Text="{Binding nmBtnLogin}" IsEnabled ="{Binding isEnableLoginButton}" BackgroundColor="Black" TextColor="White"/>
     <Button Text="Facebook" BorderColor="Blue" BackgroundColor="Blue"  TextColor="White"/>
-    <Button Text="Gmail" BorderColor="Red" BackgroundColor="Red" TextColor="Blue" />
+    <Button Text="Gmail" BorderColor="Red" BackgroundColor="Red" TextColor="White" />
     <Label Text="{Binding Lk, Mode=TwoWay}" VerticalOptions="Center" TextColor="Blue" FontSize="25"> </Label>
   </StackLayout>
 </ContentPage>

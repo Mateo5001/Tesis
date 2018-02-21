@@ -118,15 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="nmBtnLogin" xml:space="preserve">
-    <value>Log In</value>
+    <value>Ingresar</value>
   </data>
   <data name="phPass" xml:space="preserve">
-    <value>type your Password</value>
+    <value>digite su contraseña</value>
   </data>
   <data name="phUser" xml:space="preserve">
-    <value>type your User</value>
+    <value>digite su usuario</value>
   </data>
   <data name="WelcomeString" xml:space="preserve">
-    <value>Wellcome !!!</value>
+    <value>¡¡Bienbenidos!!</value>
   </data>
 </root>

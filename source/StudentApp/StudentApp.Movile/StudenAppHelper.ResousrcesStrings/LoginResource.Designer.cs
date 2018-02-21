@@ -20,7 +20,7 @@ namespace StudenAppHelper.ResousrcesStrings {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class LoginResource {
@@ -62,7 +62,7 @@ namespace StudenAppHelper.ResousrcesStrings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Log In.
+        ///   Looks up a localized string similar to Ingresar.
         /// </summary>
         public static string nmBtnLogin {
             get {
@@ -71,7 +71,7 @@ namespace StudenAppHelper.ResousrcesStrings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to type your Password.
+        ///   Looks up a localized string similar to digite su contraseña.
         /// </summary>
         public static string phPass {
             get {
@@ -80,7 +80,7 @@ namespace StudenAppHelper.ResousrcesStrings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to type your User.
+        ///   Looks up a localized string similar to digite su usuario.
         /// </summary>
         public static string phUser {
             get {
@@ -89,7 +89,7 @@ namespace StudenAppHelper.ResousrcesStrings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wellcome !!!.
+        ///   Looks up a localized string similar to ¡¡Bienbenidos!!.
         /// </summary>
         public static string WelcomeString {
             get {
