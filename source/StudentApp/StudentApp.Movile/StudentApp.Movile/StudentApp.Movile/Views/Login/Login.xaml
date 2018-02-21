@@ -8,9 +8,9 @@
     <Label Text="{Binding TextWelcome}" VerticalOptions="Center" TextColor="Blue" FontSize="25"> </Label>
     <Entry Text="{Binding UserSTR, Mode=TwoWay}" Placeholder="{Binding phUser}"/>
     <Entry Text="{Binding PassSTR, Mode=TwoWay}" Placeholder="{Binding phPass}" IsPassword="true" />
-    <Button Command="{Binding CmdLogin}" Text="{Binding nmBtnLogin}" IsEnabled ="{Binding isEnableLoginButton}" />
-    <Button Text="Facebook" BorderColor="Blue" />
-    <Button Text="Gmail" BorderColor="Red" />
+    <Button Command="{Binding CmdLogin}" Text="{Binding nmBtnLogin}" IsEnabled ="{Binding isEnableLoginButton}" BackgroundColor="Black" TextColor="White"/>
+    <Button Text="Facebook" BorderColor="Blue" BackgroundColor="Blue"  TextColor="White"/>
+    <Button Text="Gmail" BorderColor="Red" BackgroundColor="Red" TextColor="Blue" />
     <Label Text="{Binding Lk, Mode=TwoWay}" VerticalOptions="Center" TextColor="Blue" FontSize="25"> </Label>
   </StackLayout>
 </ContentPage>
