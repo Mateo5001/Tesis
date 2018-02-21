@@ -15,13 +15,13 @@ namespace StudentAppHelper.ModelBindings.Models.General
   }
   public class SearchResult
   {
-    private string _SaechName;
+    private string _SearchName;
     private string _IdContent;
     private string _Icon;
     private TipoContenido _Tipo;
     private ICommand _NavegateCommand;
 
-    public string SaechName { get => _SaechName; set => _SaechName = value; }
+    public string SearchName { get => _SearchName; set => _SearchName = value; }
     public string IdContent { get => _IdContent; set => _IdContent = value; }
     public string Icon { get => _Icon; set => _Icon = value; }
     public ICommand NavegateCommand { get => _NavegateCommand; set => _NavegateCommand = value; }

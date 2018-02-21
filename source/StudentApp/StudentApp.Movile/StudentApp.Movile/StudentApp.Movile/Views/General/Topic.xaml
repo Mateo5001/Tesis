@@ -6,7 +6,7 @@
               BindingContext="{Binding Topic, Source={StaticResource Locator}}">
 
   <ContentPage.ToolbarItems>
-    <ToolbarItem  Text="Ir a Contenido" Order="Primary"></ToolbarItem>
+    <ToolbarItem Text="Ir a Inicio" Command="{Binding goMain}"></ToolbarItem>
   </ContentPage.ToolbarItems>
   <ContentPage.Content>
     <StackLayout>

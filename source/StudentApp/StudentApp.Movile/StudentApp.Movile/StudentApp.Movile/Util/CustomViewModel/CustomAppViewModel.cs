@@ -9,6 +9,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace StudentApp.Movile.Util.CustomViewModel
 {
@@ -21,6 +23,7 @@ namespace StudentApp.Movile.Util.CustomViewModel
     {
       _client = GetInstance<IHttpClientService>();
       _navigate = GetInstance<INavigationService>();
+      goMain = cmdback;
     }
 
     protected TType GetInstance<TType>()
@@ -28,6 +31,24 @@ namespace StudentApp.Movile.Util.CustomViewModel
       return ServiceLocator.Current.GetInstance<TType>();
     }
 
+
+    public ICommand goMain { get; protected set; }
+
+    public Command cmdback
+    {
+      get
+      {
+        return new Command(async () =>
+        {
+          await goBackMain();
+        });
+      }
+    }
+
+    private async Task goBackMain()
+    {
+      _navigate.NavigateTo("Main");
+    }
 
     #region propertyChanged
     public event PropertyChangedEventHandler PropertyChanged;
