@@ -7,8 +7,10 @@
              >
 
   <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" >
-
-    <BoxView Color="Transparent" HeightRequest="150"></BoxView>
+    <StackLayout HeightRequest="150" HorizontalOptions="FillAndExpand">
+      <BoxView Color="Transparent" HeightRequest="150"></BoxView>
+      <Image Source="Icon2.png" HeightRequest="150"></Image>
+    </StackLayout>
     <StackLayout VerticalOptions="Center" HorizontalOptions="Center" >
       <Label Text="{Binding TextWelcome}" VerticalOptions="Center" TextColor="Black"  FontSize="25" VerticalTextAlignment="Center"></Label>
     </StackLayout>
