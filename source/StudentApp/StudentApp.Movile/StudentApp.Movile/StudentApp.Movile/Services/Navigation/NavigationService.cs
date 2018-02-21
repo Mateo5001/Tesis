@@ -75,7 +75,11 @@ namespace StudentApp.Movile.Services.Navigation
         _currentPageKey = pageKey;
         //MainPage.Detail = displayPage; //Navigation.PushAsync(displayPage);
         //MainPage.Detail.Navigation.PushAsync(displayPage);
-        MainPage.Detail= new NavigationPage(displayPage);
+        MainPage.Detail = new NavigationPage(displayPage)
+        {
+          BarBackgroundColor = Color.FromHex("#585858"),
+          BarTextColor = Color.Black
+        };
       }
       catch (Exception ex)
       {

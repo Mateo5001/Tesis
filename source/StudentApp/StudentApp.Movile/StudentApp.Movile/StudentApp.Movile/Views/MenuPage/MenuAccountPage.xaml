@@ -6,15 +6,18 @@
              BindingContext="{Binding MenuAccount, Source={StaticResource Locator}}">
   <ContentPage.Content>
     <StackLayout Spacing="10" x:Name="layout">
-      <BoxView Color="Yellow" VerticalOptions="FillAndExpand"
+      <StackLayout Orientation="Vertical" BackgroundColor="#585858">
+      <BoxView Color="#585858" VerticalOptions="FillAndExpand"
         HorizontalOptions="FillAndExpand" />
+        <Image Source="Icon2" HeightRequest="75" WidthRequest="75" ></Image>
+      </StackLayout>
       <ListView ItemsSource="{Binding MenuItemList}">
         <ListView.ItemTemplate >
           <DataTemplate>
             <TextCell Text="{Binding MenuName}"
                     Command="{Binding NavegateCommand}"
                     CommandParameter="{Binding MenuKey}"
-                      TextColor="#f35e20" />
+                      TextColor="Black" />
           </DataTemplate>
         </ListView.ItemTemplate>
       </ListView>
