@@ -235,10 +235,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\logo.png" />
-    <Content Include="Images\search.png" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Views\Content\AudioContent.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
