@@ -43,7 +43,10 @@ namespace StudentApp.Movile.ViewModel
       builder.RegisterType<LoginViewModel>().SingleInstance();
       builder.RegisterType<MatterViewModel>().SingleInstance();
       builder.RegisterType<SearchContentViewModel>().SingleInstance();
+      builder.RegisterType<AboutViewModel>().SingleInstance();
+
       
+
 
       var oauth = DependencyService.Get<IStorageCookiesService>();
       builder.RegisterInstance(oauth).As<IStorageCookiesService>();
@@ -97,13 +100,13 @@ namespace StudentApp.Movile.ViewModel
         return ServiceLocator.Current.GetInstance<SearchContentViewModel>();
       }
     }
-        public AboutViewModel About
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<AboutViewModel>();
-            }
-        }
+    public AboutViewModel About
+    {
+      get
+      {
+        return ServiceLocator.Current.GetInstance<AboutViewModel>();
+      }
+    }
 
     public static void Cleanup()
     {
