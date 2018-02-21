@@ -235,6 +235,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\logo.png" />
     <Content Include="Images\search.png" />
   </ItemGroup>
   <ItemGroup>
