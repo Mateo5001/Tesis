@@ -97,6 +97,13 @@ namespace StudentApp.Movile.ViewModel
         return ServiceLocator.Current.GetInstance<SearchContentViewModel>();
       }
     }
+        public AboutViewModel About
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<AboutViewModel>();
+            }
+        }
 
     public static void Cleanup()
     {

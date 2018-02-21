@@ -42,6 +42,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Navigation\NavigationService.cs" />
     <Compile Include="Util\CustomViewModel\CustomAppViewModel.cs" />
+    <Compile Include="ViewModel\AboutViewModel.cs" />
+    <Compile Include="ViewModel\CustomAppViewModel1.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
     <Compile Include="ViewModel\Locator\ViewModelLocator.cs" />
