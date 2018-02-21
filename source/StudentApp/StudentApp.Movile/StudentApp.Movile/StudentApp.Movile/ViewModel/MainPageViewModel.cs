@@ -12,85 +12,106 @@ using Xamarin.Forms;
 
 namespace StudentApp.Movile.ViewModel
 {
-  public class MainPageViewModel : CustomAppViewModel
-  {
-
-    #region Atributos privados
-    private string _anotationText;
-    private int _IndexMatter;
-    private int _IndexTopic;
-    private List<string> _MatterList;
-    private List<string> _TopicList;
-    #endregion
-
-    #region Consturctores
-    public MainPageViewModel() : base()
+    public class MainPageViewModel : CustomAppViewModel
     {
-      btnGuardar = btnGdef;
-      srcCMD = cmdSearch;
-    }
-    #endregion
 
-    #region Propiedades 
-    #endregion
+        #region Atributos privados
+        private string _anotationText;
+        private int _IndexMatter;
+        private int _IndexTopic;
+        private List<string> _MatterList;
+        private List<string> _TopicList;
 
-    #region Encapsulamiento de atributos
+        #endregion
 
-    public string AnotationText { get => _anotationText; set { _anotationText = value; OnPropertyChanged(); } }
-    public int IndexMatter { get => _IndexMatter; set { _IndexMatter = value; OnPropertyChanged(); } }
-    public int IndexTopic { get => _IndexTopic; set { _IndexTopic = value; OnPropertyChanged(); } }
-    public List<string> MatterList { get => _MatterList; set { _MatterList = value; OnPropertyChanged(); } }
-    public List<string> TopicList { get => _TopicList; set { _TopicList = value; OnPropertyChanged(); } }
-
-    #endregion
-
-    public ICommand srcCMD   { get; protected set; }
-
-    public Command cmdSearch
-    {
-      get
-      {
-        return new Command(async () =>
+        #region Consturctores
+        public MainPageViewModel() : base()
         {
-          await goSeach();
-        });
-      }
-    }
+            btnGuardar = btnGdef;
+            srcCMD = cmdSearch;
+            cAbout = About;
+        }
+        #endregion
 
-    private async Task goSeach()
-    {
-      _navigate.NavigateTo("Search");
-    }
-    
+        #region Propiedades 
+        #endregion
 
-    #region Defeinicion de comandos
-    public ICommand btnGuardar { get; protected set; }
-    #endregion
+        #region Encapsulamiento de atributos
 
-    #region Definicion de IComand
-    public Command btnGdef
-    {
-      get
-      {
-        return new Command(async () =>
+        public string AnotationText { get => _anotationText; set { _anotationText = value; OnPropertyChanged(); } }
+        public int IndexMatter { get => _IndexMatter; set { _IndexMatter = value; OnPropertyChanged(); } }
+        public int IndexTopic { get => _IndexTopic; set { _IndexTopic = value; OnPropertyChanged(); } }
+        public List<string> MatterList { get => _MatterList; set { _MatterList = value; OnPropertyChanged(); } }
+        public List<string> TopicList { get => _TopicList; set { _TopicList = value; OnPropertyChanged(); } }
+
+        #endregion
+
+        public ICommand cAbout { get; protected set; }
+
+        public ICommand srcCMD { get; protected set; }
+
+        public Command About
         {
-          await guardar();
-        });
-      }
+            get
+            {
+                return new Command(async () =>
+                {
+                    await VAbout();
+                });
+            }
+        }  
+
+        private async Task VAbout()
+        {
+            _navigate.NavigateTo("About");
+
+        }
+
+        public Command cmdSearch
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    await goSeach();
+                });
+            }
+        }
+
+        private async Task goSeach()
+        {
+            _navigate.NavigateTo("Search");
+        }
+
+
+        #region Defeinicion de comandos
+        public ICommand btnGuardar { get; protected set; }
+        #endregion
+
+        #region Definicion de IComand
+        public Command btnGdef
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    await guardar();
+                });
+            }
+        }
+
+        #endregion
+
+        #region eventos
+        private async Task guardar()
+        {
+            //_client.IsAuthenticated = true;
+            //var result =  await _client.CallAsync<ObjectNull,string>("api/Account/holamundo",new ObjectNull());
+            //if (result == null)
+            _navigate.NavigateTo("Login");
+            //Message = result;//result;
+
+        }
+        #endregion
     }
-
-    #endregion
-
-    #region eventos
-    private async Task  guardar()
-    {
-      //_client.IsAuthenticated = true;
-      //var result =  await _client.CallAsync<ObjectNull,string>("api/Account/holamundo",new ObjectNull());
-      //if (result == null)
-        _navigate.NavigateTo("Login");
-      //Message = result;//result;
-
-    }
-    #endregion
-  }
 }

@@ -9,7 +9,7 @@
     <ToolbarItem Text="prueba" Order="Secondary"></ToolbarItem>
     <ToolbarItem Text="prueba 2" Order="Secondary"></ToolbarItem>
     <ToolbarItem Text="prueba 3" Order="Secondary"></ToolbarItem>
-    <ToolbarItem Text="Acerca de..." Order="Secondary"></ToolbarItem>
+        <ToolbarItem  Command="{Binding  cAbout}"   Text="Acerca de..." Order="Secondary"></ToolbarItem>
   </ContentPage.ToolbarItems>
   <StackLayout VerticalOptions="Center" Padding="5,10">
     

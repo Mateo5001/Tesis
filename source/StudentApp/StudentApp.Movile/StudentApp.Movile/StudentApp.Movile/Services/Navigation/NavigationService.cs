@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Views;
 using StudentApp.Movile.Views;
+using StudentApp.Movile.Views.About;
 using StudentApp.Movile.Views.Content;
 using StudentApp.Movile.Views.General;
 using StudentApp.Movile.Views.Login;
@@ -36,8 +37,8 @@ namespace StudentApp.Movile.Services.Navigation
       Pages.Add("Matter", typeof(Matter));
       Pages.Add("Topic", typeof(Topic));
       Pages.Add("Search", typeof(SearchContent));
-    }
-
+      Pages.Add("About", typeof(About)); 
+        } 
     #region INavigationService implementation
 
     public void GoBack()
