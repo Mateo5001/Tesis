@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Views;
 using StudentApp.Movile.Views;
+using StudentApp.Movile.Views.Content;
 using StudentApp.Movile.Views.General;
 using StudentApp.Movile.Views.Login;
 using StudentApp.Movile.Views.MasterPage;
@@ -34,6 +35,7 @@ namespace StudentApp.Movile.Services.Navigation
       Pages.Add("Main", typeof(MainPage));
       Pages.Add("Matter", typeof(Matter));
       Pages.Add("Topic", typeof(Topic));
+      Pages.Add("Search", typeof(SearchContent));
     }
 
     #region INavigationService implementation

@@ -27,6 +27,7 @@ namespace StudentApp.Movile.ViewModel
     public MainPageViewModel() : base()
     {
       btnGuardar = btnGdef;
+      srcCMD = cmdSearch;
     }
     #endregion
 
@@ -42,6 +43,25 @@ namespace StudentApp.Movile.ViewModel
     public List<string> TopicList { get => _TopicList; set { _TopicList = value; OnPropertyChanged(); } }
 
     #endregion
+
+    public ICommand srcCMD   { get; protected set; }
+
+    public Command cmdSearch
+    {
+      get
+      {
+        return new Command(async () =>
+        {
+          await goSeach();
+        });
+      }
+    }
+
+    private async Task goSeach()
+    {
+      _navigate.NavigateTo("Search");
+    }
+    
 
     #region Defeinicion de comandos
     public ICommand btnGuardar { get; protected set; }

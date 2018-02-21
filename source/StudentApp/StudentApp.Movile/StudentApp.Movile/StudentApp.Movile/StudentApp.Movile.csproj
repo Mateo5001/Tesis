@@ -47,6 +47,7 @@
     <Compile Include="ViewModel\Locator\ViewModelLocator.cs" />
     <Compile Include="ViewModel\MatterViewModel.cs" />
     <Compile Include="ViewModel\MenuAccountViewModel.cs" />
+    <Compile Include="ViewModel\SearchContentViewModel.cs" />
     <Compile Include="ViewModel\TopicViewModel.cs" />
     <Compile Include="Views\About\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
