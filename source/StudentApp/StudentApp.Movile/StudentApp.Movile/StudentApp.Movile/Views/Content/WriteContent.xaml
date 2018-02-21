@@ -1,12 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="StudentApp.Movile.Views.Content.WriteContent">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             x:Class="StudentApp.Movile.Views.Content.WriteContent"
+              BindingContext="{Binding Write, Source={StaticResource Locator}}">
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Icon="search.png" Text="Buscar" Order="Primary"  Command="{Binding srcCMD}" ></ToolbarItem>
+    <ToolbarItem Command="{Binding  AudioCMD}" Text="Grabacion" Order="Secondary"></ToolbarItem>
+    <ToolbarItem Command="{Binding goMain}" Text="Texto" Order="Secondary"></ToolbarItem>
+    <ToolbarItem  Command="{Binding  cAbout}"   Text="Acerca de..." Order="Secondary"></ToolbarItem>
+  </ContentPage.ToolbarItems>
+  <ContentPage.Content>
+    <StackLayout VerticalOptions="Center" Padding="5,10">
+
+      <Picker Title="Materia" SelectedIndex="{Binding IndexMatter}"  ItemsSource="{Binding MatterList}">
+      </Picker>
+      <Picker Title="Tema" SelectedIndex="{Binding IndexTopic}"  ItemsSource="{Binding TopicList}">
+      </Picker>
+
+      <Editor Text="{Binding AnotationText}" HeightRequest="300" ></Editor>
+      <Button Command="{Binding btnGuardar}" Text="Guardar Escrito"  ></Button>
+    </StackLayout>
+  </ContentPage.Content>
 </ContentPage>

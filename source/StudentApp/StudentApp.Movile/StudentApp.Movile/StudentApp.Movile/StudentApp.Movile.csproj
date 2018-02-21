@@ -43,7 +43,7 @@
     <Compile Include="Services\Navigation\NavigationService.cs" />
     <Compile Include="Util\CustomViewModel\CustomAppViewModel.cs" />
     <Compile Include="ViewModel\AboutViewModel.cs" />
-    <Compile Include="ViewModel\CustomAppViewModel1.cs" />
+    <Compile Include="ViewModel\AudioContentViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
     <Compile Include="ViewModel\Locator\ViewModelLocator.cs" />
@@ -51,6 +51,7 @@
     <Compile Include="ViewModel\MenuAccountViewModel.cs" />
     <Compile Include="ViewModel\SearchContentViewModel.cs" />
     <Compile Include="ViewModel\TopicViewModel.cs" />
+    <Compile Include="ViewModel\WriteContentViewModel.cs" />
     <Compile Include="Views\About\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>

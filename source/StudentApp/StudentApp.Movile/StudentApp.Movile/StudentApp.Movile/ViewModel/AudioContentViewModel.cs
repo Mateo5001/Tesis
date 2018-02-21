@@ -1,7 +1,4 @@
-﻿using StudenAppHelper.ResousrcesStrings;
-using StudentApp.Movile.Util.CustomViewModel;
-using StudentAppHelper.ModelBindings.Models;
-using StudentAppHelper.Services.Contract;
+﻿using StudentApp.Movile.Util.CustomViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,31 +9,15 @@ using Xamarin.Forms;
 
 namespace StudentApp.Movile.ViewModel
 {
-  public class MainPageViewModel : CustomAppViewModel
+  public class AudioContentViewModel : CustomAppViewModel
   {
 
-    #region Atributos privados
     private string _anotationText;
     private int _IndexMatter;
     private int _IndexTopic;
     private List<string> _MatterList;
     private List<string> _TopicList;
 
-    #endregion
-
-    #region Consturctores
-    public MainPageViewModel() : base()
-    {
-      btnGuardar = btnGdef;
-      srcCMD = cmdSearch;
-      cAbout = About;
-      AudioCMD = cmdAudio;
-      WriteCMD = cmdWrite;
-    }
-    #endregion
-
-
-    #region Encapsulamiento de atributos
 
     public string AnotationText { get => _anotationText; set { _anotationText = value; OnPropertyChanged(); } }
     public int IndexMatter { get => _IndexMatter; set { _IndexMatter = value; OnPropertyChanged(); } }
@@ -44,7 +25,12 @@ namespace StudentApp.Movile.ViewModel
     public List<string> MatterList { get => _MatterList; set { _MatterList = value; OnPropertyChanged(); } }
     public List<string> TopicList { get => _TopicList; set { _TopicList = value; OnPropertyChanged(); } }
 
-    #endregion
+    public AudioContentViewModel() : base()
+    {
+      srcCMD = cmdSearch;
+      cAbout = About;
+      WriteCMD = cmdWrite;
+    }
 
     public ICommand WriteCMD { get; protected set; }
 
@@ -59,33 +45,7 @@ namespace StudentApp.Movile.ViewModel
       }
     }
 
-    private async Task goWrite()
-    {
-      _navigate.NavigateTo("Write");
-    }
-
-    public ICommand AudioCMD { get; protected set; }
-
-    public Command cmdAudio
-    {
-      get
-      {
-        return new Command(async () =>
-        {
-          await goAudio();
-        });
-      }
-    }
-
-    private async Task goAudio()
-    {
-      _navigate.NavigateTo("Audio");
-    }
-
-
     public ICommand cAbout { get; protected set; }
-
-    public ICommand srcCMD { get; protected set; }
 
     public Command About
     {
@@ -104,6 +64,13 @@ namespace StudentApp.Movile.ViewModel
 
     }
 
+    private async Task goWrite()
+    {
+      _navigate.NavigateTo("Write");
+    }
+
+    public ICommand srcCMD { get; protected set; }
+
     public Command cmdSearch
     {
       get
@@ -120,12 +87,8 @@ namespace StudentApp.Movile.ViewModel
       _navigate.NavigateTo("Search");
     }
 
-
-    #region Defeinicion de comandos
     public ICommand btnGuardar { get; protected set; }
-    #endregion
 
-    #region Definicion de IComand
     public Command btnGdef
     {
       get
@@ -136,13 +99,10 @@ namespace StudentApp.Movile.ViewModel
         });
       }
     }
-
-    #endregion
-
-    #region eventos
     private async Task guardar()
     {
+
     }
-    #endregion
+
   }
 }

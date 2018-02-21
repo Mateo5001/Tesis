@@ -29,6 +29,12 @@ namespace StudentApp.Movile.ViewModel
         MenuKey = "Topic",
         NavegateCommand = navegateCmd,
       };
+      lit.Add(item); item = new CustomMenuItem()
+      {
+        MenuName = "Acerca de ...",
+        MenuKey = "About",
+        NavegateCommand = navegateCmd,
+      };
       lit.Add(item);
       MenuItemList = lit;
 

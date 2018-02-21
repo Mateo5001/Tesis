@@ -18,7 +18,6 @@ namespace StudentApp.Movile.ViewModel
     {
       Filtro = string.Empty;
       SearchListResult = new List<SearchResult>();
-      
     }
 
     public string Filtro { get => _filtro; set { _filtro = value; Search(); ; OnPropertyChanged(); } }
@@ -30,18 +29,29 @@ namespace StudentApp.Movile.ViewModel
         List<SearchResult> result = new List<SearchResult>();
         result.Add(new SearchResult()
         {
-          Icon = "icon.png",
+          Icon = "Audio.png",
           IdContent = "1",
           SearchName = "registro 1",
           NavegateCommand = cmdNavegateList
-
+        });
+        result.Add(new SearchResult()
+        {
+          Icon = "Imagen.png",
+          IdContent = "2",
+          SearchName = "registro 2",
+          NavegateCommand = cmdNavegateList
+        });
+        result.Add(new SearchResult()
+        {
+          Icon = "Texto.png",
+          IdContent = "3",
+          SearchName = "registro 3",
+          NavegateCommand = cmdNavegateList
         });
         SearchListResult = result;
       }
     }
-
     
-
     public ICommand cmdNavegateList { get; protected set; }
 
     public Command cmdNL
@@ -61,9 +71,11 @@ namespace StudentApp.Movile.ViewModel
     }
 
     public List<SearchResult> SearchListResult { get => _SearchListResult;
-      set {
+      set
+      { 
         _SearchListResult = value;
-        OnPropertyChanged(); }
+        OnPropertyChanged();
+      }
     }
   }
 }

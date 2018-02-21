@@ -37,8 +37,11 @@ namespace StudentApp.Movile.Services.Navigation
       Pages.Add("Matter", typeof(Matter));
       Pages.Add("Topic", typeof(Topic));
       Pages.Add("Search", typeof(SearchContent));
-      Pages.Add("About", typeof(About)); 
-        } 
+      Pages.Add("About", typeof(About));
+      Pages.Add("Audio", typeof(AudioContent));
+      Pages.Add("Write", typeof(WriteContent));
+    } 
+
     #region INavigationService implementation
 
     public void GoBack()

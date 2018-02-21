@@ -44,8 +44,10 @@ namespace StudentApp.Movile.ViewModel
       builder.RegisterType<MatterViewModel>().SingleInstance();
       builder.RegisterType<SearchContentViewModel>().SingleInstance();
       builder.RegisterType<AboutViewModel>().SingleInstance();
+      builder.RegisterType<AudioContentViewModel>().SingleInstance();
+      builder.RegisterType<WriteContentViewModel>().SingleInstance();
 
-      
+
 
 
       var oauth = DependencyService.Get<IStorageCookiesService>();
@@ -105,6 +107,20 @@ namespace StudentApp.Movile.ViewModel
       get
       {
         return ServiceLocator.Current.GetInstance<AboutViewModel>();
+      }
+    }
+    public AudioContentViewModel Audio
+    {
+      get
+      {
+        return ServiceLocator.Current.GetInstance<AudioContentViewModel>();
+      }
+    }
+    public WriteContentViewModel Write
+    {
+      get
+      {
+        return ServiceLocator.Current.GetInstance<WriteContentViewModel>();
       }
     }
 
