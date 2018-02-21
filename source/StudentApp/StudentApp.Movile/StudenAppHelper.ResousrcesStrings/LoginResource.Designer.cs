@@ -89,7 +89,7 @@ namespace StudenAppHelper.ResousrcesStrings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ¡¡Bienbenidos!!.
+        ///   Looks up a localized string similar to ¡¡Bienvenidos!!.
         /// </summary>
         public static string WelcomeString {
             get {
