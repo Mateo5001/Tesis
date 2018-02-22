@@ -32,5 +32,14 @@ namespace DBEntityModel.DBModel
         public virtual DbSet<LoginKeyHistorial> LoginKeyHistorial { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<UserType> UserType { get; set; }
+        public virtual DbSet<Content> Content { get; set; }
+        public virtual DbSet<ContentType> ContentType { get; set; }
+        public virtual DbSet<Matter> Matter { get; set; }
+        public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Tag> Tag { get; set; }
+        public virtual DbSet<TagType> TagType { get; set; }
+        public virtual DbSet<Topic> Topic { get; set; }
+        public virtual DbSet<UserRole> UserRole { get; set; }
     }
 }

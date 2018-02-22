@@ -18,6 +18,26 @@
         <AssociationConnector Association="StudenAppHelperDB_devModel.FK_Logueo_Usurio" />
         <AssociationConnector Association="StudenAppHelperDB_devModel.FK_LoginKeyHistorial_LoginKey" />
         <AssociationConnector Association="StudenAppHelperDB_devModel.FK_Usurio_TipoUsuario" />
+        <EntityTypeShape EntityType="StudenAppHelperDB_devModel.Content" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="StudenAppHelperDB_devModel.ContentType" Width="1.5" PointX="3" PointY="15.5" />
+        <EntityTypeShape EntityType="StudenAppHelperDB_devModel.Matter" Width="1.5" PointX="5.25" PointY="12.125" />
+        <EntityTypeShape EntityType="StudenAppHelperDB_devModel.Role" Width="1.5" PointX="6" PointY="16.125" />
+        <EntityTypeShape EntityType="StudenAppHelperDB_devModel.sysdiagrams" Width="1.5" PointX="10.375" PointY="3.75" />
+        <EntityTypeShape EntityType="StudenAppHelperDB_devModel.Tag" Width="1.5" PointX="10.75" PointY="6.5" />
+        <EntityTypeShape EntityType="StudenAppHelperDB_devModel.TagType" Width="1.5" PointX="8.5" PointY="13.125" />
+        <EntityTypeShape EntityType="StudenAppHelperDB_devModel.Topic" Width="1.5" PointX="7.5" PointY="8" />
+        <EntityTypeShape EntityType="StudenAppHelperDB_devModel.UserRole" Width="1.5" PointX="8.25" PointY="5" />
+        <AssociationConnector Association="StudenAppHelperDB_devModel.FK_Content_ContentType" />
+        <AssociationConnector Association="StudenAppHelperDB_devModel.FK_Content_User" />
+        <AssociationConnector Association="StudenAppHelperDB_devModel.FK_Tag_Content" />
+        <AssociationConnector Association="StudenAppHelperDB_devModel.FK_Matter_User" />
+        <AssociationConnector Association="StudenAppHelperDB_devModel.FK_Tag_Matter" />
+        <AssociationConnector Association="StudenAppHelperDB_devModel.FK_Topic_Matter" />
+        <AssociationConnector Association="StudenAppHelperDB_devModel.FK_UserRole_Role" />
+        <AssociationConnector Association="StudenAppHelperDB_devModel.FK_Tag_TagType" />
+        <AssociationConnector Association="StudenAppHelperDB_devModel.FK_Tag_Topic" />
+        <AssociationConnector Association="StudenAppHelperDB_devModel.FK_Topic_User" />
+        <AssociationConnector Association="StudenAppHelperDB_devModel.FK_UserRole_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

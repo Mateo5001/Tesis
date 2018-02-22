@@ -129,6 +129,12 @@
     <Compile Include="DBModel\BLoginType.cs">
       <DependentUpon>UsersEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DBModel\Content.cs">
+      <DependentUpon>UsersEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModel\ContentType.cs">
+      <DependentUpon>UsersEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DBModel\Login.cs">
       <DependentUpon>UsersEntityModel.tt</DependentUpon>
     </Compile>
@@ -138,7 +144,28 @@
     <Compile Include="DBModel\LoginKeyHistorial.cs">
       <DependentUpon>UsersEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DBModel\Matter.cs">
+      <DependentUpon>UsersEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModel\Role.cs">
+      <DependentUpon>UsersEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModel\sysdiagrams.cs">
+      <DependentUpon>UsersEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModel\Tag.cs">
+      <DependentUpon>UsersEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModel\TagType.cs">
+      <DependentUpon>UsersEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModel\Topic.cs">
+      <DependentUpon>UsersEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DBModel\User.cs">
+      <DependentUpon>UsersEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModel\UserRole.cs">
       <DependentUpon>UsersEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DBModel\UsersEntityModel.Context.cs">

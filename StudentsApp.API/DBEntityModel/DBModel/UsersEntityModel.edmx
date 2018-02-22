@@ -21,6 +21,28 @@
           <Property Name="LoginTypeCode" Type="varchar" MaxLength="2" Nullable="false" />
           <Property Name="LginTypeName" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
+        <EntityType Name="Content">
+          <Key>
+            <PropertyRef Name="ContentId" />
+          </Key>
+          <Property Name="ContentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContentTypeId" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="ContentText" Type="varchar(max)" />
+          <Property Name="FileUrl" Type="varchar(max)" />
+          <Property Name="ContentUserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContentType">
+          <Key>
+            <PropertyRef Name="ContentTypeId" />
+          </Key>
+          <Property Name="ContentTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContentName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ContentExt" Type="varchar" MaxLength="4" />
+          <Property Name="isMultimedia" Type="bit" Nullable="false" />
+          <Property Name="isText" Type="bit" Nullable="false" />
+          <Property Name="isLink" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="Login">
           <Key>
             <PropertyRef Name="LoginId" />
@@ -51,6 +73,66 @@
           <Property Name="BeforeLoginPass" Type="varchar" MaxLength="12" />
           <Property Name="ModifyDate" Type="date" />
         </EntityType>
+        <EntityType Name="Matter">
+          <Key>
+            <PropertyRef Name="MatterId" />
+          </Key>
+          <Property Name="MatterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MatterName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="MaterCode" Type="varchar" MaxLength="50" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isEliminated" Type="bit" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="RoleCode" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="TagId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TagType" Type="int" Nullable="false" />
+          <Property Name="TopicId" Type="int" Nullable="false" />
+          <Property Name="MatterId" Type="int" Nullable="false" />
+          <Property Name="ContentId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TagType">
+          <Key>
+            <PropertyRef Name="TagTypeId" />
+          </Key>
+          <Property Name="TagTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TagTypeName" Type="varchar" MaxLength="8" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Topic">
+          <Key>
+            <PropertyRef Name="TopicId" />
+          </Key>
+          <Property Name="TopicId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MatterId" Type="int" />
+          <Property Name="TopicName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TopicCode" Type="varchar" MaxLength="50" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isEliminated" Type="bit" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserId" />
@@ -66,6 +148,15 @@
           <Property Name="UserBirthDate" Type="date" />
           <Property Name="isActive" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="UserRoleId" />
+          </Key>
+          <Property Name="UserRoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="UserType">
           <Key>
             <PropertyRef Name="UserTypeId" />
@@ -75,6 +166,30 @@
           <Property Name="UserTypeCode" Type="varchar" MaxLength="5" />
           <Property Name="isActive" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Content_ContentType">
+          <End Role="ContentType" Type="Self.ContentType" Multiplicity="1" />
+          <End Role="Content" Type="Self.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContentType">
+              <PropertyRef Name="ContentTypeId" />
+            </Principal>
+            <Dependent Role="Content">
+              <PropertyRef Name="ContentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Content_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Content" Type="Self.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Content">
+              <PropertyRef Name="ContentUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_LoginKeyHistorial_LoginKey">
           <End Role="LoginKey" Type="Self.LoginKey" Multiplicity="0..1" />
           <End Role="LoginKeyHistorial" Type="Self.LoginKeyHistorial" Multiplicity="*" />
@@ -123,6 +238,114 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Matter_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Matter" Type="Self.Matter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Matter">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tag_Content">
+          <End Role="Content" Type="Self.Content" Multiplicity="1" />
+          <End Role="Tag" Type="Self.Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Content">
+              <PropertyRef Name="ContentId" />
+            </Principal>
+            <Dependent Role="Tag">
+              <PropertyRef Name="ContentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tag_Matter">
+          <End Role="Matter" Type="Self.Matter" Multiplicity="1" />
+          <End Role="Tag" Type="Self.Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Matter">
+              <PropertyRef Name="MatterId" />
+            </Principal>
+            <Dependent Role="Tag">
+              <PropertyRef Name="MatterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tag_TagType">
+          <End Role="TagType" Type="Self.TagType" Multiplicity="1" />
+          <End Role="Tag" Type="Self.Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TagType">
+              <PropertyRef Name="TagTypeId" />
+            </Principal>
+            <Dependent Role="Tag">
+              <PropertyRef Name="TagType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tag_Topic">
+          <End Role="Topic" Type="Self.Topic" Multiplicity="1" />
+          <End Role="Tag" Type="Self.Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="TopicId" />
+            </Principal>
+            <Dependent Role="Tag">
+              <PropertyRef Name="TopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Topic_Matter">
+          <End Role="Matter" Type="Self.Matter" Multiplicity="0..1" />
+          <End Role="Topic" Type="Self.Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Matter">
+              <PropertyRef Name="MatterId" />
+            </Principal>
+            <Dependent Role="Topic">
+              <PropertyRef Name="MatterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Topic_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Topic" Type="Self.Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Topic">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Usurio_BTipoDocumento">
           <End Role="BDocumentType" Type="Self.BDocumentType" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -150,11 +373,28 @@
         <EntityContainer Name="StudenAppHelperDB_devModelStoreContainer">
           <EntitySet Name="BDocumentType" EntityType="Self.BDocumentType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BLoginType" EntityType="Self.BLoginType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Content" EntityType="Self.Content" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContentType" EntityType="Self.ContentType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoginKey" EntityType="Self.LoginKey" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoginKeyHistorial" EntityType="Self.LoginKeyHistorial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Matter" EntityType="Self.Matter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tag" EntityType="Self.Tag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TagType" EntityType="Self.TagType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Topic" EntityType="Self.Topic" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Content_ContentType" Association="Self.FK_Content_ContentType">
+            <End Role="ContentType" EntitySet="ContentType" />
+            <End Role="Content" EntitySet="Content" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Content_User" Association="Self.FK_Content_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Content" EntitySet="Content" />
+          </AssociationSet>
           <AssociationSet Name="FK_LoginKeyHistorial_LoginKey" Association="Self.FK_LoginKeyHistorial_LoginKey">
             <End Role="LoginKey" EntitySet="LoginKey" />
             <End Role="LoginKeyHistorial" EntitySet="LoginKeyHistorial" />
@@ -170,6 +410,42 @@
           <AssociationSet Name="FK_Logueo_Usurio" Association="Self.FK_Logueo_Usurio">
             <End Role="User" EntitySet="User" />
             <End Role="Login" EntitySet="Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Matter_User" Association="Self.FK_Matter_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Matter" EntitySet="Matter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tag_Content" Association="Self.FK_Tag_Content">
+            <End Role="Content" EntitySet="Content" />
+            <End Role="Tag" EntitySet="Tag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tag_Matter" Association="Self.FK_Tag_Matter">
+            <End Role="Matter" EntitySet="Matter" />
+            <End Role="Tag" EntitySet="Tag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tag_TagType" Association="Self.FK_Tag_TagType">
+            <End Role="TagType" EntitySet="TagType" />
+            <End Role="Tag" EntitySet="Tag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tag_Topic" Association="Self.FK_Tag_Topic">
+            <End Role="Topic" EntitySet="Topic" />
+            <End Role="Tag" EntitySet="Tag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Topic_Matter" Association="Self.FK_Topic_Matter">
+            <End Role="Matter" EntitySet="Matter" />
+            <End Role="Topic" EntitySet="Topic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Topic_User" Association="Self.FK_Topic_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Topic" EntitySet="Topic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_Role" Association="Self.FK_UserRole_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_User" Association="Self.FK_UserRole_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserRole" EntitySet="UserRole" />
           </AssociationSet>
           <AssociationSet Name="FK_Usurio_BTipoDocumento" Association="Self.FK_Usurio_BTipoDocumento">
             <End Role="BDocumentType" EntitySet="BDocumentType" />
@@ -215,6 +491,59 @@
           <AssociationSet Name="FK_Usurio_TipoUsuario" Association="StudenAppHelperDB_devModel.FK_Usurio_TipoUsuario">
             <End Role="UserType" EntitySet="UserType" />
             <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <EntitySet Name="Content" EntityType="StudenAppHelperDB_devModel.Content" />
+          <EntitySet Name="ContentType" EntityType="StudenAppHelperDB_devModel.ContentType" />
+          <EntitySet Name="Matter" EntityType="StudenAppHelperDB_devModel.Matter" />
+          <EntitySet Name="Role" EntityType="StudenAppHelperDB_devModel.Role" />
+          <EntitySet Name="sysdiagrams" EntityType="StudenAppHelperDB_devModel.sysdiagrams" />
+          <EntitySet Name="Tag" EntityType="StudenAppHelperDB_devModel.Tag" />
+          <EntitySet Name="TagType" EntityType="StudenAppHelperDB_devModel.TagType" />
+          <EntitySet Name="Topic" EntityType="StudenAppHelperDB_devModel.Topic" />
+          <EntitySet Name="UserRole" EntityType="StudenAppHelperDB_devModel.UserRole" />
+          <AssociationSet Name="FK_Content_ContentType" Association="StudenAppHelperDB_devModel.FK_Content_ContentType">
+            <End Role="ContentType" EntitySet="ContentType" />
+            <End Role="Content" EntitySet="Content" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Content_User" Association="StudenAppHelperDB_devModel.FK_Content_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Content" EntitySet="Content" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tag_Content" Association="StudenAppHelperDB_devModel.FK_Tag_Content">
+            <End Role="Content" EntitySet="Content" />
+            <End Role="Tag" EntitySet="Tag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Matter_User" Association="StudenAppHelperDB_devModel.FK_Matter_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Matter" EntitySet="Matter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tag_Matter" Association="StudenAppHelperDB_devModel.FK_Tag_Matter">
+            <End Role="Matter" EntitySet="Matter" />
+            <End Role="Tag" EntitySet="Tag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Topic_Matter" Association="StudenAppHelperDB_devModel.FK_Topic_Matter">
+            <End Role="Matter" EntitySet="Matter" />
+            <End Role="Topic" EntitySet="Topic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_Role" Association="StudenAppHelperDB_devModel.FK_UserRole_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tag_TagType" Association="StudenAppHelperDB_devModel.FK_Tag_TagType">
+            <End Role="TagType" EntitySet="TagType" />
+            <End Role="Tag" EntitySet="Tag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tag_Topic" Association="StudenAppHelperDB_devModel.FK_Tag_Topic">
+            <End Role="Topic" EntitySet="Topic" />
+            <End Role="Tag" EntitySet="Tag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Topic_User" Association="StudenAppHelperDB_devModel.FK_Topic_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Topic" EntitySet="Topic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_User" Association="StudenAppHelperDB_devModel.FK_UserRole_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserRole" EntitySet="UserRole" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="BDocumentType">
@@ -288,6 +617,10 @@
           <NavigationProperty Name="BDocumentType" Relationship="StudenAppHelperDB_devModel.FK_Usurio_BTipoDocumento" FromRole="User" ToRole="BDocumentType" />
           <NavigationProperty Name="Login" Relationship="StudenAppHelperDB_devModel.FK_Logueo_Usurio" FromRole="User" ToRole="Login" />
           <NavigationProperty Name="UserType1" Relationship="StudenAppHelperDB_devModel.FK_Usurio_TipoUsuario" FromRole="User" ToRole="UserType" />
+          <NavigationProperty Name="Content" Relationship="StudenAppHelperDB_devModel.FK_Content_User" FromRole="User" ToRole="Content" />
+          <NavigationProperty Name="Matter" Relationship="StudenAppHelperDB_devModel.FK_Matter_User" FromRole="User" ToRole="Matter" />
+          <NavigationProperty Name="Topic" Relationship="StudenAppHelperDB_devModel.FK_Topic_User" FromRole="User" ToRole="Topic" />
+          <NavigationProperty Name="UserRole" Relationship="StudenAppHelperDB_devModel.FK_UserRole_User" FromRole="User" ToRole="UserRole" />
         </EntityType>
         <EntityType Name="UserType">
           <Key>
@@ -371,6 +704,247 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Content">
+          <Key>
+            <PropertyRef Name="ContentId" />
+          </Key>
+          <Property Name="ContentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContentTypeId" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ContentText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FileUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ContentUserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ContentType" Relationship="StudenAppHelperDB_devModel.FK_Content_ContentType" FromRole="Content" ToRole="ContentType" />
+          <NavigationProperty Name="User" Relationship="StudenAppHelperDB_devModel.FK_Content_User" FromRole="Content" ToRole="User" />
+          <NavigationProperty Name="Tag" Relationship="StudenAppHelperDB_devModel.FK_Tag_Content" FromRole="Content" ToRole="Tag" />
+        </EntityType>
+        <EntityType Name="ContentType">
+          <Key>
+            <PropertyRef Name="ContentTypeId" />
+          </Key>
+          <Property Name="ContentTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContentName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ContentExt" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="isMultimedia" Type="Boolean" Nullable="false" />
+          <Property Name="isText" Type="Boolean" Nullable="false" />
+          <Property Name="isLink" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Content" Relationship="StudenAppHelperDB_devModel.FK_Content_ContentType" FromRole="ContentType" ToRole="Content" />
+        </EntityType>
+        <EntityType Name="Matter">
+          <Key>
+            <PropertyRef Name="MatterId" />
+          </Key>
+          <Property Name="MatterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MatterName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MaterCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isEliminated" Type="Boolean" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="User" Relationship="StudenAppHelperDB_devModel.FK_Matter_User" FromRole="Matter" ToRole="User" />
+          <NavigationProperty Name="Tag" Relationship="StudenAppHelperDB_devModel.FK_Tag_Matter" FromRole="Matter" ToRole="Tag" />
+          <NavigationProperty Name="Topic" Relationship="StudenAppHelperDB_devModel.FK_Topic_Matter" FromRole="Matter" ToRole="Topic" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RoleCode" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="UserRole" Relationship="StudenAppHelperDB_devModel.FK_UserRole_Role" FromRole="Role" ToRole="UserRole" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="TagId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagType" Type="Int32" Nullable="false" />
+          <Property Name="TopicId" Type="Int32" Nullable="false" />
+          <Property Name="MatterId" Type="Int32" Nullable="false" />
+          <Property Name="ContentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Content" Relationship="StudenAppHelperDB_devModel.FK_Tag_Content" FromRole="Tag" ToRole="Content" />
+          <NavigationProperty Name="Matter" Relationship="StudenAppHelperDB_devModel.FK_Tag_Matter" FromRole="Tag" ToRole="Matter" />
+          <NavigationProperty Name="TagType1" Relationship="StudenAppHelperDB_devModel.FK_Tag_TagType" FromRole="Tag" ToRole="TagType" />
+          <NavigationProperty Name="Topic" Relationship="StudenAppHelperDB_devModel.FK_Tag_Topic" FromRole="Tag" ToRole="Topic" />
+        </EntityType>
+        <EntityType Name="TagType">
+          <Key>
+            <PropertyRef Name="TagTypeId" />
+          </Key>
+          <Property Name="TagTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagTypeName" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tag" Relationship="StudenAppHelperDB_devModel.FK_Tag_TagType" FromRole="TagType" ToRole="Tag" />
+        </EntityType>
+        <EntityType Name="Topic">
+          <Key>
+            <PropertyRef Name="TopicId" />
+          </Key>
+          <Property Name="TopicId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MatterId" Type="Int32" />
+          <Property Name="TopicName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TopicCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isEliminated" Type="Boolean" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Matter" Relationship="StudenAppHelperDB_devModel.FK_Topic_Matter" FromRole="Topic" ToRole="Matter" />
+          <NavigationProperty Name="Tag" Relationship="StudenAppHelperDB_devModel.FK_Tag_Topic" FromRole="Topic" ToRole="Tag" />
+          <NavigationProperty Name="User" Relationship="StudenAppHelperDB_devModel.FK_Topic_User" FromRole="Topic" ToRole="User" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="UserRoleId" />
+          </Key>
+          <Property Name="UserRoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="StudenAppHelperDB_devModel.FK_UserRole_Role" FromRole="UserRole" ToRole="Role" />
+          <NavigationProperty Name="User" Relationship="StudenAppHelperDB_devModel.FK_UserRole_User" FromRole="UserRole" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Content_ContentType">
+          <End Type="StudenAppHelperDB_devModel.ContentType" Role="ContentType" Multiplicity="1" />
+          <End Type="StudenAppHelperDB_devModel.Content" Role="Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContentType">
+              <PropertyRef Name="ContentTypeId" />
+            </Principal>
+            <Dependent Role="Content">
+              <PropertyRef Name="ContentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Content_User">
+          <End Type="StudenAppHelperDB_devModel.User" Role="User" Multiplicity="1" />
+          <End Type="StudenAppHelperDB_devModel.Content" Role="Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Content">
+              <PropertyRef Name="ContentUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tag_Content">
+          <End Type="StudenAppHelperDB_devModel.Content" Role="Content" Multiplicity="1" />
+          <End Type="StudenAppHelperDB_devModel.Tag" Role="Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Content">
+              <PropertyRef Name="ContentId" />
+            </Principal>
+            <Dependent Role="Tag">
+              <PropertyRef Name="ContentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Matter_User">
+          <End Type="StudenAppHelperDB_devModel.User" Role="User" Multiplicity="1" />
+          <End Type="StudenAppHelperDB_devModel.Matter" Role="Matter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Matter">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tag_Matter">
+          <End Type="StudenAppHelperDB_devModel.Matter" Role="Matter" Multiplicity="1" />
+          <End Type="StudenAppHelperDB_devModel.Tag" Role="Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Matter">
+              <PropertyRef Name="MatterId" />
+            </Principal>
+            <Dependent Role="Tag">
+              <PropertyRef Name="MatterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Topic_Matter">
+          <End Type="StudenAppHelperDB_devModel.Matter" Role="Matter" Multiplicity="0..1" />
+          <End Type="StudenAppHelperDB_devModel.Topic" Role="Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Matter">
+              <PropertyRef Name="MatterId" />
+            </Principal>
+            <Dependent Role="Topic">
+              <PropertyRef Name="MatterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_Role">
+          <End Type="StudenAppHelperDB_devModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="StudenAppHelperDB_devModel.UserRole" Role="UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tag_TagType">
+          <End Type="StudenAppHelperDB_devModel.TagType" Role="TagType" Multiplicity="1" />
+          <End Type="StudenAppHelperDB_devModel.Tag" Role="Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TagType">
+              <PropertyRef Name="TagTypeId" />
+            </Principal>
+            <Dependent Role="Tag">
+              <PropertyRef Name="TagType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tag_Topic">
+          <End Type="StudenAppHelperDB_devModel.Topic" Role="Topic" Multiplicity="1" />
+          <End Type="StudenAppHelperDB_devModel.Tag" Role="Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="TopicId" />
+            </Principal>
+            <Dependent Role="Tag">
+              <PropertyRef Name="TopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Topic_User">
+          <End Type="StudenAppHelperDB_devModel.User" Role="User" Multiplicity="1" />
+          <End Type="StudenAppHelperDB_devModel.Topic" Role="Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Topic">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_User">
+          <End Type="StudenAppHelperDB_devModel.User" Role="User" Multiplicity="1" />
+          <End Type="StudenAppHelperDB_devModel.UserRole" Role="UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -451,6 +1025,106 @@
                 <ScalarProperty Name="UserTypeCode" ColumnName="UserTypeCode" />
                 <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
                 <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Content">
+            <EntityTypeMapping TypeName="StudenAppHelperDB_devModel.Content">
+              <MappingFragment StoreEntitySet="Content">
+                <ScalarProperty Name="ContentUserId" ColumnName="ContentUserId" />
+                <ScalarProperty Name="FileUrl" ColumnName="FileUrl" />
+                <ScalarProperty Name="ContentText" ColumnName="ContentText" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ContentTypeId" ColumnName="ContentTypeId" />
+                <ScalarProperty Name="ContentId" ColumnName="ContentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContentType">
+            <EntityTypeMapping TypeName="StudenAppHelperDB_devModel.ContentType">
+              <MappingFragment StoreEntitySet="ContentType">
+                <ScalarProperty Name="isLink" ColumnName="isLink" />
+                <ScalarProperty Name="isText" ColumnName="isText" />
+                <ScalarProperty Name="isMultimedia" ColumnName="isMultimedia" />
+                <ScalarProperty Name="ContentExt" ColumnName="ContentExt" />
+                <ScalarProperty Name="ContentName" ColumnName="ContentName" />
+                <ScalarProperty Name="ContentTypeId" ColumnName="ContentTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Matter">
+            <EntityTypeMapping TypeName="StudenAppHelperDB_devModel.Matter">
+              <MappingFragment StoreEntitySet="Matter">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="isEliminated" ColumnName="isEliminated" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="MaterCode" ColumnName="MaterCode" />
+                <ScalarProperty Name="MatterName" ColumnName="MatterName" />
+                <ScalarProperty Name="MatterId" ColumnName="MatterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="StudenAppHelperDB_devModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="RoleCode" ColumnName="RoleCode" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="StudenAppHelperDB_devModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tag">
+            <EntityTypeMapping TypeName="StudenAppHelperDB_devModel.Tag">
+              <MappingFragment StoreEntitySet="Tag">
+                <ScalarProperty Name="ContentId" ColumnName="ContentId" />
+                <ScalarProperty Name="MatterId" ColumnName="MatterId" />
+                <ScalarProperty Name="TopicId" ColumnName="TopicId" />
+                <ScalarProperty Name="TagType" ColumnName="TagType" />
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TagType">
+            <EntityTypeMapping TypeName="StudenAppHelperDB_devModel.TagType">
+              <MappingFragment StoreEntitySet="TagType">
+                <ScalarProperty Name="TagTypeName" ColumnName="TagTypeName" />
+                <ScalarProperty Name="TagTypeId" ColumnName="TagTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Topic">
+            <EntityTypeMapping TypeName="StudenAppHelperDB_devModel.Topic">
+              <MappingFragment StoreEntitySet="Topic">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="isEliminated" ColumnName="isEliminated" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="TopicCode" ColumnName="TopicCode" />
+                <ScalarProperty Name="TopicName" ColumnName="TopicName" />
+                <ScalarProperty Name="MatterId" ColumnName="MatterId" />
+                <ScalarProperty Name="TopicId" ColumnName="TopicId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRole">
+            <EntityTypeMapping TypeName="StudenAppHelperDB_devModel.UserRole">
+              <MappingFragment StoreEntitySet="UserRole">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
