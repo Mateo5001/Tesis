@@ -41,7 +41,7 @@ namespace StudentsApp.API.Controllers
       QueryLogic materia = new QueryLogic();
 
       Lmaterias = materia.Consultar_Materia(UserApp.IdUser);
-
+       
       return Lmaterias;
     }
 
