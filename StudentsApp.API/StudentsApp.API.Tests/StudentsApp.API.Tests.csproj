@@ -139,6 +139,10 @@
       <Project>{EEA9D84C-2B14-47AE-88A4-4296DD838BC3}</Project>
       <Name>StudentAppHelper.Library</Name>
     </ProjectReference>
+    <ProjectReference Include="..\StudentAppHelper.ModelBindings\StudentAppHelper.ModelBindings.csproj">
+      <Project>{D4F65F95-CD2C-4F76-9CAB-2A071475D847}</Project>
+      <Name>StudentAppHelper.ModelBindings</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StudentsApp.API\StudentsApp.API.csproj">
       <Project>{586C2A2B-8B4D-43B8-9DC1-238283B56BBC}</Project>
       <Name>StudentsApp.API</Name>

@@ -3,8 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StudentsApp.API.Controllers;
-using StudentAppHelper.Library.Util;
-using StudentAppHelper.Library.Models;
+using StudentAppHelper.ModelBindings.Models;
 
 namespace StudentsApp.API.Tests.Account
 {
@@ -65,20 +64,26 @@ namespace StudentsApp.API.Tests.Account
     public void TestRegistroAdmin()
     {
       AccountController account = new AccountController();
-      UserRegistrationModel model = new UserRegistrationModel()
-      {
-        NombreP = "Daniel",
-        NombreS = "Pruebas",
-        ApellidoP = "Miranda",
-        ApellidoS = "Vasquez",
-        TipoDocumento = TipoDocumento.Cedula,
-        Identificacion = "1032",
-        UserName = "BobPatiño5001",
-        Password = "123",
-        ConfirmPassword = "123"
-      };
-      account.RegisterAdmin(model);
+      //UserRegistrationModel model = new UserRegistrationModel()
+      //{
+      //  FirstName = "Daniel",
+      //  NombreS = "Pruebas",
+      //  ApellidoP = "Miranda",
+      //  ApellidoS = "Vasquez",
+      //  TipoDocumento = TipoDocumento.Cedula,
+      //  Identificacion = "1032",
+      //  UserName = "BobPatiño5001",
+      //  Password = "123",
+      //  ConfirmPassword = "123"
+      //};
+      //account.RegisterAdmin(model);
     }
-    
+
+    [TestMethod]
+    public void TestmetodoTopicList()
+    {
+      AccountController account = new AccountController();
+     // account.topicList();
+    }
   }
 }

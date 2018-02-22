@@ -117,6 +117,8 @@ namespace StudentApp.Movile.ViewModel
           _CookieService.AddCookie("loginKey", loginKey);
           var storedcookie = _CookieService.GetCookieValue("loginKey");
           Lk = loginKey;
+
+          _client.IsAuthenticated = true;
           //Application.Current.MainPage = new Master();
           _navigate.NavigateTo("Main");
         });

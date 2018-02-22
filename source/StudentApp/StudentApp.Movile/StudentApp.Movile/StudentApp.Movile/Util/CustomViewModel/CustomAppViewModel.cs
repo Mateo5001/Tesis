@@ -19,6 +19,8 @@ namespace StudentApp.Movile.Util.CustomViewModel
 
     protected IHttpClientService _client;
     protected INavigationService _navigate;
+    private bool _recargar = false;
+
     public CustomAppViewModel()
     {
       _client = GetInstance<IHttpClientService>();
@@ -43,6 +45,15 @@ namespace StudentApp.Movile.Util.CustomViewModel
           await goBackMain();
         });
       }
+    }
+
+    public bool Recargar { get => _recargar; set {
+        recargarActions();
+        _recargar = value; } }
+    
+    public virtual void recargarActions()
+    {
+
     }
 
     private async Task goBackMain()
