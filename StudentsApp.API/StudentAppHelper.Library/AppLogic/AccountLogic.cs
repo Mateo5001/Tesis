@@ -126,7 +126,7 @@ namespace StudentAppHelper.Library.AppLogic
     {
       using (StudenAppHelperDBEntities conect = new StudenAppHelperDBEntities())
       {
-        var login = (from Keys in conect.LoginKey
+        var login = (from Keys in conect.LoginKey    
                      join KeyUsers in conect.Login on Keys.LoginKeyId equals KeyUsers.LoginKeyId
                      join users in conect.User on KeyUsers.UserId equals users.UserId
                      where Keys.LoginNick == userName
