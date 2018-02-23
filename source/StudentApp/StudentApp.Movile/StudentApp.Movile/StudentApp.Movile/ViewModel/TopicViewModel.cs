@@ -1,4 +1,5 @@
 ﻿using StudentApp.Movile.Util.CustomViewModel;
+using StudentAppHelper.ModelBindings.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,25 @@ namespace StudentApp.Movile.ViewModel
     private List<string> _matterList;
     public TopicViewModel() : base()
     {
-      List<string> listaMat = new List<string>();
-      listaMat.Add("Matematicas");
-      MatterList = listaMat;
+      //List<string> listaMat = new List<string>();
+      //listaMat.Add("Matematicas");
+      //MatterList = listaMat;
       cmdCrearTopic = CmdCrearTopic;
+    }
+
+    public override void recargarActions()
+    {
+      base.recargarActions();
+      limpiarDatos();
+    }
+
+    private void limpiarDatos()
+    {
+      MatterList = new List<string>();
+      IndexEstado = 1;
+      IndexMatter = 0;
+      CodTopic = string.Empty;
+      NomTopic = string.Empty;
     }
 
     public List<string> MatterList { get { return _matterList; } set { _matterList = value; OnPropertyChanged(); } }
@@ -46,8 +62,17 @@ namespace StudentApp.Movile.ViewModel
 
     private async Task CrearTopic()
     {
-      //servicio para crear Temas
-      _navigate.NavigateTo("Main");
+      TopicModel top = new TopicModel();
+      top.MatterIndex = IndexMatter;
+      top.TopicCode = CodTopic;
+      top.TopicName = NomTopic;
+      top.isActive = IndexEstado == 1;
+      _client.IsAuthenticated = true;
+      var topicCreate = await _client.CallAsync<TopicModel, bool >("api/Topic/createTopic", top );
+      if(topicCreate)
+      {
+        _navigate.NavigateTo("Main");
+      }
     }
   }
 }

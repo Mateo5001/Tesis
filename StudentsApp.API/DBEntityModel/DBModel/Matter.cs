@@ -18,7 +18,6 @@ namespace DBEntityModel.DBModel
         public Matter()
         {
             this.Tag = new HashSet<Tag>();
-            this.Topic = new HashSet<Topic>();
         }
     
         public int MatterId { get; set; }
@@ -32,7 +31,5 @@ namespace DBEntityModel.DBModel
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tag> Tag { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Topic> Topic { get; set; }
     }
 }

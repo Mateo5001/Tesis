@@ -10,13 +10,14 @@
   </ContentPage.ToolbarItems>
   <ContentPage.Content>
     <StackLayout>
-      <Picker Title="materia" SelectedIndex="{Binding IndexMatter}"  ItemsSource="{Binding MatterList}">
+      <Label Text="Seleccionar Materia" VerticalOptions="Center" TextColor="Black" ></Label>
+      <Picker Title="--Seleccione" TextColor="Black" SelectedIndex="{Binding IndexMatter}"  ItemsSource="{Binding MatterList}">
       </Picker>
-      <Label Text="Nombre Tema" VerticalOptions="Center" TextColor="Blue" FontSize="25"></Label>
+      <Label Text="Nombre Tema" VerticalOptions="Center" TextColor="Black" ></Label>
       <Entry Text="{Binding NomTopic}"></Entry>
-      <Label Text="Codigo tema" VerticalOptions="Center" TextColor="Blue" FontSize="25"></Label>
+      <Label Text="Codigo tema" VerticalOptions="Center" TextColor="Black" ></Label>
       <Entry Text="{Binding CodTopic}"></Entry>
-      <Label Text="Estado" VerticalOptions="Center" TextColor="Blue" FontSize="25"></Label>
+      <Label Text="Estado" VerticalOptions="Center" TextColor="Black" FontSize="25"></Label>
       <Picker SelectedIndex="{Binding IndexEstado}">
         <Picker.Items>
           <x:String>Activo</x:String>

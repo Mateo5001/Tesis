@@ -125,16 +125,22 @@ namespace StudentsApp.API.Controllers
       return listTopic;
     }
 
+    [AllowAnonymous]
     [HttpPost]
     [Route("createTopic")]
     public bool createTopic(TopicModel topic)
     {
       List<string> listMater = new List<string>();
-      string matterName = listMater[topic.MatterIndex];
+      string matterName = string.Empty;
+      if (topic.MatterIndex != 0)
+      {
+        matterName = listMater[topic.MatterIndex];
+      }
       int userId = UserApp.IdUser;
       bool createTopic = logic.createTopic(matterName, userId, topic);
       return createTopic;
     }
+
 
 
     [HttpPost]

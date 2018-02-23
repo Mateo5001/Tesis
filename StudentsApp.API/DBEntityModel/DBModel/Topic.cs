@@ -28,7 +28,6 @@ namespace DBEntityModel.DBModel
         public bool isEliminated { get; set; }
         public int UserId { get; set; }
     
-        public virtual Matter Matter { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tag> Tag { get; set; }
         public virtual User User { get; set; }

@@ -48,6 +48,10 @@ namespace StudentAppHelper.Library.AppLogic
 
     private int? getMaterIDbyName(string matterName, int userId)
     {
+      if(string.IsNullOrEmpty( matterName))
+      {
+        return 0;
+      }
       int matterId = 0;
       using (StudenAppHelperDBEntities conect = new StudenAppHelperDBEntities())
       {
