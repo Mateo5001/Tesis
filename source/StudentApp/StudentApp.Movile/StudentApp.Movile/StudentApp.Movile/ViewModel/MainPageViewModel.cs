@@ -62,12 +62,17 @@ namespace StudentApp.Movile.ViewModel
     private async void llenarTemas()
     {
       _client.IsAuthenticated = true;
-      intBinding indexMatter = new intBinding() { entero = 2   };
+      intBinding indexMatter = new intBinding() { entero = IndexMatter   };
       var listatopic = await _client.CallAsync<intBinding, List<string>>("api/Account/topiList", indexMatter);
       TopicList = listatopic;
     }
 
-    public int IndexMatter { get => _IndexMatter; set { _IndexMatter = value; llenarTemas(); OnPropertyChanged(); } }
+    public int IndexMatter { get => _IndexMatter;
+      set {
+        _IndexMatter = value;
+        llenarTemas();
+        OnPropertyChanged();
+      } }
     public int IndexTopic { get => _IndexTopic; set { _IndexTopic = value; OnPropertyChanged(); } }
     public List<string> MatterList { get => _MatterList; set { _MatterList = value; OnPropertyChanged(); } }
     public List<string> TopicList { get => _TopicList; set { _TopicList = value; OnPropertyChanged(); } }

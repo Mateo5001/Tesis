@@ -62,7 +62,7 @@ namespace StudentApp.Movile.ViewModel
 
       _client.IsAuthenticated = true;
        await _client.CallAsync<MatterModel, List<string>>("api/Matter/crearMateria", matter);
-      
+      _navigate.NavigateTo("Main");
     }
   }
 }

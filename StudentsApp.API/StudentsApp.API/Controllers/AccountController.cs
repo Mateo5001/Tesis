@@ -112,15 +112,15 @@ namespace StudentsApp.API.Controllers
     }
 
     TopicLogic logic = new TopicLogic();
-
+    QueryLogic materia = new QueryLogic();
     [AllowAnonymous]
     [HttpPost]
     [Route("topiList")]
     public List<string> topicList(intBinding indexMatter)
     {
-      List<string> listMater = new List<string>();
-      string matterName = "Matematicas";//listMater[indexMatter];
       int userId = UserApp.IdUser;
+      List<string> listMater = materia.Consultar_Materia(userId);
+      string matterName = listMater[indexMatter.entero];
       List<string> listTopic = logic.lisTopic(matterName, userId);
       return listTopic;
     }
