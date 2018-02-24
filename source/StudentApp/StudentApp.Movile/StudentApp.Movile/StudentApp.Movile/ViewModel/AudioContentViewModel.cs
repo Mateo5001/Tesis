@@ -51,7 +51,7 @@ namespace StudentApp.Movile.ViewModel
         TotalAudioTimeout = TimeSpan.FromHours(1),
         AudioSilenceTimeout = TimeSpan.FromSeconds(2)
       };
-      TextButtonAudio = "Gravar";
+      TextButtonAudio = "Grabar";
       AnotationText = Stopwatch.Elapsed.Seconds.ToString();
     }
 
@@ -74,13 +74,13 @@ namespace StudentApp.Movile.ViewModel
             {
               RecorderService.GetAudioFileStream().CopyTo(st);
               _files.guardar("wave.wav", st.ToArray());
-              TextButtonAudio = "Gravar";
+              TextButtonAudio = "Grabar";
             }
           }
         }
         else 
         {
-          TextButtonAudio = "Gravar";
+          TextButtonAudio = "Grabar";
           await RecorderService.StopRecording();
         }
       }
