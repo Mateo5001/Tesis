@@ -52,6 +52,8 @@ namespace StudentApp.Movile.ViewModel
 
       var oauth = DependencyService.Get<IStorageCookiesService>();
       builder.RegisterInstance(oauth).As<IStorageCookiesService>();
+      var stor = DependencyService.Get<IStorageFilesService>();
+      builder.RegisterInstance(stor).As<IStorageFilesService>();
 
       builder.RegisterType<NavigationService>().As<INavigationService>();
       builder.RegisterType<HttpClientService>().As<IHttpClientService>();

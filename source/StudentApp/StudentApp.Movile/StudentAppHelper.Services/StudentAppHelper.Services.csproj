@@ -39,6 +39,7 @@
     <Compile Include="Contract\IHttpClientService.cs" />
     <Compile Include="Contract\IOAuthService.cs" />
     <Compile Include="Contract\IStorageCookiesService.cs" />
+    <Compile Include="Contract\IStorageFilesService.cs" />
     <Compile Include="Extenicions\Extencions.cs" />
     <Compile Include="HTTP\HttpClientService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -14,6 +14,7 @@ using Android.Gms.Auth.Api;
 using static Android.Gms.Common.Apis.GoogleApiClient;
 using Android.Content;
 using StudentApp.Movile.Droid.Activity;
+using Plugin.AudioRecorder;
 
 namespace StudentApp.Movile.Droid
 {

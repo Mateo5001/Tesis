@@ -1,4 +1,5 @@
-﻿using StudentApp.Movile.Util.CustomViewModel;
+﻿using Plugin.AudioRecorder;
+using StudentApp.Movile.Util.CustomViewModel;
 using StudentAppHelper.ModelBindings.Models;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace StudentApp.Movile.ViewModel
 {
   public class AudioContentViewModel : CustomAppViewModel
   {
-
+    private AudioRecorderService recorderService ;
     private string _anotationText;
     private int _IndexMatter;
     private int _IndexTopic;
@@ -31,7 +32,68 @@ namespace StudentApp.Movile.ViewModel
       srcCMD = cmdSearch;
       cAbout = About;
       WriteCMD = cmdWrite;
+      btnGuardar = btnGdef;
     }
+
+    public override void recargarActions()
+    {
+      base.recargarActions();
+      recorderService = new AudioRecorderService
+      {
+        StopRecordingAfterTimeout = true,
+        TotalAudioTimeout = TimeSpan.FromSeconds(15),
+        AudioSilenceTimeout = TimeSpan.FromSeconds(2)
+        
+      };
+
+      //player = new AudioPlayer();
+      //player.FinishedPlaying += Player_FinishedPlaying;
+    }
+
+    async Task RecordAudio()
+    {
+      try
+      {
+        if (!recorderService.IsRecording) //Record button clicked
+        {
+          recorderService.StopRecordingOnSilence = false;//TimeoutSwitch.IsToggled;
+          AnotationText= recorderService.GetAudioFilePath();
+          //RecordButton.IsEnabled = false;
+          //PlayButton.IsEnabled = false;
+
+          //start recording audio
+          var audioRecordTask = await recorderService.StartRecording();
+
+          //RecordButton.Text = "Stop Recording";
+          //RecordButton.IsEnabled = true;
+
+          var audio = await audioRecordTask;
+          if(audio != null)
+          {
+            string s = recorderService.GetAudioFileStream().ToString();
+            _files.guardar("wave.wav", s);
+          }
+
+          //RecordButton.Text = "Record";
+          //PlayButton.IsEnabled = true;
+        }
+        else //Stop button clicked
+        {
+          //RecordButton.IsEnabled = false;
+
+          //stop the recording...
+          await recorderService.StopRecording();
+
+          //RecordButton.IsEnabled = true;
+        }
+      }
+      catch (Exception ex)
+      {
+        //blow up the app!
+        throw ex;
+      }
+    }
+
 
     private async void llenarTemas()
     {
@@ -104,14 +166,11 @@ namespace StudentApp.Movile.ViewModel
       {
         return new Command(async () =>
         {
-          await guardar();
+          await RecordAudio();
         });
       }
     }
-    private async Task guardar()
-    {
-
-    }
+    
 
   }
 }

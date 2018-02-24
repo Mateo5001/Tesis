@@ -19,12 +19,14 @@ namespace StudentApp.Movile.Util.CustomViewModel
 
     protected IHttpClientService _client;
     protected INavigationService _navigate;
+    protected IStorageFilesService _files;
     private bool _recargar = false;
 
     public CustomAppViewModel()
     {
       _client = GetInstance<IHttpClientService>();
       _navigate = GetInstance<INavigationService>();
+      _files = GetInstance<IStorageFilesService>();
       goMain = cmdback;
     }
 

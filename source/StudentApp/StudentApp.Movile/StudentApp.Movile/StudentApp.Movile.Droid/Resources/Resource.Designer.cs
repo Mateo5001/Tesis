@@ -26,6 +26,8 @@ namespace StudentApp.Movile.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Plugin.AudioRecorder.Resource.String.ApplicationName = global::StudentApp.Movile.Droid.Resource.String.ApplicationName;
+			global::Plugin.AudioRecorder.Resource.String.Hello = global::StudentApp.Movile.Droid.Resource.String.Hello;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::StudentApp.Movile.Droid.Resource.Attribute.actionBarSize;
 		}
 		
@@ -3209,6 +3211,12 @@ namespace StudentApp.Movile.Droid
 		
 		public partial class String
 		{
+			
+			// aapt resource value: 0x7f060046
+			public const int ApplicationName = 2131099718;
+			
+			// aapt resource value: 0x7f060045
+			public const int Hello = 2131099717;
 			
 			// aapt resource value: 0x7f06002e
 			public const int abc_action_bar_home_description = 2131099694;
