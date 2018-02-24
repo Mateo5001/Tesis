@@ -1,4 +1,5 @@
 ﻿using StudentApp.Movile.Util.CustomViewModel;
+using StudentAppHelper.ModelBindings.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,19 @@ namespace StudentApp.Movile.ViewModel
       cmdCrearMat = cmdCrearMateria;
     }
 
+    public override void recargarActions()
+    {
+      base.recargarActions();
+      limpiarViewModel();
+    }
+
+    public void limpiarViewModel()
+    {
+      NomMateria = string.Empty;
+      CodMateria = string.Empty;
+      IndexEstado = 0;
+    }
+
     public ICommand cmdCrearMat { get; protected set; }
 
     public Command cmdCrearMateria
@@ -41,9 +55,14 @@ namespace StudentApp.Movile.ViewModel
 
     private async Task crearMateria()
     {
-      //llamado al servicio que guarda
-      _navigate.NavigateTo("Main");
+      MatterModel matter = new MatterModel();
+      matter.IsActive = IndexEstado == 0;
+      matter.MaterCode = CodMateria;
+      matter.MatterName = NomMateria;
 
+      _client.IsAuthenticated = true;
+       await _client.CallAsync<MatterModel, List<string>>("api/Matter/crearMateria", matter);
+      
     }
   }
 }

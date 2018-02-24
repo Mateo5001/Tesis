@@ -34,7 +34,7 @@ namespace StudentApp.Movile.ViewModel
     private void limpiarDatos()
     {
       llenarMaterias();
-      IndexEstado = 1;
+      IndexEstado = 0;
       IndexMatter = 0;
       CodTopic = string.Empty;
       NomTopic = string.Empty;
@@ -72,7 +72,7 @@ namespace StudentApp.Movile.ViewModel
       top.MatterIndex = IndexMatter;
       top.TopicCode = CodTopic;
       top.TopicName = NomTopic;
-      top.isActive = IndexEstado == 1;
+      top.isActive = IndexEstado == 0;
       _client.IsAuthenticated = true;
       var topicCreate = await _client.CallAsync<TopicModel, bool >("api/Topic/createTopic", top );
       if(topicCreate)
