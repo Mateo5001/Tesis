@@ -25,7 +25,8 @@ namespace StudentApp.Movile.ViewModel
     private List<string> _MatterList;
     private List<string> _TopicList;
     private string _TextButtonAudio;
-    
+    private bool _playerVisible;
+
     public string AnotationText { get => _anotationText; set { _anotationText = value; OnPropertyChanged(); } }
     public int IndexMatter { get => _IndexMatter; set { _IndexMatter = value; OnPropertyChanged(); } }
     public int IndexTopic { get => _IndexTopic; set { _IndexTopic = value; OnPropertyChanged(); } }
@@ -39,12 +40,15 @@ namespace StudentApp.Movile.ViewModel
       cAbout = About;
       WriteCMD = cmdWrite;
       btnGuardar = btnGdef;
+      btnPause = cmdPause;
+      btnStop = cmdStop;
       _audioPlayer = GetInstance<IAudioPlayer>();
     }
 
     public override void recargarActions()
     {
       base.recargarActions();
+      PlayerVisible = false;
       RecorderService = new AudioRecorderService
       {
         StopRecordingAfterTimeout = true,
@@ -75,6 +79,7 @@ namespace StudentApp.Movile.ViewModel
               RecorderService.GetAudioFileStream().CopyTo(st);
               _files.guardar("wave.wav", st.ToArray());
               TextButtonAudio = "Grabar";
+              PlayerVisible = true;
             }
           }
         }
@@ -184,10 +189,47 @@ namespace StudentApp.Movile.ViewModel
       _audioPlayer.Play("/sdcard/Music/wave.wav");
     }
 
+    public ICommand btnPause { get; protected set; }
+
+    public Command cmdPause
+    {
+      get
+      {
+        return new Command(async () =>
+        {
+          await Pause();
+        });
+      }
+    }
+
+    private async Task Pause()
+    {
+      _audioPlayer.Pause();
+    }
+
+    public ICommand btnStop { get; protected set; }
+
+    public Command cmdStop
+    {
+      get
+      {
+        return new Command(async () =>
+        {
+          await stop();
+        });
+      }
+    }
+
+    private async Task stop()
+    {
+      _audioPlayer.Stop();
+    }
+
 
     public string TextButtonAudio { get => _TextButtonAudio; set { _TextButtonAudio = value; OnPropertyChanged(); } }
 
     public AudioRecorderService RecorderService { get => recorderService; set => recorderService = value; }
     public Stopwatch Stopwatch { get => _stopwatch; set => _stopwatch = value; }
+    public bool PlayerVisible { get => _playerVisible; set { _playerVisible = value; OnPropertyChanged(); } }
   }
 }

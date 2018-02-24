@@ -64,12 +64,20 @@ namespace StudentApp.Movile.Droid.Services
 
     public void Pause()
     {
-      _mediaPlayer?.Pause();
+      if (_mediaPlayer.IsPlaying)
+        _mediaPlayer?.Pause();
+      else
+        _mediaPlayer?.Start();
     }
 
     public void Play()
     {
       _mediaPlayer?.Start();
+    }
+
+    public void Stop()
+    {
+      _mediaPlayer?.Stop();
     }
   }
 }

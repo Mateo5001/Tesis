@@ -15,5 +15,7 @@ namespace StudentAppHelper.Services.Contract
     void Pause();
 
     void Play();
+
+    void Stop();
   }
 }
