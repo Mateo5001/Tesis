@@ -42,6 +42,7 @@ namespace StudentApp.Movile.ViewModel
 
     private async void llenarMaterias()
     {
+      _client.IsAuthenticated = true;
       var listaMatter = await _client.CallAsync<ObjectNull, List<string>>("api/Matter/ListarMateria", new ObjectNull());
       MatterList = listaMatter;
     }

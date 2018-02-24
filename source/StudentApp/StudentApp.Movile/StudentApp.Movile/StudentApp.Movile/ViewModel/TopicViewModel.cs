@@ -33,11 +33,17 @@ namespace StudentApp.Movile.ViewModel
 
     private void limpiarDatos()
     {
-      MatterList = new List<string>();
+      llenarMaterias();
       IndexEstado = 1;
       IndexMatter = 0;
       CodTopic = string.Empty;
       NomTopic = string.Empty;
+    }
+    private async void llenarMaterias()
+    {
+      _client.IsAuthenticated = true;
+      var listaMatter = await _client.CallAsync<ObjectNull, List<string>>("api/Matter/ListarMateria", new ObjectNull());
+      MatterList = listaMatter;
     }
 
     public List<string> MatterList { get { return _matterList; } set { _matterList = value; OnPropertyChanged(); } }
