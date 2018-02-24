@@ -125,6 +125,7 @@
   <ItemGroup>
     <Compile Include="AppLogic\AccountLogic.cs" />
     <Compile Include="AppLogic\CustomGenericLogic\CustomLogic.cs" />
+    <Compile Include="AppLogic\QueryLogic.cs" />
     <Compile Include="AppLogic\TopicLogic.cs" />
     <Compile Include="Auth\AplicationAuthProvider.cs" />
     <Compile Include="Auth\AuthPrincipal.cs" />
