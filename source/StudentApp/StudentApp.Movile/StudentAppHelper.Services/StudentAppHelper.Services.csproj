@@ -36,6 +36,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Contract\IAudioPlayer.cs" />
     <Compile Include="Contract\IHttpClientService.cs" />
     <Compile Include="Contract\IOAuthService.cs" />
     <Compile Include="Contract\IStorageCookiesService.cs" />

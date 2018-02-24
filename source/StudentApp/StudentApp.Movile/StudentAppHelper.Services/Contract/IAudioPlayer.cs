@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 
 namespace StudentAppHelper.Services.Contract
 {
-  public interface IStorageFilesService
+  public interface IAudioPlayer
   {
-    void guardar(string filename, byte[] content);
+    void Play(string pathToAudioFile);
     
+    void MediaPlayer_Completion(object sender, EventArgs e);
+
+    void Pause();
+
+    void Play();
   }
 }

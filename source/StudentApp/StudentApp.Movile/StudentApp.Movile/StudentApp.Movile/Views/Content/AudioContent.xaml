@@ -18,8 +18,9 @@
       </Picker>
       <Picker Title="Tema" SelectedIndex="{Binding IndexTopic}"  ItemsSource="{Binding TopicList}">
       </Picker>
-      <Editor Text="{Binding AnotationText}" HeightRequest="300" ></Editor>
-      <Button Command="{Binding btnGuardar}" Text="Guardar Audio"  ></Button>
+      <Editor Text="{Binding Stopwatch.Elapsed.Seconds.ToString()}" HeightRequest="300" ></Editor>
+      <Button Command="{Binding btnGuardar}" Text="{Binding TextButtonAudio}"  ></Button>
+      <Button Command="{Binding btnPlay}" Text="Play"  ></Button>
     </StackLayout>
   </ContentPage.Content>
 </ContentPage>

@@ -3,24 +3,29 @@ using StudentApp.Movile.Util.CustomViewModel;
 using StudentAppHelper.ModelBindings.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using StudentAppHelper.Services.Contract;
 
 namespace StudentApp.Movile.ViewModel
 {
   public class AudioContentViewModel : CustomAppViewModel
   {
-    private AudioRecorderService recorderService ;
+    private IAudioPlayer _audioPlayer;
+    private Stopwatch _stopwatch = new Stopwatch();
+    private AudioRecorderService recorderService;
     private string _anotationText;
     private int _IndexMatter;
     private int _IndexTopic;
     private List<string> _MatterList;
     private List<string> _TopicList;
-
-
+    private string _TextButtonAudio;
+    
     public string AnotationText { get => _anotationText; set { _anotationText = value; OnPropertyChanged(); } }
     public int IndexMatter { get => _IndexMatter; set { _IndexMatter = value; OnPropertyChanged(); } }
     public int IndexTopic { get => _IndexTopic; set { _IndexTopic = value; OnPropertyChanged(); } }
@@ -30,66 +35,57 @@ namespace StudentApp.Movile.ViewModel
     public AudioContentViewModel() : base()
     {
       srcCMD = cmdSearch;
+      btnPlay = cmdplay;
       cAbout = About;
       WriteCMD = cmdWrite;
       btnGuardar = btnGdef;
+      _audioPlayer = GetInstance<IAudioPlayer>();
     }
 
     public override void recargarActions()
     {
       base.recargarActions();
-      recorderService = new AudioRecorderService
+      RecorderService = new AudioRecorderService
       {
         StopRecordingAfterTimeout = true,
-        TotalAudioTimeout = TimeSpan.FromSeconds(15),
+        TotalAudioTimeout = TimeSpan.FromHours(1),
         AudioSilenceTimeout = TimeSpan.FromSeconds(2)
-        
       };
-
-      //player = new AudioPlayer();
-      //player.FinishedPlaying += Player_FinishedPlaying;
+      TextButtonAudio = "Gravar";
+      AnotationText = Stopwatch.Elapsed.Seconds.ToString();
     }
 
     async Task RecordAudio()
     {
       try
       {
-        if (!recorderService.IsRecording) //Record button clicked
+        if (!RecorderService.IsRecording) 
         {
-          recorderService.StopRecordingOnSilence = false;//TimeoutSwitch.IsToggled;
-          AnotationText= recorderService.GetAudioFilePath();
-          //RecordButton.IsEnabled = false;
-          //PlayButton.IsEnabled = false;
-
-          //start recording audio
-          var audioRecordTask = await recorderService.StartRecording();
-
-          //RecordButton.Text = "Stop Recording";
-          //RecordButton.IsEnabled = true;
+          RecorderService.StopRecordingOnSilence = false;
+          TextButtonAudio = "Detener";
+          var audioRecordTask = await RecorderService.StartRecording();
+          Stopwatch.Start();
 
           var audio = await audioRecordTask;
-          if(audio != null)
+          if (audio != null)
           {
-            string s = recorderService.GetAudioFileStream().ToString();
-            _files.guardar("wave.wav", s);
+            Stopwatch.Stop();
+            using (MemoryStream st = new MemoryStream())
+            {
+              RecorderService.GetAudioFileStream().CopyTo(st);
+              _files.guardar("wave.wav", st.ToArray());
+              TextButtonAudio = "Gravar";
+            }
           }
-
-          //RecordButton.Text = "Record";
-          //PlayButton.IsEnabled = true;
         }
-        else //Stop button clicked
+        else 
         {
-          //RecordButton.IsEnabled = false;
-
-          //stop the recording...
-          await recorderService.StopRecording();
-
-          //RecordButton.IsEnabled = true;
+          TextButtonAudio = "Gravar";
+          await RecorderService.StopRecording();
         }
       }
       catch (Exception ex)
       {
-        //blow up the app!
         throw ex;
       }
     }
@@ -132,7 +128,6 @@ namespace StudentApp.Movile.ViewModel
     private async Task VAbout()
     {
       _navigate.NavigateTo("About");
-
     }
 
     private async Task goWrite()
@@ -170,7 +165,29 @@ namespace StudentApp.Movile.ViewModel
         });
       }
     }
-    
 
+    public ICommand btnPlay { get; protected set; }
+
+    public Command cmdplay
+    {
+      get
+      {
+        return new Command(async () =>
+        {
+          await play();
+        });
+      }
+    }
+
+    private async Task play()
+    {
+      _audioPlayer.Play("/sdcard/Music/wave.wav");
+    }
+
+
+    public string TextButtonAudio { get => _TextButtonAudio; set { _TextButtonAudio = value; OnPropertyChanged(); } }
+
+    public AudioRecorderService RecorderService { get => recorderService; set => recorderService = value; }
+    public Stopwatch Stopwatch { get => _stopwatch; set => _stopwatch = value; }
   }
 }

@@ -54,6 +54,8 @@ namespace StudentApp.Movile.ViewModel
       builder.RegisterInstance(oauth).As<IStorageCookiesService>();
       var stor = DependencyService.Get<IStorageFilesService>();
       builder.RegisterInstance(stor).As<IStorageFilesService>();
+      var audio = DependencyService.Get<IAudioPlayer>();
+      builder.RegisterInstance(audio).As<IAudioPlayer>();
 
       builder.RegisterType<NavigationService>().As<INavigationService>();
       builder.RegisterType<HttpClientService>().As<IHttpClientService>();

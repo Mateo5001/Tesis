@@ -18,11 +18,11 @@ namespace StudentApp.Movile.Droid.Services
 {
   public class StorageFilesService : IStorageFilesService
   {
-    public void guardar(string filename, string content)
+    public void guardar(string filename, byte[] content)
     {
-      var documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+      var documentsPath = "/sdcard/Music";
       var filePath = Path.Combine(documentsPath, filename);
-      System.IO.File.WriteAllText(filePath, content);
+      System.IO.File.WriteAllBytes(filePath, content);
     }
   }
 }
