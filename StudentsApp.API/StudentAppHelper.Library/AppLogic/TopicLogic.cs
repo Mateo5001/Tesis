@@ -24,12 +24,12 @@ namespace StudentAppHelper.Library.AppLogic
       return topicList;
     }
 
-    public bool createTopic(string matterName, int userId, TopicModel topic)
+    public bool createTopic(string matterName, int userId, TopicModel topic)   
     {
-      bool resp = false;
-      using (StudenAppHelperDBEntities conect = new StudenAppHelperDBEntities())
+      bool resp = false;      
+      using (StudenAppHelperDBEntities conect = new StudenAppHelperDBEntities())  
       {
-        var newTopic = new Topic();
+        var newTopic = new Topic();   
         newTopic.UserId = userId;
         newTopic.MatterId = getMaterIDbyName(matterName, userId);
         newTopic.TopicName = topic.TopicName;
