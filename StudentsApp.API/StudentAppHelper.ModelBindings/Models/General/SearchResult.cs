@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace StudentAppHelper.ModelBindings.Models.General
 {
-  enum TipoContenido
+  public enum TipoContenido
   {
     Texto=1,
     Dibujo=2,

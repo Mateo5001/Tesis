@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using StudentAppHelper.ModelBindings.Models.General;
 
 namespace StudentAppHelper.ModelBindings.Models
 {
    public class ContentModel
   {
-    public int ContentTypeId;
-    public DateTime CreateDate;
+    public TipoContenido ContentTypeId;
     public string ContentText;
     public string FileUrl;
-    public int ContentUserId;
+    public int MatterIndex;
+    public int TopicIndex;
   }
 }
