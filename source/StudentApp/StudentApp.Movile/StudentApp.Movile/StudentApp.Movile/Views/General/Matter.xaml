@@ -10,18 +10,18 @@
   </ContentPage.ToolbarItems>
   <ContentPage.Content>
     <StackLayout>
-      <Label Text="Nombre Materia" VerticalOptions="Center" TextColor="Black" FontSize="20" FontFamily="Comic Sans MS , verdana " FontAttributes="Italic"></Label>
+      <Label Text="Nombre Materia" VerticalOptions="Center" TextColor="Black" FontSize="15" FontFamily="Comic Sans MS , verdana " FontAttributes="Italic"></Label>
       <Entry Text="{Binding NomMateria}"></Entry>
-      <Label Text="Codigo Materia" VerticalOptions="Center" TextColor="Black" FontSize="20" FontFamily="Comic Sans MS" FontAttributes="Italic" ></Label>
+      <Label Text="Código Materia" VerticalOptions="Center" TextColor="Black" FontSize="15" FontFamily="Comic Sans MS" FontAttributes="Italic"  ></Label>
       <Entry Text="{Binding CodMateria}"></Entry>
-      <Label Text="Estado" VerticalOptions="Center" TextColor="Black" FontSize="18" FontFamily="Georgia" FontAttributes="Italic"> </Label>
-      <Picker SelectedIndex="{Binding IndexEstado}" TextColor="Blue" >
+      <Label Text="Estado" VerticalOptions="Center" TextColor="Black" FontSize="17" FontFamily="Comic Sans MS" FontAttributes="Italic" Scale="0.7"> </Label>
+      <Picker SelectedIndex="{Binding IndexEstado}" TextColor="Blue" AnchorX="0.5" Style="italic" Scale="0.7">
         <Picker.Items>
           <x:String>Activo</x:String>
           <x:String>Inactivo</x:String>
         </Picker.Items>
       </Picker>
-      <Button Text="Crear Materia" BorderColor="Red" BackgroundColor="Black" TextColor="White" Command="{Binding cmdCrearMat}"  />
+      <Button Text="Crear Materia" BorderColor="Red" TextColor="Black" FontAttributes="Italic" FontFamily="Comic Sans MS" Command="{Binding cmdCrearMat}"  />
     </StackLayout>
     </ContentPage.Content>
 </ContentPage>
