@@ -37,7 +37,13 @@ namespace StudentApp.Movile.ViewModel
     {
       base.recargarActions();
       limpiarDatos();
-      llenarTemas();
+      llenarMaterias();
+    }
+
+    private async void llenarMaterias()
+    {
+      var listaMatter = await _client.CallAsync<ObjectNull, List<string>>("api/Matter/ListarMateria", new ObjectNull());
+      MatterList = listaMatter;
     }
 
     private void limpiarDatos()
