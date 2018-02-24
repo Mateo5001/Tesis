@@ -32,7 +32,6 @@
         <AssociationConnector Association="StudenAppHelperDB_devModel.FK_Tag_Content" />
         <AssociationConnector Association="StudenAppHelperDB_devModel.FK_Matter_User" />
         <AssociationConnector Association="StudenAppHelperDB_devModel.FK_Tag_Matter" />
-        <AssociationConnector Association="StudenAppHelperDB_devModel.FK_Topic_Matter" />
         <AssociationConnector Association="StudenAppHelperDB_devModel.FK_UserRole_Role" />
         <AssociationConnector Association="StudenAppHelperDB_devModel.FK_Tag_TagType" />
         <AssociationConnector Association="StudenAppHelperDB_devModel.FK_Tag_Topic" />

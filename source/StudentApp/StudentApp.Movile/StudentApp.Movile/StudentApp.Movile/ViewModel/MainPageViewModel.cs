@@ -21,7 +21,6 @@ namespace StudentApp.Movile.ViewModel
     private int _IndexTopic;
     private List<string> _MatterList;
     private List<string> _TopicList;
-
     #endregion
 
     #region Consturctores
@@ -34,12 +33,34 @@ namespace StudentApp.Movile.ViewModel
       WriteCMD = cmdWrite;
     }
     #endregion
+    public override void recargarActions()
+    {
+      base.recargarActions();
+      limpiarDatos();
+      llenarTemas();
+    }
 
+    private void limpiarDatos()
+    {
+      IndexMatter = 0;
+      IndexTopic = 0;
+      AnotationText = string.Empty;
+    }
 
     #region Encapsulamiento de atributos
 
-    public string AnotationText { get => _anotationText; set { _anotationText = value; OnPropertyChanged(); } }
-    public int IndexMatter { get => _IndexMatter; set { _IndexMatter = value; OnPropertyChanged(); } }
+    public string AnotationText { get => _anotationText; set { _anotationText = value;
+        OnPropertyChanged(); } }
+    
+    private async void llenarTemas()
+    {
+      _client.IsAuthenticated = true;
+      intBinding indexMatter = new intBinding() { entero = 2   };
+      var listatopic = await _client.CallAsync<intBinding, List<string>>("api/Account/topiList", indexMatter);
+      TopicList = listatopic;
+    }
+
+    public int IndexMatter { get => _IndexMatter; set { _IndexMatter = value; llenarTemas(); OnPropertyChanged(); } }
     public int IndexTopic { get => _IndexTopic; set { _IndexTopic = value; OnPropertyChanged(); } }
     public List<string> MatterList { get => _MatterList; set { _MatterList = value; OnPropertyChanged(); } }
     public List<string> TopicList { get => _TopicList; set { _TopicList = value; OnPropertyChanged(); } }

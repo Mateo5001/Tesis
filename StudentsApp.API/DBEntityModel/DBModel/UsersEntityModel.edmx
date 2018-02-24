@@ -298,18 +298,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Topic_Matter">
-          <End Role="Matter" Type="Self.Matter" Multiplicity="0..1" />
-          <End Role="Topic" Type="Self.Topic" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Matter">
-              <PropertyRef Name="MatterId" />
-            </Principal>
-            <Dependent Role="Topic">
-              <PropertyRef Name="MatterId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Topic_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Topic" Type="Self.Topic" Multiplicity="*" />
@@ -431,10 +419,6 @@
             <End Role="Topic" EntitySet="Topic" />
             <End Role="Tag" EntitySet="Tag" />
           </AssociationSet>
-          <AssociationSet Name="FK_Topic_Matter" Association="Self.FK_Topic_Matter">
-            <End Role="Matter" EntitySet="Matter" />
-            <End Role="Topic" EntitySet="Topic" />
-          </AssociationSet>
           <AssociationSet Name="FK_Topic_User" Association="Self.FK_Topic_User">
             <End Role="User" EntitySet="User" />
             <End Role="Topic" EntitySet="Topic" />
@@ -520,10 +504,6 @@
           <AssociationSet Name="FK_Tag_Matter" Association="StudenAppHelperDB_devModel.FK_Tag_Matter">
             <End Role="Matter" EntitySet="Matter" />
             <End Role="Tag" EntitySet="Tag" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Topic_Matter" Association="StudenAppHelperDB_devModel.FK_Topic_Matter">
-            <End Role="Matter" EntitySet="Matter" />
-            <End Role="Topic" EntitySet="Topic" />
           </AssociationSet>
           <AssociationSet Name="FK_UserRole_Role" Association="StudenAppHelperDB_devModel.FK_UserRole_Role">
             <End Role="Role" EntitySet="Role" />
@@ -743,7 +723,6 @@
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="User" Relationship="StudenAppHelperDB_devModel.FK_Matter_User" FromRole="Matter" ToRole="User" />
           <NavigationProperty Name="Tag" Relationship="StudenAppHelperDB_devModel.FK_Tag_Matter" FromRole="Matter" ToRole="Tag" />
-          <NavigationProperty Name="Topic" Relationship="StudenAppHelperDB_devModel.FK_Topic_Matter" FromRole="Matter" ToRole="Topic" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -798,7 +777,6 @@
           <Property Name="isActive" Type="Boolean" Nullable="false" />
           <Property Name="isEliminated" Type="Boolean" Nullable="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Matter" Relationship="StudenAppHelperDB_devModel.FK_Topic_Matter" FromRole="Topic" ToRole="Matter" />
           <NavigationProperty Name="Tag" Relationship="StudenAppHelperDB_devModel.FK_Tag_Topic" FromRole="Topic" ToRole="Tag" />
           <NavigationProperty Name="User" Relationship="StudenAppHelperDB_devModel.FK_Topic_User" FromRole="Topic" ToRole="User" />
         </EntityType>
@@ -869,18 +847,6 @@
               <PropertyRef Name="MatterId" />
             </Principal>
             <Dependent Role="Tag">
-              <PropertyRef Name="MatterId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Topic_Matter">
-          <End Type="StudenAppHelperDB_devModel.Matter" Role="Matter" Multiplicity="0..1" />
-          <End Type="StudenAppHelperDB_devModel.Topic" Role="Topic" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Matter">
-              <PropertyRef Name="MatterId" />
-            </Principal>
-            <Dependent Role="Topic">
               <PropertyRef Name="MatterId" />
             </Dependent>
           </ReferentialConstraint>

@@ -1,4 +1,5 @@
 ﻿using StudentApp.Movile.Util.CustomViewModel;
+using StudentAppHelper.ModelBindings.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,14 @@ namespace StudentApp.Movile.ViewModel
     public int IndexTopic { get => _IndexTopic; set { _IndexTopic = value; OnPropertyChanged(); } }
     public List<string> MatterList { get => _MatterList; set { _MatterList = value; OnPropertyChanged(); } }
     public List<string> TopicList { get => _TopicList; set { _TopicList = value; OnPropertyChanged(); } }
+
+    private async void llenarTemas()
+    {
+      _client.IsAuthenticated = true;
+      intBinding indexMatter = new intBinding() { entero = 2 };
+      var listatopic = await _client.CallAsync<intBinding, List<string>>("api/Account/topiList", indexMatter);
+      TopicList = listatopic;
+    }
 
     public WriteContentViewModel() : base()
     {

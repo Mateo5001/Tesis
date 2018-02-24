@@ -1,4 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Views;
+using Microsoft.Practices.ServiceLocation;
+using StudentApp.Movile.Util.CustomViewModel;
+using StudentApp.Movile.ViewModel;
 using StudentApp.Movile.Views;
 using StudentApp.Movile.Views.About;
 using StudentApp.Movile.Views.Content;
@@ -18,6 +21,7 @@ namespace StudentApp.Movile.Services.Navigation
   public class NavigationService : INavigationService
   {
     Dictionary<string, Type> Pages { get; set; }
+    Dictionary<string, Type> viewModels { get; set; }
 
     string _currentPageKey;
 
@@ -40,6 +44,16 @@ namespace StudentApp.Movile.Services.Navigation
       Pages.Add("About", typeof(About));
       Pages.Add("Audio", typeof(AudioContent));
       Pages.Add("Write", typeof(WriteContent));
+
+      viewModels =new Dictionary<string, Type>();
+      viewModels.Add("Login", typeof(LoginViewModel));
+      viewModels.Add("Main", typeof(MainPageViewModel));
+      viewModels.Add("Matter", typeof(MatterViewModel));
+      viewModels.Add("Topic", typeof(TopicViewModel));
+      viewModels.Add("Search", typeof(SearchContentViewModel));
+      viewModels.Add("About", typeof(AboutViewModel));
+      viewModels.Add("Audio", typeof(AudioContentViewModel));
+      viewModels.Add("Write", typeof(WriteContentViewModel));
     } 
 
     #region INavigationService implementation
@@ -75,6 +89,9 @@ namespace StudentApp.Movile.Services.Navigation
         _currentPageKey = pageKey;
         //MainPage.Detail = displayPage; //Navigation.PushAsync(displayPage);
         //MainPage.Detail.Navigation.PushAsync(displayPage);
+        Type type = viewModels[pageKey];
+        CustomAppViewModel view = (CustomAppViewModel) ServiceLocator.Current.GetInstance(type);
+        view.Recargar = true;
         MainPage.Detail = new NavigationPage(displayPage)
         {
           BarBackgroundColor = Color.FromHex("#585858"),

@@ -111,6 +111,37 @@ namespace StudentsApp.API.Controllers
       throw new NotImplementedException();
     }
 
+    TopicLogic logic = new TopicLogic();
+
+    [AllowAnonymous]
+    [HttpPost]
+    [Route("topiList")]
+    public List<string> topicList(intBinding indexMatter)
+    {
+      List<string> listMater = new List<string>();
+      string matterName = "Matematicas";//listMater[indexMatter];
+      int userId = UserApp.IdUser;
+      List<string> listTopic = logic.lisTopic(matterName, userId);
+      return listTopic;
+    }
+
+    [AllowAnonymous]
+    [HttpPost]
+    [Route("createTopic")]
+    public bool createTopic(TopicModel topic)
+    {
+      List<string> listMater = new List<string>();
+      string matterName = string.Empty;
+      if (topic.MatterIndex != 0)
+      {
+        matterName = listMater[topic.MatterIndex];
+      }
+      int userId = UserApp.IdUser;
+      bool createTopic = logic.createTopic(matterName, userId, topic);
+      return createTopic;
+    }
+
+
 
     [HttpPost]
     [Route("holamundo")]

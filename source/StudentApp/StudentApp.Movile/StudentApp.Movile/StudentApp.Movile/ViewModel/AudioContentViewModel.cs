@@ -1,4 +1,5 @@
 ﻿using StudentApp.Movile.Util.CustomViewModel;
+using StudentAppHelper.ModelBindings.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,14 @@ namespace StudentApp.Movile.ViewModel
       srcCMD = cmdSearch;
       cAbout = About;
       WriteCMD = cmdWrite;
+    }
+
+    private async void llenarTemas()
+    {
+      _client.IsAuthenticated = true;
+      intBinding indexMatter = new intBinding() { entero = 2 };
+      var listatopic = await _client.CallAsync<intBinding, List<string>>("api/Account/topiList", indexMatter);
+      TopicList = listatopic;
     }
 
     public ICommand WriteCMD { get; protected set; }
