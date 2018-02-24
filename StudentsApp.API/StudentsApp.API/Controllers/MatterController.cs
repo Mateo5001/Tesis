@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using StudentAppHelper.Library.AppLogic;
 using StudentAppHelper.Library.Auth;
+using StudentAppHelper.ModelBindings.Models;
 using StudentsApp.API.Custom;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ using System.Web.Http;
 
 namespace StudentsApp.API.Controllers
 {
+  [LoginAuthorize]
+  [RoutePrefix("api/Matter")]
   public class MatterController : CustomAppAPI
   {
 
@@ -31,21 +34,23 @@ namespace StudentsApp.API.Controllers
     public SignInManager<LoginUser, string> _signInManager { get; private set; }
     public LoginUserManager UserManager { get; private set; }
     public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
+    QueryLogic materia = new QueryLogic();
 
-
+    [AllowAnonymous]
+    [Route("ListarMateria")]
     public List<string> ListarMateria()
     {
-
       List<String> Lmaterias = new List<String>();
-
-      QueryLogic materia = new QueryLogic();
-
       Lmaterias = materia.Consultar_Materia(UserApp.IdUser);
-            
       return Lmaterias;
     }
 
-
+    [AllowAnonymous]
+    [Route("crearMateria")]
+    public void crearMateria(MatterModel matter)
+    {
+      materia.Guardar_Materia(UserApp.IdUser, matter);
+    }
 
 
   }
