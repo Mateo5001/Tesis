@@ -19,7 +19,7 @@
         <Picker.Items>
           <x:String>Activo</x:String> 
           <x:String>Inactivo</x:String>
-        </Picker.Items>
+        </Picker.Items> 
       </Picker>
       <Button Text="Crear Materia" BorderWidth="200" BorderColor="Black" TextColor="Black" BackgroundColor="#909497" FontAttributes="Italic" FontFamily="Comic Sans MS" BorderRadius="300" Command="{Binding cmdCrearMat}"  />
     </StackLayout>
