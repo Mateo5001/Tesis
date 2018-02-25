@@ -1,4 +1,5 @@
 ﻿using StudentApp.Movile.Util.CustomViewModel;
+using StudentAppHelper.ModelBindings.Models;
 using StudentAppHelper.ModelBindings.Models.General;
 using System;
 using System.Collections.Generic;
@@ -17,38 +18,24 @@ namespace StudentApp.Movile.ViewModel
     public SearchContentViewModel() :base()
     {
       Filtro = string.Empty;
+    }
+
+    public override void recargarActions()
+    {
+      base.recargarActions();
+      Filtro = string.Empty;
       SearchListResult = new List<SearchResult>();
     }
 
     public string Filtro { get => _filtro; set { _filtro = value; Search(); ; OnPropertyChanged(); } }
 
-    private void Search()
+    private async void Search()
     {
-      if (!string.IsNullOrEmpty(Filtro))
+      if (!string.IsNullOrEmpty(Filtro) && Filtro.Length > 3)
       {
-        List<SearchResult> result = new List<SearchResult>();
-        result.Add(new SearchResult()
-        {
-          Icon = "Audio.png",
-          IdContent = "1",
-          SearchName = "registro 1",
-          NavegateCommand = cmdNavegateList
-        });
-        result.Add(new SearchResult()
-        {
-          Icon = "Imagen.png",
-          IdContent = "2",
-          SearchName = "registro 2",
-          NavegateCommand = cmdNavegateList
-        });
-        result.Add(new SearchResult()
-        {
-          Icon = "Texto.png",
-          IdContent = "3",
-          SearchName = "registro 3",
-          NavegateCommand = cmdNavegateList
-        });
-        SearchListResult = result;
+        _client.IsAuthenticated = true;
+        List<SearchResult> result = await _client.CallAsync<SearchTextModel, List<SearchResult>>("api/Content/busqueda", new SearchTextModel() { filtro = Filtro });
+         SearchListResult = result;
       }
     }
     
