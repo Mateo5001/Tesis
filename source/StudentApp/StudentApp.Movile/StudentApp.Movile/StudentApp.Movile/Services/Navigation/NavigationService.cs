@@ -94,8 +94,8 @@ namespace StudentApp.Movile.Services.Navigation
         view.Recargar = true;
         MainPage.Detail = new NavigationPage(displayPage)
         {
-          BarBackgroundColor = Color.FromHex("#585858"),
-          BarTextColor = Color.Black
+          BarBackgroundColor = Color.Black,
+          BarTextColor = Color.White
         };
       }
       catch (Exception ex)
