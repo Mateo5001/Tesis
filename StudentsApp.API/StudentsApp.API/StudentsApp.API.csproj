@@ -198,6 +198,7 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\MatterController.cs" />
     <Compile Include="Controllers\TopicController.cs" />
     <Compile Include="Custom\CustomAppAPI.cs" />

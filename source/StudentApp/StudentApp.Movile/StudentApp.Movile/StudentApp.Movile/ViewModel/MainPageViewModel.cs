@@ -37,7 +37,14 @@ namespace StudentApp.Movile.ViewModel
     {
       base.recargarActions();
       limpiarDatos();
-      llenarTemas();
+      llenarMaterias();
+    }
+
+    private async void llenarMaterias()
+    {
+      _client.IsAuthenticated = true;
+      var listaMatter = await _client.CallAsync<ObjectNull, List<string>>("api/Matter/ListarMateria", new ObjectNull());
+      MatterList = listaMatter;
     }
 
     private void limpiarDatos()
@@ -55,12 +62,17 @@ namespace StudentApp.Movile.ViewModel
     private async void llenarTemas()
     {
       _client.IsAuthenticated = true;
-      intBinding indexMatter = new intBinding() { entero = 2   };
+      intBinding indexMatter = new intBinding() { entero = IndexMatter   };
       var listatopic = await _client.CallAsync<intBinding, List<string>>("api/Account/topiList", indexMatter);
       TopicList = listatopic;
     }
 
-    public int IndexMatter { get => _IndexMatter; set { _IndexMatter = value; llenarTemas(); OnPropertyChanged(); } }
+    public int IndexMatter { get => _IndexMatter;
+      set {
+        _IndexMatter = value;
+        llenarTemas();
+        OnPropertyChanged();
+      } }
     public int IndexTopic { get => _IndexTopic; set { _IndexTopic = value; OnPropertyChanged(); } }
     public List<string> MatterList { get => _MatterList; set { _MatterList = value; OnPropertyChanged(); } }
     public List<string> TopicList { get => _TopicList; set { _TopicList = value; OnPropertyChanged(); } }
@@ -163,6 +175,17 @@ namespace StudentApp.Movile.ViewModel
     #region eventos
     private async Task guardar()
     {
+      ContentModel newContenido = new ContentModel();
+      newContenido.ContentText = AnotationText;
+      newContenido.ContentTypeId = StudentAppHelper.ModelBindings.Models.General.TipoContenido.Texto;
+      newContenido.FileUrl = string.Empty;
+      newContenido.MatterIndex = IndexMatter;
+      newContenido.TopicIndex = IndexTopic;
+      var creado = await _client.CallAsync<ContentModel, bool>("api/Content/crearContenido", newContenido);
+      if(creado)
+      {
+        recargarActions();
+      }
     }
     #endregion
   }

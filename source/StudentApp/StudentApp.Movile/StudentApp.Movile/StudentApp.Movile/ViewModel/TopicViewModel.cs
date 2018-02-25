@@ -33,11 +33,17 @@ namespace StudentApp.Movile.ViewModel
 
     private void limpiarDatos()
     {
-      MatterList = new List<string>();
-      IndexEstado = 1;
+      llenarMaterias();
+      IndexEstado = 0;
       IndexMatter = 0;
       CodTopic = string.Empty;
       NomTopic = string.Empty;
+    }
+    private async void llenarMaterias()
+    {
+      _client.IsAuthenticated = true;
+      var listaMatter = await _client.CallAsync<ObjectNull, List<string>>("api/Matter/ListarMateria", new ObjectNull());
+      MatterList = listaMatter;
     }
 
     public List<string> MatterList { get { return _matterList; } set { _matterList = value; OnPropertyChanged(); } }
@@ -66,7 +72,7 @@ namespace StudentApp.Movile.ViewModel
       top.MatterIndex = IndexMatter;
       top.TopicCode = CodTopic;
       top.TopicName = NomTopic;
-      top.isActive = IndexEstado == 1;
+      top.isActive = IndexEstado == 0;
       _client.IsAuthenticated = true;
       var topicCreate = await _client.CallAsync<TopicModel, bool >("api/Topic/createTopic", top );
       if(topicCreate)

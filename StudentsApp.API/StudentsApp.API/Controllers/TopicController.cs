@@ -34,24 +34,26 @@ namespace StudentsApp.API.Controllers
     public LoginUserManager UserManager { get; private set; }
     public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
     TopicLogic logic = new TopicLogic();
+    QueryLogic materia = new QueryLogic();
 
     [HttpPost]
     [Route("topiList")]
     public List<string> topicList(int indexMatter)
     {
-      List<string> listMater = new List<string>();
+      List<string> listMater = materia.Consultar_Materia(UserApp.IdUser); ;
       string matterName = "Matematicas";//listMater[indexMatter];
       int userId = UserApp.IdUser;
       List<string> listTopic = logic.lisTopic(matterName, userId);
       return listTopic;
     }
+
     [AllowAnonymous]
     [HttpPost]
     [Route("createTopic")]
     public bool createTopic(TopicModel topic)
     {
       //return false;
-      List<string> listMater = new List<string>();
+      List<string> listMater = materia.Consultar_Materia(UserApp.IdUser);
       string matterName = string.Empty;
       if (topic.MatterIndex !=0)
       {

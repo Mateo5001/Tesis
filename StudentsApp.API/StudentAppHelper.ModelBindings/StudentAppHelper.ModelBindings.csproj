@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Models\ContentModel.cs" />
     <Compile Include="Models\CustomUserModel\UserApp.cs" />
     <Compile Include="Models\CustomEx.cs" />
     <Compile Include="Models\General\SearchResult.cs" />
@@ -45,6 +46,7 @@
     <Compile Include="Models\MatterModel.cs" />
     <Compile Include="Models\Menu\MenuItem.cs" />
     <Compile Include="Models\ObjectNull.cs" />
+    <Compile Include="Models\TagModel.cs" />
     <Compile Include="Models\TopicModel.cs" />
     <Compile Include="Models\UserRegistrationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
