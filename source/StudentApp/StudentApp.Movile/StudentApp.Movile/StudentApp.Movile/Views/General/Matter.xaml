@@ -17,7 +17,7 @@
       <Label Text="Estado" VerticalOptions="Center"  TextColor="Black" FontSize="17" FontFamily="Comic Sans MS" FontAttributes="Italic" Scale="0.7"> </Label>
       <Picker SelectedIndex="{Binding IndexEstado}" TextColor="#A6ACAF" AnchorX="0.5" Style="italic" Scale="0.7">
         <Picker.Items>
-          <x:String>Activo</x:String>
+          <x:String>Activo</x:String> 
           <x:String>Inactivo</x:String>
         </Picker.Items>
       </Picker>
