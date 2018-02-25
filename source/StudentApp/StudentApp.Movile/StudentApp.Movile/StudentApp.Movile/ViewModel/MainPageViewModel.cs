@@ -175,6 +175,17 @@ namespace StudentApp.Movile.ViewModel
     #region eventos
     private async Task guardar()
     {
+      ContentModel newContenido = new ContentModel();
+      newContenido.ContentText = AnotationText;
+      newContenido.ContentTypeId = StudentAppHelper.ModelBindings.Models.General.TipoContenido.Texto;
+      newContenido.FileUrl = string.Empty;
+      newContenido.MatterIndex = IndexMatter;
+      newContenido.TopicIndex = IndexTopic;
+      var creado = await _client.CallAsync<ContentModel, bool>("api/Content/crearContenido", newContenido);
+      if(creado)
+      {
+        recargarActions();
+      }
     }
     #endregion
   }

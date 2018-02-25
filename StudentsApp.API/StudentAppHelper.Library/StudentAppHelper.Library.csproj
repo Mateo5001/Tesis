@@ -124,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppLogic\AccountLogic.cs" />
+    <Compile Include="AppLogic\ContentLogic.cs" />
     <Compile Include="AppLogic\CustomGenericLogic\CustomLogic.cs" />
     <Compile Include="AppLogic\QueryLogic.cs" />
     <Compile Include="AppLogic\TopicLogic.cs" />
