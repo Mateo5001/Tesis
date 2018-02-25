@@ -16,6 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using StudentAppHelper.ModelBindings.Models.General;
 
 namespace StudentsApp.API.Controllers
 {
@@ -44,6 +45,13 @@ namespace StudentsApp.API.Controllers
     public bool crearContenido(ContentModel content)
     {
       return contentlogic.crearContenido(content, UserApp.IdUser);
+    }
+
+    [HttpPost]
+    [Route("busqueda")]
+    public List<SearchResult> busqueda(SearchTextModel filtro)
+    {
+      return contentlogic.buscar(filtro.filtro);
     }
 
   }
