@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StudentApp.Movile.Views.General.Topic"
-             Title="Temas"
+             Title="Temas"  Style="Italic" Padding="10,10,10,10" 
               BindingContext="{Binding Topic, Source={StaticResource Locator}}">
 
   <ContentPage.ToolbarItems>
@@ -10,21 +10,21 @@
   </ContentPage.ToolbarItems>
   <ContentPage.Content>
     <StackLayout>
-      <Label Text="Seleccionar Materia" VerticalOptions="Center" TextColor="Black" ></Label>
-      <Picker Title="--Seleccione" TextColor="Black" SelectedIndex="{Binding IndexMatter}"  ItemsSource="{Binding MatterList}">
+      <Label Text= "Seleccionar Materia" VerticalOptions="Center" TextColor="Black" ></Label>
+      <Picker Title="--Seleccione Tema"  TextColor="Black" Scale="0.94" SelectedIndex="{Binding IndexMatter}" ItemsSource="{Binding MatterList}">
       </Picker>
-      <Label Text="Nombre Tema" VerticalOptions="Center" TextColor="Black" ></Label>
+      <Label Text="Nombre Tema" VerticalOptions="Center" TextColor="Black" FontSize="15" FontFamily="Comic Sans MS , Serifa" FontAttributes="Italic" ></Label>
       <Entry Text="{Binding NomTopic}"></Entry>
-      <Label Text="Codigo tema" VerticalOptions="Center" TextColor="Black" ></Label>
+      <Label Text="Codigo tema" VerticalOptions="Center" TextColor="Black" FontSize="15" FontFamily="Comic Sans MS , Serifa" FontAttributes="Italic" ></Label>
       <Entry Text="{Binding CodTopic}"></Entry>
-      <Label Text="Estado" VerticalOptions="Center" TextColor="Black" FontSize="25"></Label>
-      <Picker SelectedIndex="{Binding IndexEstado}">
+      <Label Text="Estado"  VerticalOptions="Center"  TextColor="Black" FontSize="17" FontFamily="Comic Sans MS" FontAttributes="Italic" Scale="0.7"></Label>
+      <Picker SelectedIndex="{Binding IndexEstado}" TextColor="#A6ACAF" AnchorX="0.5" Style="italic" Scale="0.7">
         <Picker.Items>
           <x:String>Activo</x:String>
           <x:String>Inactivo</x:String>
         </Picker.Items>
       </Picker>
-      <Button Text="Crear Tema" BorderColor="Red" Command="{Binding cmdCrearTopic}" />
+      <Button Text="Crear Tema"  BorderWidth="200" BorderColor="Black" TextColor="Black" BackgroundColor="#909497" FontAttributes="Italic" FontFamily="Comic Sans MS" BorderRadius="300" Command="{Binding cmdCrearTopic}" />
     </StackLayout>
   </ContentPage.Content>
 </ContentPage>

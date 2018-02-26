@@ -4,13 +4,13 @@
              x:Class="StudentApp.Movile.Views.About.About"
              Title="Contáctanos"
              BindingContext="{Binding About, Source={StaticResource Locator}}"
-             BackgroundColor="#585858">
+             BackgroundColor="White">
  
   <ContentPage.ToolbarItems>
     <ToolbarItem Text="Volver"  Command="{Binding goMain}"></ToolbarItem>
   </ContentPage.ToolbarItems>
   <ContentPage.Content>
-    <StackLayout AnchorX="200" AnchorY="200"  VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="#585858">
+    <StackLayout AnchorX="200" AnchorY="200"  VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="White">
       <Image Source="logo.png"  HorizontalOptions="Start" AnchorY="15" AnchorX="15" />
       <Label Text=  "SA Desarrollado por:  " TextColor="Black"   FontSize="Large"  HorizontalOptions="Center" FontAttributes="Italic" VerticalTextAlignment="Center"/>
       <Label Text=  "Daniel Mateo Miranda " TextColor="Black"   FontSize="18"  FontAttributes="Bold" HorizontalOptions="Center"/>
