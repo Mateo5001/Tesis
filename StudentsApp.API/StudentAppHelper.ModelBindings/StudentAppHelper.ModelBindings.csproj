@@ -46,6 +46,7 @@
     <Compile Include="Models\MatterModel.cs" />
     <Compile Include="Models\Menu\MenuItem.cs" />
     <Compile Include="Models\ObjectNull.cs" />
+    <Compile Include="Models\ResultContentmodel.cs" />
     <Compile Include="Models\SearchTextModel.cs" />
     <Compile Include="Models\TagModel.cs" />
     <Compile Include="Models\TopicModel.cs" />

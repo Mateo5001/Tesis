@@ -35,6 +35,10 @@ namespace StudentApp.Movile.ViewModel
       {
         _client.IsAuthenticated = true;
         List<SearchResult> result = await _client.CallAsync<SearchTextModel, List<SearchResult>>("api/Content/busqueda", new SearchTextModel() { filtro = Filtro });
+        foreach (SearchResult item in result)
+        {
+          item.NavegateCommand = cmdNL;
+        }
          SearchListResult = result;
       }
     }
@@ -54,7 +58,11 @@ namespace StudentApp.Movile.ViewModel
 
     private async Task methodNavegate(string pKey)
     {
-
+      _navigate.NavigateTo("Main");
+      int id = 0;
+      int.TryParse(pKey, out id);
+      var mainviewmodel = GetInstance<MainPageViewModel>();
+      mainviewmodel.abrirContenido(id);
     }
 
     public List<SearchResult> SearchListResult { get => _SearchListResult;

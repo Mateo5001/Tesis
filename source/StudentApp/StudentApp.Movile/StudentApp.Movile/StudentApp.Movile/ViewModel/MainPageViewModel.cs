@@ -21,6 +21,7 @@ namespace StudentApp.Movile.ViewModel
     private int _IndexTopic;
     private List<string> _MatterList;
     private List<string> _TopicList;
+    private bool btnVisible;
     #endregion
 
     #region Consturctores
@@ -38,6 +39,21 @@ namespace StudentApp.Movile.ViewModel
       base.recargarActions();
       limpiarDatos();
       llenarMaterias();
+      BtnVisible = true;
+    }
+
+    public async void abrirContenido(int idContenido)
+    {
+      intBinding val = new intBinding() { entero = idContenido };
+      var result = await _client.CallAsync<intBinding, ResultContentmodel>("api/Content/abrirContenido", val);
+      if(result.matterIndex == 0)
+        IndexMatter = 1;
+      IndexMatter = result.matterIndex;
+      if (result.topicIndex == 0)
+        IndexTopic = 1;
+      IndexTopic = result.topicIndex;
+      AnotationText = result.anotationText;
+      BtnVisible = false;
     }
 
     private async void llenarMaterias()
@@ -169,6 +185,8 @@ namespace StudentApp.Movile.ViewModel
         });
       }
     }
+
+    public bool BtnVisible { get => btnVisible; set { btnVisible = value; OnPropertyChanged(); } }
 
     #endregion
 

@@ -23,7 +23,7 @@
                   <Label Text = "pruebas y mas pruebas" FontSize="7" AbsoluteLayout.LayoutBounds="50, 35, 200, 25"/>
                   
                 </StackLayout>
-                <Button Text="Abrir" Command="NavegateCommand" CommandParameter="IdContent" AbsoluteLayout.LayoutBounds="250.25, 0.25, 50, 50 " ></Button>
+                <Button Text="Abrir" Command="{Binding NavegateCommand}" CommandParameter="{Binding IdContent}" AbsoluteLayout.LayoutBounds="250.25, 0.25, 50, 50 " ></Button>
               </StackLayout>
             </ViewCell>
           </DataTemplate>

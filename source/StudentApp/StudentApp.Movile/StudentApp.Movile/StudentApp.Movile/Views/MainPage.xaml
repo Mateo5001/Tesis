@@ -19,6 +19,6 @@
     </Picker>
 
     <Editor Text="{Binding AnotationText}" HeightRequest="300" ></Editor>
-    <Button Command="{Binding btnGuardar}" Text="Guardar anotacion"  ></Button>
+    <Button Command="{Binding btnGuardar}" IsVisible="{Binding BtnVisible}" Text="Guardar anotacion"  ></Button>
   </StackLayout>
 </ContentPage>

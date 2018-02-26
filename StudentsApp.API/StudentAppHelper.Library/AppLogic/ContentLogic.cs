@@ -13,6 +13,8 @@ namespace StudentAppHelper.Library.AppLogic
   public class ContentLogic
   {
     QueryLogic materias = new QueryLogic();
+    TopicLogic topic = new TopicLogic();
+
     public bool crearContenido(ContentModel content, int userId)
     {
       bool resp = false;
@@ -70,6 +72,35 @@ namespace StudentAppHelper.Library.AppLogic
           ).Distinct().ToList();
       }
     }
+
+    public ResultContentmodel abrirContenido(intBinding idContenido,int userID)
+    {
+      ResultContentmodel resultado = new ResultContentmodel();
+      using (StudenAppHelperDBEntities conect = new StudenAppHelperDBEntities())
+      {
+        List<string> listaMaterias = materias.Consultar_Materia(userID);
+        string MatterName = (from cont in conect.Tag
+                           where cont.ContentId == idContenido.entero
+                           select cont.Matter.MatterName).FirstOrDefault();
+        int indexMatter = listaMaterias.IndexOf(MatterName);
+        List<string> listatopic = topic.lisTopic(MatterName, userID);
+        string topicName = (from cont in conect.Tag
+                             where cont.ContentId == idContenido.entero
+                             select cont.Topic.TopicName).FirstOrDefault();
+
+        int indexTopic = listatopic.IndexOf(topicName);
+
+        string contenttex = (from cont in conect.Content
+                            where cont.ContentId == idContenido.entero
+                            select cont.ContentText).FirstOrDefault();
+
+        resultado.anotationText = contenttex;
+        resultado.topicIndex = indexTopic;
+        resultado.matterIndex = indexMatter;
+      }
+      return resultado;
+    }
+    
 
     private int? getTipocIDbyIndex(int TopicIndex, int userId, int matterid)
     {

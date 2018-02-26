@@ -54,5 +54,12 @@ namespace StudentsApp.API.Controllers
       return contentlogic.buscar(filtro.filtro);
     }
 
+    [HttpPost]
+    [Route("abrirContenido")]
+    public ResultContentmodel abrirContenido(intBinding idContenido)
+    {
+      return contentlogic.abrirContenido(idContenido,UserApp.IdUser);
+    }
+
   }
 }
